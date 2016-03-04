@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{article}
 \usepackage[french]{babel} 
 \usepackage[T1]{fontenc}
 %\usepackage[ansinew]{inputenc}
@@ -58,21 +58,32 @@
   morekeywords={*,...}               % if you want to add more keywords to the set
 }
 
+%Table of content with dot
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\l@section}
+{\hfil}
+{\leaders\hbox{\normalfont$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill}
+{}{}
+\makeatother
+
+%no indentation
+\setlength{\parindent}{0cm}
 
 %en-tête
 \usepackage{fancyhdr}
-\lhead{PGa}
+\lhead{SEEE}
 \chead{}
 \rhead{\today}
 \pagestyle{fancy}
 
 % Title Page
-\title{\Huge{\textsc{           }} \\ 
-\Huge{\textbf{            }} \\
-\huge{HES-SO}}
-\author{Grégory \textsc{Emery}}
+\title{\Huge{\textsc{Systèmes d'exploitation et environnements d'exécution embarqués}} \\ 
+	\Huge{\textbf{Rapport de laboratoire}} \\
+	\huge{Master HES-SO}}
+\author{Émilie \textsc{Gsponer}, Grégory \textsc{Emery} }
 \date{\today \\
-version 1.0}
+	version 1.0}
 
 %-------------------------début du document-------------------------------------
 \begin{document}
@@ -80,7 +91,7 @@ version 1.0}
 \maketitle % page de garde
 \newpage
 \tableofcontents % table des matières
-
+\input{sections/IntroReptar}
 
 \end{document}
 
