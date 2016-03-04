@@ -6,7 +6,6 @@ suivante (via une fenêtre de terminal):
 \begin{lstlisting}
 $ git clone firstname.lastname@eigit.heig-vd.ch:/home2/reds/seee/seee_student
 \end{lstlisting}
-
 \textbf{Travail réalisé: }
 Nous n'avions pas les droits d'accès pour le dépôt git, nous l'avons donc téléchargé, puis extrait depuis le lien:
 \url{https://drive.switch.ch/index.php/s/TbHxQZtmO9IVdkb}.\\
@@ -23,7 +22,6 @@ En introduisant le path du dossier seee\_student comme workspace au lancement d'
 		\label{eclipseProjet}
 	\end{center}
 \end{figure}
-
 \textbf{c) Donnée: }Compilez maintenant l'émulateur Qemu. Dans une fenêtre de terminal, lancez la commande
 suivante à partir de votre répertoire seee\_student : 
 \begin{lstlisting}
@@ -38,7 +36,6 @@ redsuser@vm-reds-2015s2:~/seee_student$ make qemu
 make[1]: Leaving directory `/home/redsuser/seee_student/qemu-reds'
 redsuser@vm-reds-2015s2:~/seee_student$
 \end{lstlisting}
-
 \subsection{Démarrage de Qemu}
 \textbf{a) Donnée: }Depuis Eclipse, lancez le debugger avec la configuration de debug « qemu-reds Debug ». Dans la
 fenêtre Console, vous pourrez entrer directement des commandes de U-boot (tapez help par
@@ -86,7 +83,6 @@ bootm   - boot application image from memory
 bootp   - boot image via network usi
 ...
 \end{lstlisting}
-
 \subsection{Tests avec U-boot}
 \textbf{a) Donnée: }Dans U-boot, listez les variables d'environnement avec la commande printenv. Observez les
 variables prédéfinies « tftp1, tftp2 et goapp ». Ces variables définissent des commandes U-boot qui
@@ -94,36 +90,183 @@ peuvent être exécutées à l'aide de la commande run (par exemple run tftp1).
 La commande go <addr> permet de lancer l'exécution à l'adresse physique <addr>.
 Vous pouvez définir/modifier vos propres variables et les sauvegarder dans la flash émulée avec la
 commande saveenv (seulement avec le lancement via stf). \\\\
-\textbf{Travail Réalisé: }\\\\
+\textbf{Travail Réalisé: }Après être entré dans l'U-boot avec \textit{stf}, nous avons pu lister les variables d'environnement suivantes:
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~$ cd seee_student/
+redsuser@vm-reds-2015s2:~/seee_student$ ./stf
+WARNING: Image format was not specified for 'filesystem/flash' and probing guessed raw.
+...
+goapp=go 0x81600000
+...
+tftp1=tftp helloworld_u-boot/helloworld.bin
+tftp2=tftp gpio_u-boot/gpio_u-boot.bin
 
+Environment size: 930/4092 bytes
+Reptar # 
+\end{lstlisting}
+Les variables \textit{tftp1} et \textit{tftp2} sont des alias permettant de lancer des applications, la variable goapp est un alias permettant de lancer l'exécution de l'adresse physique 0x81600000. Elle définit l'adresse de début des applications. Voici un exemple d'utilisation de ces variables:
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~$ cd seee_student/
+redsuser@vm-reds-2015s2:~/seee_student$ cd helloworld_u-boot/
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ make
+...
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ cd ../gpio_u-boot/
+redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ make
+...
+redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ cd ..
+redsuser@vm-reds-2015s2:~/seee_student$ ./stf 
+WARNING: Image format was not specified for 'filesystem/flash' and probing guessed raw.
+...
+Reptar # run tftp1
+smc911x: detected LAN9118 controller
+smc911x: phy initialized
+smc911x: MAC e4:af:a1:40:01:fe
+Using smc911x-0 device
+TFTP from server 10.0.2.2; our IP address is 10.0.2.10
+Filename 'helloworld_u-boot/helloworld.bin'.
+Load address: 0x81600000
+Loading: #
+done
+Bytes transferred = 776 (308 hex)
+
+Reptar # run goapp
+## Starting application at 0x81600000 ...
+Example expects ABI version 6
+Actual U-Boot ABI version 6
+Hello World
+argc = 1
+argv[0] = "0x81600000"
+argv[1] = "<NULL>"
+Hit any key to exit ... 
+## Application terminated, rc = 0x0
+
+Reptar # run tftp2
+smc911x: detected LAN9118 controller
+smc911x: phy initialized
+smc911x: MAC e4:af:a1:40:01:fe
+Using smc911x-0 device
+TFTP from server 10.0.2.2; our IP address is 10.0.2.10
+Filename 'gpio_u-boot/gpio_u-boot.bin'.
+Load address: 0x81600000
+Loading: #
+done
+Bytes transferred = 3080 (c08 hex)
+
+Reptar # run goapp
+## Starting application at 0x81600000 ...
+Start of the GPIO U-boot Standalone Application
+Stop of the GPIO U-boot Standalone Application
+## Application terminated, rc = 0x0
+Reptar #
+\end{lstlisting}
+La commande run tftp<x> charge une application à l'adresse 0x81600000, tandis que run goapp va exécuter l'application à cette adresse comme le montre l'exemple ci-dessus.\\\\
 \textbf{b) Donnée: }La production de l'exécutable helloworld\_u-boot s'effectue en tapant la commande make dans le
 répertoire contenant les sources du programme. Ensuite, vous pouvez transférer le fichier (extension
 .bin) dans U-boot et exécuter le binaire (aidez-vous des variables d'environnement prédéfinies). \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: } Ce point a été fait en même temps que le précédent.\\
 
 \textbf{c) Donnée: } Testez le debugger dans Eclipse avec le projet helloworld\_u-boot. Mettez un breakpoint dans le
 code source au démarrage du programme, et lancez le debugger avec la configuration de debug
 « helloworld\_u-boot Debug ». \\\\
-\textbf{Travail Réalisé: }
-
+\textbf{Travail Réalisé: } Il faut que U-boot soit démarré dans un terminal externe avec \textit{stf} pour que la manipulation fonctionne avec Eclipse. En observant le code assembleur, on peut remarquer que cette fois, le code travail avec des adresses 32bits contrairement à l'exercice précédent avec Qemu qui était 64bits.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=18cm]{img/ubootCommand2.png}
+		\caption{Debug d'hello\_world\_u-boot}
+		\label{ubootComm2}
+	\end{center}
+\end{figure}
 \subsection{Tests avec Linux}
 \textbf{a) Donnée: }Lancez le script ./deploy qui permettra de déployer le noyau Linux dans la sdcard virtuelle (ignorez
 l'erreur due à l'absence de certains fichiers). \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ ./deploy 
+Deploying into reptar rootfs ...
+Mounting filesystem/sd-card.img...
+[sudo] password for redsuser: 
+SD card partitions mounted in 'boot_tmp' and 'filesystem_tmp' directories
+cp: cannot stat 'drivers/sp6.ko': No such file or directory
+cp: cannot stat 'drivers/usertest': No such file or directory
+cp: cannot stat 'drivers/buttons_test': No such file or directory
+Unmounting SD card image...
+Synchronizing .img file
+Unmounting 'boot_tmp' and 'filesystem_tmp'...
+Done !
+redsuser@vm-reds-2015s2:~/seee_student$ 
+\end{lstlisting}
 \textbf{b) Donnée: }Poursuivez ensuite en cross-compilant l'application helloworld pour Linux (via make). \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ cd helloworld_linux/
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_linux$ make
+...
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_linux$ cd ..
+\end{lstlisting}
 \textbf{c) Donnée: }Copiez l'exécutable dans le rootfs\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ ./mount-sd.sh 
+Mounting filesystem/sd-card.img...
+SD card partitions mounted in 'boot_tmp' and 'filesystem_tmp' directories
+
+redsuser@vm-reds-2015s2:~/seee_student$ sudo cp helloworld_linux/helloworld filesystem_tmp/root
+
+redsuser@vm-reds-2015s2:~/seee_student$ ./umount-sd.sh 
+Unmounting SD card image...
+Synchronizing .img file
+Unmounting 'boot_tmp' and 'filesystem_tmp'...
+Done !
+redsuser@vm-reds-2015s2:~/seee_student$ 
+\end{lstlisting}
 \textbf{d) Donnée: }Lancez le script stq suivi de la commande boot dans U-boot pour amorcer le démarrage de Linux\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: } Avec la commande stq, une représentation de la carte se lance.
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ ./stq 
+libGL error: failed to authenticate magic 1
+libGL error: failed to load driver: vboxvideo
+Running QEMU
+...
+Warning: smc911x-0 MAC addresses don't match:
+Address in SROM is         52:54:00:12:34:56
+Address in environment is  e4:af:a1:40:01:fe
+Reptar # boot
+reading uImage
+...
+*** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+Password: 
+# 
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=18cm]{img/linux.png}
+		\caption{Environnement émulé}
+		\label{linux}
+	\end{center}
+\end{figure}
 \textbf{e) Donnée: }Lancez votre application\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }
+\begin{lstlisting}
+# ls
+Settings         fs               helloworld       rootfs_domU.img
+# ./helloworld 
+Hello world within Linux
+argv[0] = ./helloworld
+# 
+\end{lstlisting}
 \textbf{f) Donnée: }Dans Linux, tapez la commande suivante :
 \begin{lstlisting}
 $ /usr/share/qt/examples/effects/lighting/lighting -qws & 
 \end{lstlisting}
-\textbf{Travail réalisé: }
-
+\textbf{Travail réalisé: }Cette commande permet de lancer une application pré installée de l'émulateur.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/linux2.png}
+		\caption{Lancement d'une application}
+		\label{linux2}
+	\end{center}
+\end{figure}
 \subsection{Tests sur la plate-forme réelle}
 \textbf{a) Donnée: }Déployez l'application helloworld dans U-boot sur la plate-forme REPTAR avec l'interface réseau.
 Le transfert peut s'effectuer avec la commande tftp.
@@ -132,10 +275,82 @@ REPTAR :
 \begin{lstlisting}
 # run setmac setip 
 \end{lstlisting}
-\textbf{Travail réalisé: }\\\\
-\textbf{b) Donnée: }Déployez l'application helloworld dans Linux à l'aide du réseau et de la commande scp.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }Avec la commande tftp il faut donner comme paramètre le \textit{.bin} de l'application ainsi que l'adresse physique où charger le programme. Cette adresse est 0x81600000 comme dans les exercices précédents.
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ cd helloworld_u-boot/
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ make
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ cp helloworld /home/redsuser/tftpboot
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ sudo picocom -b 115200 /dev/ttyUSB0 
+[sudo] password for redsuser: 
+picocom v1.7
+...
+Terminal ready
 
+Reptar # run setmac setip
+Reptar # tftp 0x81600000 helloworld.bin
+smc911x: detected LAN9220 controller
+smc911x: phy initialized
+smc911x: MAC e4:af:a1:40:01:fe
+Using smc911x-0 device
+TFTP from server 192.168.1.1; our IP address is 192.168.1.254
+Filename 'helloworld.bin'.
+Load address: 0x81600000
+Loading: T #
+done
+Bytes transferred = 776 (308 hex)
+
+Reptar # go 0x81600000
+## Starting application at 0x81600000 ...
+Example expects ABI version 6
+Actual U-Boot ABI version 6
+Hello World
+argc = 1
+argv[0] = "0x81600000"
+argv[1] = "<NULL>"
+Hit any key to exit ... 
+\end{lstlisting}
+\textbf{Remarque: }La commande tftp ne fonctionnera pas tant que la configuration réseau n'est pas correcte. Il faut impérativement que l'adresse Ip de la connexion par pont de la VM soit 192.168.1.1.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=7cm]{img/ipConfig.png}
+		\caption{Configuration réseau}
+		\label{ipConfig}
+	\end{center}
+\end{figure}
+\textbf{b) Donnée: }Déployez l'application helloworld dans Linux à l'aide du réseau et de la commande scp.\\\\
+\textbf{Travail réalisé: } Nous avons découvert que l'adresse Ip de la carte n'était pas celle attendue, nous avons donc dû adapter scp pour l'adresse Ip 192.168.1.254.
+\begin{lstlisting}
+Reptar # boot
+reading uImage
+...
+*** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+Password: 
+# ifconfig
+eth0      Link encap:Ethernet  HWaddr E4:AF:A1:40:01:FE  
+inet addr:192.168.1.254  Bcast:192.168.1.255  Mask:255.255.255.0
+...
+\end{lstlisting}
+La commande scp permet de transférer le helloworld\_linux à la carte reptar par l'interface réseau depuis la machine hôte.
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_linux$ scp helloworld root@192.168.1.254:helloworld
+
+The authenticity of host '192.168.1.254 (192.168.1.254)' can't be established.
+RSA key fingerprint is fb:59:a3:73:97:9d:b7:b9:8a:40:e8:bc:19:ab:ab:70.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.1.254' (RSA) to the list of known hosts.
+root@192.168.1.254's password: 
+helloworld                                    100% 6877     6.7KB/s   00:00    
+\end{lstlisting}
+L'application helloworld est maintenant chargée sur la cible, il ne reste plus qu'à l'exécuter sur celle-ci.
+\begin{lstlisting}
+# ls
+bitstreams  helloworld     tests
+# ./helloworld 
+Hello world within Linux
+argv[0] = ./helloworld
+#
+\end{lstlisting}
 \subsection{Accès aux périphériques REPTAR}
 \textbf{a) Donnée: } Sur la base de l’exemple gpio\_u-boot., vous devez développer une application permettant d’interagir avec les
 LEDs et les switchs présents sur la carte CPU de la plate-forme REPTAR.
