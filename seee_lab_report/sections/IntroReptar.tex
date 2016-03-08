@@ -56,7 +56,8 @@ exemple). \\\\
 		\label{ubootCommand}
 	\end{center}
 \end{figure}
-En interrompant le programme avec le bouton \textit{suspend}, on obtient la vue assembleur ci-dessous. L'environnement essaie d'ouvrir le fichier ppoll.c, on est donc en attente d'un événement. Le programme est interrompu après un syscall, il compare deux valeurs ce qui confirme qu'il est effectivement en attente d'événements. L'adresse comparée est sur 64bits, cela nous indique que l'on est sur l'environnement émulé de la machine hôte. Sur le Reptar, l'adresse serait 32bits.
+\textbf{b) Donnée: } Interrompez l'exécution du programme en cliquant sur l'icône pause. Identifiez la ligne en cours d'exécution dans le code source. \\\\
+\textbf{Travail réalisé: }En interrompant le programme avec le bouton \textit{suspend}, on obtient la vue assembleur ci-dessous. L'environnement essaie d'ouvrir le fichier ppoll.c, on est donc en attente d'un événement. Le programme est interrompu après un syscall.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=18cm]{img/ubootAsm.png}
@@ -168,7 +169,7 @@ répertoire contenant les sources du programme. Ensuite, vous pouvez transférer
 \textbf{c) Donnée: } Testez le debugger dans Eclipse avec le projet helloworld\_u-boot. Mettez un breakpoint dans le
 code source au démarrage du programme, et lancez le debugger avec la configuration de debug
 « helloworld\_u-boot Debug ». \\\\
-\textbf{Travail Réalisé: } Il faut que U-boot soit démarré dans un terminal externe avec \textit{stf} pour que la manipulation fonctionne avec Eclipse. En observant le code assembleur, on peut remarquer que cette fois, le code travail avec des adresses 32bits contrairement à l'exercice précédent avec Qemu qui était 64bits.
+\textbf{Travail Réalisé: } Il faut que U-boot soit démarré dans un terminal externe avec \textit{stf} pour que la manipulation fonctionne avec Eclipse.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=18cm]{img/ubootCommand2.png}
@@ -176,6 +177,7 @@ code source au démarrage du programme, et lancez le debugger avec la configurat
 		\label{ubootComm2}
 	\end{center}
 \end{figure}
+\textbf{Remarque: }\color{red}Qemu se comporte comme un serveur GDB, ce qui permet à Eclipse  de communiquer avec lui et de debugger des applications...à retravailler\color{black}
 \subsection{Tests avec Linux}
 \textbf{a) Donnée: }Lancez le script ./deploy qui permettra de déployer le noyau Linux dans la sdcard virtuelle (ignorez
 l'erreur due à l'absence de certains fichiers). \\\\
@@ -279,7 +281,7 @@ REPTAR :
 \begin{lstlisting}
 redsuser@vm-reds-2015s2:~/seee_student$ cd helloworld_u-boot/
 redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ make
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ cp helloworld /home/redsuser/tftpboot
+redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ cp helloworld.bin /home/redsuser/tftpboot
 redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ sudo picocom -b 115200 /dev/ttyUSB0 
 [sudo] password for redsuser: 
 picocom v1.7
@@ -312,7 +314,7 @@ Hit any key to exit ...
 \textbf{Remarque: }La commande tftp ne fonctionnera pas tant que la configuration réseau n'est pas correcte. Il faut impérativement que l'adresse Ip de la connexion par pont de la VM soit 192.168.1.1.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=7cm]{img/ipConfig.png}
+		\includegraphics[width=10cm]{img/ipConfig.png}
 		\caption{Configuration réseau}
 		\label{ipConfig}
 	\end{center}
@@ -363,4 +365,82 @@ Le but de l’application est d’allumer une LED lorsqu’on appuie sur un swit
 Le switch numéro 4 sert à quitter l’application. Aidez-vous des fichiers d'en-tête (\#include) déjà présents dans
 le chablon fourni.\\
 L’application gpio\_u-boot est à déployer dans U-boot via la commande tftp. \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }Voici le code que nous avons implémenté pour cette partie.
+\begin{lstlisting}
+#define NB_SWITCHS 	5
+#define NB_LEDS 	4
+
+int main(int argc, char *argv[])
+{	
+	printf ("Start of the GPIO U-boot Standalone Application\n");
+	while(1)
+	{
+		if(gpio_get_value(GPIO_SW_0))
+		{
+			gpio_set_value(GPIO_LED_0, 1);
+		}
+		else
+		{
+			gpio_set_value(GPIO_LED_0, 0);
+		}
+		if(gpio_get_value(GPIO_SW_1))
+		{
+			gpio_set_value(GPIO_LED_1, 1);
+		}
+		else
+		{
+			gpio_set_value(GPIO_LED_1, 0);
+		}
+		if(gpio_get_value(GPIO_SW_2))
+		{
+			gpio_set_value(GPIO_LED_2, 1);
+		}
+		else
+		{
+			gpio_set_value(GPIO_LED_2, 0);
+		}	
+		if(gpio_get_value(GPIO_SW_3))
+		{
+			gpio_set_value(GPIO_LED_3, 1);
+		}
+		else
+		{
+			gpio_set_value(GPIO_LED_3, 0);
+		}
+		if(gpio_get_value(GPIO_SW_4))
+		{
+			break;
+		}
+	}
+	printf ("Stop of the GPIO U-boot Standalone Application\n");
+	return (0);
+}
+\end{lstlisting}
+Ce code est très basique, mais implémente correctement les points exigés par la donnée. Les commandes suivantes ont permis de lancer l'application sur la cible réelle dans l'U-boot. Une pression sur le switch numéro 4 permet de terminer l'application.\\
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ make
+...
+redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ cp gpio_u-boot.bin /home/redsuser/tftpboot
+redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ sudo picocom -b 115200 /dev/ttyUSB0 
+[sudo] password for redsuser: 
+picocom v1.7
+...
+Terminal ready
+
+Reptar # tftp 0x81600000 gpio_u-boot.bin
+smc911x: detected LAN9220 controller
+smc911x: phy initialized
+smc911x: MAC e4:af:a1:40:01:fe
+Using smc911x-0 device
+TFTP from server 192.168.1.1; our IP address is 192.168.1.254
+Filename 'gpio_u-boot.bin'.
+Load address: 0x81600000
+Loading: T #
+done
+Bytes transferred = 776 (308 hex)
+
+Reptar # go 0x81600000
+...
+Stop of the GPIO U-boot Standalone Application
+Reptar #
+\end{lstlisting}
