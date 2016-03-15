@@ -5,3 +5,9 @@
 \BOOKMARK [2][-]{subsection.1.4}{Tests avec Linux}{section.1}% 5
 \BOOKMARK [2][-]{subsection.1.5}{Tests sur la plate-forme r\351elle}{section.1}% 6
 \BOOKMARK [2][-]{subsection.1.6}{Acc\350s aux p\351riph\351riques REPTAR}{section.1}% 7
+\BOOKMARK [1][-]{section.2}{\311mulation de p\351riph\351riques}{}% 8
+\BOOKMARK [2][-]{subsection.2.1}{Environnement Qemu et machine Reptar}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.2}{\311mulation de la FPGA Spartan6}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{\311mulation des devices de type LED \(output\)}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.4}{\311mulation de type boutons \(input\)}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.5}{Gestion des interruptions \(IRQ\) avec les boutons}{section.2}% 13

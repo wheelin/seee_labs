@@ -365,57 +365,7 @@ Le but de l’application est d’allumer une LED lorsqu’on appuie sur un swit
 Le switch numéro 4 sert à quitter l’application. Aidez-vous des fichiers d'en-tête (\#include) déjà présents dans
 le chablon fourni.\\
 L’application gpio\_u-boot est à déployer dans U-boot via la commande tftp. \\\\
-\textbf{Travail réalisé: }Voici le code que nous avons implémenté pour cette partie.
-\begin{lstlisting}
-#define NB_SWITCHS 	5
-#define NB_LEDS 	4
-
-int main(int argc, char *argv[])
-{	
-	printf ("Start of the GPIO U-boot Standalone Application\n");
-	while(1)
-	{
-		if(gpio_get_value(GPIO_SW_0))
-		{
-			gpio_set_value(GPIO_LED_0, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_0, 0);
-		}
-		if(gpio_get_value(GPIO_SW_1))
-		{
-			gpio_set_value(GPIO_LED_1, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_1, 0);
-		}
-		if(gpio_get_value(GPIO_SW_2))
-		{
-			gpio_set_value(GPIO_LED_2, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_2, 0);
-		}	
-		if(gpio_get_value(GPIO_SW_3))
-		{
-			gpio_set_value(GPIO_LED_3, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_3, 0);
-		}
-		if(gpio_get_value(GPIO_SW_4))
-		{
-			break;
-		}
-	}
-	printf ("Stop of the GPIO U-boot Standalone Application\n");
-	return (0);
-}
-\end{lstlisting}
+\textbf{Emplacement du code réalisé: }/gpio\_u-boot.c\\\\
 Ce code est très basique, mais implémente correctement les points exigés par la donnée. Les commandes suivantes ont permis de lancer l'application sur la cible réelle dans l'U-boot. Une pression sur le switch numéro 4 permet de terminer l'application.\\
 \begin{lstlisting}
 redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ make
