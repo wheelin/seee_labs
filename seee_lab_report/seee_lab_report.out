@@ -11,3 +11,5 @@
 \BOOKMARK [2][-]{subsection.2.3}{\311mulation des devices de type LED \(output\)}{section.2}% 11
 \BOOKMARK [2][-]{subsection.2.4}{\311mulation de type boutons \(input\)}{section.2}% 12
 \BOOKMARK [2][-]{subsection.2.5}{Gestion des interruptions \(IRQ\) avec les boutons}{section.2}% 13
+\BOOKMARK [2][-]{subsection.2.6}{\311mulation de l'afficheur 7 segments}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.7}{Mini-application utilisant les boutons et l'afficheur 7 segments}{section.2}% 15

@@ -34,7 +34,7 @@ suivants :
 \end{enumerate}
 Vous trouverez également toute la documentation nécessaire sur la plate-forme Reptar dans le
 répertoire doc. \\\\
-\textbf{Remarque: }Ces différents fichiers implémentent des modules noyaux.\\\\
+\textbf{Remarque: }Ces différents fichiers implémentent ce qui ressemble à des modules noyaux.\\\\
 \textbf{c) Donnée: } La compilation de Qemu pourra s'effectuer dans le répertoire qemu-reds directement, avec la
 commande make (utilisez make -j4 ou -j8 pour aller plus vite !). \\\\
 \textbf{Travail réalisé: }Par la suite, seule la commande \textit{make} sera nécessaire pour recompiler l'émulateur.\\
@@ -58,7 +58,56 @@ dédiée à la FPGA (affichez simplement un message). \\\\
 \textbf{b) Donnée: }Testez les accès en lecture-écriture avec U-Boot. \\\\
 \textbf{Travail réalisé: }\\\\
 \subsection{Émulation des devices de type LED (output)}
-
+\textbf{Donnée: }La FPGA est connectée à des LEDs qui sont visibles sur l'interface graphique. Cette étape consiste à
+implémenter le code d'émulation précédent afin de gérer l'accès aux LEDs reliées à la FPGA.
+Les interactions entre la FPGA et l'interface graphique doivent être gérées proprement. \\\\
+\textbf{Travail réalisé: }\\\\
 \subsection{Émulation de type boutons (input)}
-
+La FPGA est connectée à une série de boutons (switches) sur la plate-forme Reptar. Cette étape consiste
+à mettre en place la structure nécessaire à la gestion de ces boutons. \\\\
+\textbf{a) Donnée: }Adaptez les fichiers nécessaires afin que l'émulation de votre périphérique (FPGA) puisse détecter
+la pression d'une touche, sans vous préoccuper pour le moment des interruptions. \\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Le projet sp6\_buttons\_u-boot contient une application permettant de tester vos boutons (en mode
+polling). Compilez l'application et effectuez quelques tests.\\\\
+\textbf{Travail réalisé: }\\\\
 \subsection{Gestion des interruptions (IRQ) avec les boutons}
+Complétez votre émulateur avec le code nécessaire à la gestion d'une interruption à niveau émise par
+la FPGA lorsqu'un bouton est pressé. L'interruption est censée être acquittée par le driver. Il faut donc
+gérer l'état interne associé à cette interruption. \\\\
+\textbf{a) Donnée: }Commencez par adapter le code d'initialisation de la plate-forme (reptar.c) afin d'instancier une
+interruption en provenance de la FPGA ; l'interruption sera de type niveau.\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Testez que l'interruption fonctionne en configurant le contrôleur GPIO et en interrogeant le registre
+d'état, dans U-Boot. Les registres du microcontrôleur à utiliser sont les suivants :
+GPIO\_RISINGDETECT, GPIO\_IRQENABLE1 et GPIO\_IRQSTATUS1
+De plus, l'interruption doit aussi être activée au niveau de la FPGA (cf documentation). \\\\
+\textbf{Travail réalisé: }\\\\
+\subsection{Émulation de l'afficheur 7 segments}
+La FPGA est connectée à un afficheur 7 segments, visible sur l’émulateur. Cette étape consiste à mettre
+en place la gestion de cet afficheur 7 segments. 
+\textbf{a) Donnée: }Adaptez les fichiers nécessaires afin que l'émulation de votre périphérique (FPGA) puisse gérer les
+trois digits de l’afficheur 7 segments. \\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Le dossier 7seg\_u-boot contient une application permettant de tester l’afficheur 7 segments : les
+chiffres de 0 à 9 doivent défiler progressivement : 012, puis 123, 234, 456, 567, …, 901, 012, etc.
+Compilez l'application et effectuez quelques tests.\\\\
+\textbf{Travail réalisé: }\\\\
+\subsection{Mini-application utilisant les boutons et l'afficheur 7 segments}
+\textbf{a) Donnée: }Le dossier miniapp\_u-boot contient un chablon. Complétez-le afin de créer une application qui
+utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.
+\begin{enumerate}
+	\item Lors d’un appui sur SW2, SW5 ou SW4, le digit respectivement à gauche, au centre ou au
+	milieu est incrémenté de 1, modulo 10. Si un digit atteint 9, il reviendra à 0. 
+	\item La valeur initiale de chaque digit, au démarrage de l’application, est 0 (on affichera 000). 
+	\item Un appui sur SW3 quitte l’application. 
+	\item Vous devrez gérer l’anti-rebond : le digit ne devra être incrémenté que si le bouton est
+	pressé puis relâché (comme un appui sur une touche de sonnette par exemple). \\
+\end{enumerate}
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Testez votre application sur l’émulateur\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{c) Donnée: }Déployez et testez votre application sur la plate-forme réelle\\\\
+\textbf{Travail réalisé: }\\\\
+
+
