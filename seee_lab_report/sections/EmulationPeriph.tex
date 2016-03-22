@@ -5,10 +5,7 @@ Cette étape vous permet de vous familiariser avec l’environnement que nous ut
 l’émulation de périphériques.
 Dans cette étape, il est nécessaire de travailler avec l'application graphique Qtemu, qui constitue le
 frontend graphique de Qemu. L'application est développée en C++ et utilise la librairie Qt. \\\\
-\textbf{a) Donnée: }A partir du répertoire seee\_student, lancez le frontend graphique avec le script stq : 
-\begin{lstlisting}
-$ ./stq
-\end{lstlisting}
+\textbf{a) Donnée: }A partir du répertoire seee\_student, lancez le frontend graphique avec le script stq \\\\
 \textbf{Travail réalisé: }
 \begin{lstlisting}
 redsuser@vm-reds-2015s2:~$ cd seee_student/
@@ -28,7 +25,7 @@ suivants :
 \begin{enumerate}
 	\item hw/arm/reptar/reptar.c Emulation plate-forme REPTAR
 	\item hw/reptar\_sp6.c Emulation de la FPGA
-	\item hw/reptar\_clcd.c Emulation gestion du LCD4x20
+	\item hw/reptar\_sp6\_clcd.c Emulation gestion du LCD4x20
 	\item hw/reptar\_sp6\_buttons.c Emulation gestion des boutons
 	\item hw/reptar\_sp6\_emul.c Gateway entre Qemu et Qtemu
 \end{enumerate}
@@ -53,10 +50,37 @@ Dans cette étape, il s'agit de mettre en place la structure nécessaire à l'é
 étape, il s'agit de s'assurer que l'accès aux adresses I/O en lecture et écriture fonctionne. \\\\
 \textbf{a) Donnée: }Complétez l'émulation de la FPGA afin de tester l'écriture et la lecture à l'une ou l'autre adresse
 dédiée à la FPGA (affichez simplement un message). \\\\
-\textbf{Travail réalisé: }Nous avons modifié les fichiers \textit{reptar\_sp6.c} et \textit{reptar.c}\\\\
-\textbf{Emplacement du code:}\textit{/emulationSpartan6/reptar\_sp6.c} et \textit{/emulationSpartan6/reptar.c}\\\\
+\textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part2/reptar\_sp6.c}\\ \textit{/emulationSpartan6\_part2/reptar.c}\\\\
+\textbf{Travail réalisé: }Nous avons modifié les fichiers \textit{reptar\_sp6.c} et \textit{reptar.c}\\
+Le point crucial de cette partie du labo a été de trouvé l'adresse de base de la FPGA qui est \textbf{0x18000000}. Nous avons en effet besoin de cette adresse pour instancier le \textit{reptar\_sp6} dans la partie reptar. 
+\begin{lstlisting}
+	sysbus_create_simple("reptar_sp6",0x18000000,NULL);
+\end{lstlisting}
+Pour le reste de l'implémentation, nous nous somme basé sur le diagramme de séquence du support de cours et avons pris le document \textit{versatilepb.c} comme exemple pour le contenu des méthodes callback.\\
+Le bon fonctionnement du code a été "testé" premièrement en réussissant la compilation sans erreurs, puis le lancement sans crash. Nous avons également ajouté des messages affichés dans la console dans les différentes méthodes callback pour suivre l'initialisation. L'exécution a été faite de la manière suivante:
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~$ cd seee_student/qemu-reds/
+redsuser@vm-reds-2015s2:~/seee_student/qemu-reds$ make
+...
+redsuser@vm-reds-2015s2:~/seee_student/qemu-reds$ cd ..
+redsuser@vm-reds-2015s2:~/seee_student$ ./stq
+...
+sp6 init
+reptar-sp6-emul: sp6_emul_init
+sp6 initfn
+...
+Reptar # 
+\end{lstlisting}
 \textbf{b) Donnée: }Testez les accès en lecture-écriture avec U-Boot. \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: } Pour l'instant, les callback de lecture/écriture que nous avons implémentés contiennent uniquement des messages d'indication qui sont affichés dans la console. À l'aide des commandes suivantes, nous avons pu en tester le bon fonctionnement. Les commandes tentent de lire, puis écrire à l'adresse de la FPGA.
+\begin{lstlisting}
+Reptar # md.l 0x18000000 1
+18000000:sp6 read
+ 00000000    ....
+Reptar # mw.l 0x18000000 1
+sp6 write
+Reptar #
+\end{lstlisting}
 \subsection{Émulation des devices de type LED (output)}
 \textbf{Donnée: }La FPGA est connectée à des LEDs qui sont visibles sur l'interface graphique. Cette étape consiste à
 implémenter le code d'émulation précédent afin de gérer l'accès aux LEDs reliées à la FPGA.
