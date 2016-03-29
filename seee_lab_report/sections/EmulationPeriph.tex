@@ -85,7 +85,23 @@ Reptar #
 \textbf{Donnée: }La FPGA est connectée à des LEDs qui sont visibles sur l'interface graphique. Cette étape consiste à
 implémenter le code d'émulation précédent afin de gérer l'accès aux LEDs reliées à la FPGA.
 Les interactions entre la FPGA et l'interface graphique doivent être gérées proprement. \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part3/reptar\_sp6.c}\\\\
+\textbf{Travail réalisé: }Pour cette partie, il a fallu rechercher l'offset du registre des LEDs qui est \textit{0x003A}. Il faut donc ajouter cet offset à l'adresse de base de la FPGA. Nous avons défini une variable qui garde la valeur écrite au registre des LEDs pour permettre la relecture de la valeur. La valeur lue est simplement affichée dans la console. Nous avons ensuite implémenté la lecture et l'écriture de ce registre. Pour cela, on teste si l'offset correspond et si l'on lit/écrit des données de la bonne taille, soit 16bits. Des messages ont été implémentés pour indiquer lorsque si la lecture/écriture est faite correctement.
+\\Nous avons ensuite testé le bon fonctionnement du code avec le test 10 de itbok. Le test montre que l'on arrive à lire et écrire correctement sur les leds.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/leds1.png}
+		\caption{Test d'allumage des LEDs}
+		\label{leds1}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/leds2.png}
+		\caption{Test d'extinction des LEDs}
+		\label{leds2}
+	\end{center}
+\end{figure}
 \subsection{Émulation de type boutons (input)}
 La FPGA est connectée à une série de boutons (switches) sur la plate-forme Reptar. Cette étape consiste
 à mettre en place la structure nécessaire à la gestion de ces boutons. \\\\
