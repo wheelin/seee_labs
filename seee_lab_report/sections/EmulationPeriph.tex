@@ -107,10 +107,56 @@ La FPGA est connectée à une série de boutons (switches) sur la plate-forme Re
 à mettre en place la structure nécessaire à la gestion de ces boutons. \\\\
 \textbf{a) Donnée: }Adaptez les fichiers nécessaires afin que l'émulation de votre périphérique (FPGA) puisse détecter
 la pression d'une touche, sans vous préoccuper pour le moment des interruptions. \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part4/reptar\_sp6.c}\\
+\textit{/emulationSpartan6\_part4/reptar\_sp6\_buttons.c}\\\\
+\textbf{Travail réalisé: }Le code de cette partie est inspiré du \textit{Guide d'utilisation de l'infrastructure}. L'offset pour lire la valeur des boutons est \textit{0x0012}. Lorsqu'un bouton est pressé, le handler du fichier sp6\_button est appelé et la valeur du registre est mémorisée. La valeur des boutons peut également être récupérée lors d'une lecture du registre \textit{0x0012}.\\\\
 \textbf{b) Donnée: }Le projet sp6\_buttons\_u-boot contient une application permettant de tester vos boutons (en mode
 polling). Compilez l'application et effectuez quelques tests.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }L'application a été compilée avec make. Il faut ensuite lancer l'émulateur avec la \textit{stq}. Une fois dans l'U-boot, on peut lancer l'application testant les boutons facilement, car elle est enregistrée dans les variables d'environnements sous le nom \textit{tftp3}. Les lignes ci-dessous démontre le bon fonctionnement des boutons. Le bouton exit arrête l'application. 
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ ./stq
+...
+Reptar # run tftp3
+smc911x: detected LAN9118 controller
+smc911x: phy initialized
+smc911x: MAC e4:af:a1:40:01:fe
+Using smc911x-0 device
+TFTP from server 10.0.2.2; our IP address is 10.0.2.10
+Filename 'sp6_buttons_u-boot/sp6_buttons.bin'.
+Load address: 0x81600000
+Loading: #######
+done
+Bytes transferred = 34512 (86d0 hex)
+
+Reptar # run goapp
+## Starting application at 0x81600000 ...
+Start of the SP6 buttons standalone test application.
+Button ONE pressed
+...
+Button ONE pressed
+Button ONE pressed
+Button ONE pressed
+reptar-sp6-emul: sp6_emul_event_handle: read 29 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x0
+
+Button LEFT pressed
+Button LEFT pressed
+Button LEFT pressed
+reptar-sp6-emul: sp6_emul_event_handle: read 29 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x0
+
+reptar-sp6-emul: sp6_emul_event_handle: read 30 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x10
+Button EXIT pressed
+SP6 buttons standalone test application exit.
+## Application terminated, rc = 0x0
+Reptar # reptar-sp6-emul: sp6_emul_event_handle: read 29 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x0
+\end{lstlisting}
 \subsection{Gestion des interruptions (IRQ) avec les boutons}
 Complétez votre émulateur avec le code nécessaire à la gestion d'une interruption à niveau émise par
 la FPGA lorsqu'un bouton est pressé. L'interruption est censée être acquittée par le driver. Il faut donc
@@ -125,14 +171,38 @@ De plus, l'interruption doit aussi être activée au niveau de la FPGA (cf docum
 \textbf{Travail réalisé: }\\\\
 \subsection{Émulation de l'afficheur 7 segments}
 La FPGA est connectée à un afficheur 7 segments, visible sur l’émulateur. Cette étape consiste à mettre
-en place la gestion de cet afficheur 7 segments. 
+en place la gestion de cet afficheur 7 segments.\\\\
 \textbf{a) Donnée: }Adaptez les fichiers nécessaires afin que l'émulation de votre périphérique (FPGA) puisse gérer les
 trois digits de l’afficheur 7 segments. \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code:}\textit{/emulationSpartan6\_part6/reptar\_sp6.c}\\\\
+\textbf{Travail réalisé: }Pour cette partie, nous avons simplement ajouté le code pour écrire et lire dans le registre de chacun des trois digits de l'affichage 7 segments. La valeur de chaque affichage est stocké dans une variable. Pour l'écriture, il faut spécifier dans le gson le nom du périphérique, le numéro du digit ainsi que la valeur à afficher.\\\\
 \textbf{b) Donnée: }Le dossier 7seg\_u-boot contient une application permettant de tester l’afficheur 7 segments : les
 chiffres de 0 à 9 doivent défiler progressivement : 012, puis 123, 234, 456, 567, …, 901, 012, etc.
 Compilez l'application et effectuez quelques tests.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }Une fois l'application compilée, il a fallu la lancer dans l'U-boot. Comme elle n'est pas définie dans les variables d'environnement, il faut utiliser la commande complète. Une fois lancée, l'application va incrémenter la valeur des digits. L'image ci-dessous démontre le bon fonctionnement.
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ ./stq
+...
+Reptar # tftp 7seg_u-boot/7seg_u-boot.bin
+smc911x: detected LAN9118 controller
+smc911x: phy initialized
+smc911x: MAC e4:af:a1:40:01:fe
+Using smc911x-0 device
+TFTP from server 10.0.2.2; our IP address is 10.0.2.10
+Filename '7seg_u-boot/7seg_u-boot.bin'.
+Load address: 0x81600000
+Loading: #######
+done
+Bytes transferred = 34932 (8874 hex)
+Reptar # run goapp
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=15cm]{img/emulation2.png}
+		\caption{Frontend graphique de Qemu avec affichage 7 segments}
+		\label{emulation2}
+	\end{center}
+\end{figure}
 \subsection{Mini-application utilisant les boutons et l'afficheur 7 segments}
 \textbf{a) Donnée: }Le dossier miniapp\_u-boot contient un chablon. Complétez-le afin de créer une application qui
 utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.

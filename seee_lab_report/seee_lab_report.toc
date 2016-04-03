@@ -11,6 +11,6 @@
 \contentsline {subsection}{\numberline {2.2}\IeC {\'E}mulation de la FPGA Spartan6}{16}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}\IeC {\'E}mulation des devices de type LED (output)}{17}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}\IeC {\'E}mulation de type boutons (input)}{19}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Gestion des interruptions (IRQ) avec les boutons}{19}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}\IeC {\'E}mulation de l'afficheur 7 segments}{19}{subsection.2.6}
-\contentsline {subsection}{\numberline {2.7}Mini-application utilisant les boutons et l'afficheur 7 segments}{20}{subsection.2.7}
+\contentsline {subsection}{\numberline {2.5}Gestion des interruptions (IRQ) avec les boutons}{20}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}\IeC {\'E}mulation de l'afficheur 7 segments}{20}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Mini-application utilisant les boutons et l'afficheur 7 segments}{22}{subsection.2.7}
