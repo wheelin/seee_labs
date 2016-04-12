@@ -163,12 +163,60 @@ la FPGA lorsqu'un bouton est pressé. L'interruption est censée être acquitté
 gérer l'état interne associé à cette interruption. \\\\
 \textbf{a) Donnée: }Commencez par adapter le code d'initialisation de la plate-forme (reptar.c) afin d'instancier une
 interruption en provenance de la FPGA ; l'interruption sera de type niveau.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part5/reptar\_sp6.c}\\
+\textit{/emulationSpartan6\_part5/reptar.c}\\
+\textit{/emulationSpartan6\_part5/reptar\_sp6\_buttons.c}\\\\
+\textbf{Travail réalisé: }La première étape a consisté à assigner le reptar\_sp6 sur la pin GPIO 10 dans le fichier \textit{reptar.c}.\\Il a ensuite fallu faire en sorte de générer une interruption de type niveau lors d'une pression sur un bouton. Cela a été fait dans le fichier \textit{/emulationSpartan6\_part5/reptar\_sp6\_buttons.c}. Notre code génère l'interruption uniquement si les IRQ ont été préalablement autorisées en configurant les registres de contrôle. L'interruption n'est pas générée lors de la relâche du bouton (0x0), cela sert d'anti-rebond.\\
+Finalement, le fichier \textit{/emulationSpartan6\_part5/reptar\_sp6.c} a été adapté pour la lecture et l'écriture du registre d'IRQ des boutons. Lorsque le registre est lu, on va lire le registre (variable) contenant l'état de bouton et l'ajouter dans le registre de status de l'IRQ, puis retourner le tout. Pour l'écriture, un masquage est fait afin de savoir si l'on veut activer et/ou quittancer les interruptions et dans ce cas repasser la GPIO10 à l'état bas.\\\\
 \textbf{b) Donnée: }Testez que l'interruption fonctionne en configurant le contrôleur GPIO et en interrogeant le registre
 d'état, dans U-Boot. Les registres du microcontrôleur à utiliser sont les suivants :
 GPIO\_RISINGDETECT, GPIO\_IRQENABLE1 et GPIO\_IRQSTATUS1
 De plus, l'interruption doit aussi être activée au niveau de la FPGA (cf documentation). \\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }Notre code a dans un premier temps été testé à l'aide d'\textit{itbok} avec le test numéro 30. Cela a permis de valider le bon fonctionnement des interruptions avec tous les boutons. On peut voir que le message \textit{IRQ RAISE} ne s'affiche plus si l'on désactive les interruptions.
+\begin{lstlisting}
+	Press on SW7...
+	reptar-sp6-emul: sp6_emul_event_handle: read 29 
+	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+	Button status : 0x0
+	reptar-sp6-emul: sp6_emul_event_handle: read 30 
+	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+	Button status : 0x40
+	IRQ RAISE
+	sp6_read: Button irq status read 0x8d (button value 0x7)
+	sp6_write: Button irq status write 0x81
+	Enable IRQ
+	Clear IRQ
+	IRQ detected:
+	- button: 7  ......... Test PASSED
+	Press on SW8...
+	reptar-sp6-emul: sp6_emul_event_handle: read 29 
+	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+	Button status : 0x0
+	reptar-sp6-emul: sp6_emul_event_handle: read 31 
+	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+	Button status : 0x80
+	IRQ RAISE
+	sp6_read: Button irq status read 0x8f (button value 0x8)
+	sp6_write: Button irq status write 0x81
+	Enable IRQ
+	Clear IRQ
+	IRQ detected:
+	- button: 8  ......... Test PASSED
+	sp6_write: Button irq status write 0x1
+	Disable IRQ
+	Clear IRQ
+	
+	IRQ test complete. Press Enter to exit
+	reptar-sp6-emul: sp6_emul_event_handle: read 29 
+	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+	Button status : 0x0
+	reptar-sp6-emul: sp6_emul_event_handle: read 31 
+	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+	Button status : 0x80
+	reptar-sp6-emul: sp6_emul_event_handle: read 29 
+	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+	Button status : 0x0
+\end{lstlisting}
 \subsection{Émulation de l'afficheur 7 segments}
 La FPGA est connectée à un afficheur 7 segments, visible sur l’émulateur. Cette étape consiste à mettre
 en place la gestion de cet afficheur 7 segments.\\\\
@@ -217,7 +265,33 @@ utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.
 \textbf{Travail réalisé: }\\\\
 \textbf{b) Donnée: }Testez votre application sur l’émulateur\\\\
 \textbf{Travail réalisé: }\\\\
+
 \textbf{c) Donnée: }Déployez et testez votre application sur la plate-forme réelle\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }Une fois l'application compilée, il a fallu copier le \textit{.bin} dans le dossier \textit{tftpboot}. On peut ensuite lancer l'application depuis l'U-boot en accédant la carte Reptar avec \textit{picocom}. La pression sur le switch 3 réussi ici aussi à terminer l'application.
+\begin{lstlisting}
+redsuser@vm-reds-2015s2:~/seee_student$ sudo picocom -b 115200 /dev/ttyUSB0
+[sudo] password for redsuser: 
+...
+Terminal ready
+
+Reptar # tftp 0x81600000 miniapp_u-boot.bin
+smc911x: detected LAN9220 controller
+smc911x: phy initialized
+smc911x: MAC e4:af:a1:40:01:0a
+Using smc911x-0 device
+TFTP from server 192.168.1.1; our IP address is 192.168.1.10
+Filename 'miniapp_u-boot.bin'.
+Load address: 0x81600000
+Loading: T ###
+done
+Bytes transferred = 35292 (89dc hex)
+
+Reptar # go 0x81600000
+## Starting application at 0x81600000 ...
+Start of the Miniapp U-boot Standalone Application
+Stop of the Miniapp U-boot Standalone Application
+## Application terminated, rc = 0x0
+Reptar # 
+\end{lstlisting}
 
 

@@ -20,8 +20,6 @@ int reptar_sp6_btns_event_process(cJSON * root)
 		btnStatus = cJSON_GetObjectItem(root,"status")->valueint;
 		printf("Button status : 0x%x\n",btnStatus);
 		cJSON_Delete(root);
-		
-		// Raise IRQ only if irq are allowed and button pressed (not 0x00 to avoid rebond)
 		if(sp6_state->irq_enabled && btnStatus > 0)
 		{
 			printf("IRQ RAISE\n");
