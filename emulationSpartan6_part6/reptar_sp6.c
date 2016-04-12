@@ -14,24 +14,20 @@
 #include "cJSON.h"
 
 #define SP6_BASE_ADDRESS	0x18000000
-#define	LED_OFFSET		0x003A
-#define BUTTON_OFFSET		0x0012
-#define DISP_7SEG_D1_OFFSET	0x0030
-#define DISP_7SEG_D2_OFFSET	0x0032
-#define DISP_7SEG_D3_OFFSET	0x0034
 
 uint16_t 			led_register_value;
 uint16_t			button_register_value;
 uint16_t			disp_7seg_d1_register_value;
 uint16_t			disp_7seg_d2_register_value;
 uint16_t			disp_7seg_d3_register_value;
+uint16_t			button_irq_register_value;
 
 static uint64_t sp6_read(void *opaque, hwaddr offset, unsigned size)
 {
 	sp6_state_t *s = (sp6_state_t *)opaque;
 	switch(offset)
 	{
-		case LED_OFFSET:
+		case SP6_LED:
 			if(size == 2)
 			{
 				printf ("sp6_read: Led read 0x%x\n",led_register_value);
@@ -40,17 +36,17 @@ static uint64_t sp6_read(void *opaque, hwaddr offset, unsigned size)
 			printf ("sp6_read: Led read wrong data size %d should be 2\n",size);
 			return 0;
 		break;
-		case BUTTON_OFFSET:
+		case SP6_PUSH_BUT:
 			if(size == 2)
 			{
 				button_register_value = reptar_sp6_btns_event_process(NULL);
-				//printf("sp6_read: Button read 0x%x\n",button_register_value);
+				printf("sp6_read: Button read 0x%x\n",button_register_value);
 				return button_register_value;
 			}
 			printf ("sp6_read: Button read wrong data size %d should be 2\n",size);
 			return 0;
 		break;
-		case DISP_7SEG_D1_OFFSET:
+		case SP6_7SEG1:
 			if(size == 2)
 			{
 				printf ("sp6_read: Display 7 segments D1 read 0x%x\n",disp_7seg_d1_register_value);
@@ -59,7 +55,7 @@ static uint64_t sp6_read(void *opaque, hwaddr offset, unsigned size)
 			printf ("sp6_read: Display 7 segments D1 read wrong data size %d should be 2\n",size);
 			return 0;
 		break;
-		case DISP_7SEG_D2_OFFSET:
+		case SP6_7SEG2:
 			if(size == 2)
 			{
 				printf ("sp6_read: Display 7 segments D2 read 0x%x\n",disp_7seg_d2_register_value);
@@ -68,13 +64,55 @@ static uint64_t sp6_read(void *opaque, hwaddr offset, unsigned size)
 			printf ("sp6_read: Display 7 segments D2 read wrong data size %d should be 2\n",size);
 			return 0;
 		break;
-		case DISP_7SEG_D3_OFFSET:
+		case SP6_7SEG3:
 			if(size == 2)
 			{
 				printf ("sp6_read: Display 7 segments D3 read 0x%x\n",disp_7seg_d3_register_value);
 				return disp_7seg_d3_register_value;
 			}
 			printf ("sp6_read: Display 7 segments D3 read wrong data size %d should be 2\n",size);
+			return 0;
+		break;
+		case SP6_IRQ_CTL:
+			if(size == 2)
+			{
+				uint8_t temp = 0;
+				button_register_value = reptar_sp6_btns_event_process(NULL);
+				switch(button_register_value)
+				{
+					case 0x01:
+						temp = 1;
+					break;
+					case 0x02:
+						temp = 2;
+					break;
+					case 0x04:
+						temp = 3;
+					break;
+					case 0x08:
+						temp = 4;
+					break;
+					case 0x10:
+						temp = 5;
+					break;
+					case 0x20:
+						temp = 6;
+					break;
+					case 0x40:
+						temp = 7;
+					break;
+					case 0x80:
+						temp = 8;
+					break;
+					default:
+						temp = 1;
+					break;
+				}
+				button_irq_register_value = button_irq_register_value | (((temp-1)<<1)&SP6_IRQ_BTNS_MASK);
+				printf ("sp6_read: Button irq status read 0x%x (button value 0x%x)\n",button_irq_register_value,temp);
+				return button_irq_register_value;
+			}
+			printf ("sp6_read: Button irq status read wrong data size %d should be 2\n",size);
 			return 0;
 		break;
 		default:
@@ -92,7 +130,7 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 	cJSON *root = cJSON_CreateObject();
 	switch(offset)
 	{
-		case LED_OFFSET:
+		case SP6_LED:
 			cJSON_AddStringToObject(root,"perif","led");
 			if(size == 2)
 			{
@@ -104,7 +142,7 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 			else
 				printf ("sp6_write: Led write wrong data size %d should be 2\n",size);
 		break;
-		case DISP_7SEG_D1_OFFSET:
+		case SP6_7SEG1:
 			cJSON_AddStringToObject(root,"perif","7seg");
 			if(size == 2)
 			{
@@ -117,7 +155,7 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 			else
 				printf ("sp6_write: Display 7 segments D1 write wrong data size %d should be 2\n",size);
 		break;
-		case DISP_7SEG_D2_OFFSET:
+		case SP6_7SEG2:
 			cJSON_AddStringToObject(root,"perif","7seg");
 			if(size == 2)
 			{
@@ -130,7 +168,7 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 			else
 				printf ("sp6_write: Display 7 segments D2 write wrong data size %d should be 2\n",size);
 		break;
-		case DISP_7SEG_D3_OFFSET:
+		case SP6_7SEG3:
 			cJSON_AddStringToObject(root,"perif","7seg");
 			if(size == 2)
 			{
@@ -142,6 +180,26 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 			}
 			else
 				printf ("sp6_write: Display 7 segments D3 write wrong data size %d should be 2\n",size);
+		break;
+		case SP6_IRQ_CTL:
+			printf ("sp6_write: Button irq status write 0x%x\n",value);
+			button_irq_register_value = (uint16_t) value;
+			if((button_irq_register_value & SP6_IRQ_EN) > 0)
+			{
+				printf ("Enable IRQ\n");
+				s->irq_enabled = 1;
+			}
+			else
+			{
+				printf ("Disable IRQ\n");
+				s->irq_enabled = 0;
+			}
+			if((button_irq_register_value & SP6_IRQ_CLEAR) > 0)
+			{
+				printf ("Clear IRQ\n");
+				s->irq_pending = 0;
+				qemu_irq_lower(s->irq);
+			}
 		break;
 		default:
 			printf ("sp6_write: Bad register offset 0x%x\n", (int)offset);
@@ -165,6 +223,7 @@ static int sp6_initfn(SysBusDevice *dev)
     	sysbus_init_mmio(sbd, &s->iomem);
 
 	sysbus_init_irq(sbd, &s->irq);
+	reptar_sp6_btns_init((void*)s);
 
 	return 0;
 }
