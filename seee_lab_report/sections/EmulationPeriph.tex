@@ -264,10 +264,28 @@ utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.
 \end{enumerate}
 \textbf{Travail réalisé: }\\\\
 \textbf{b) Donnée: }Testez votre application sur l’émulateur\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }L'application a été codée avec une boucle \textit{while} exécutant de manière répétitive les étapes suivantes:
+\begin{itemize}
+	\item On lit le registre d'état des boutons et on stocke sa valeur dans une première variable. 
+	\item On attend un petit moment.
+	\item On relit le registre d'état des boutons et on stocke cette nouvelle valeur dans une seconde variable.
+	\item Ensuite, on teste les deux variables avec des masques pour savoir si :
+	\begin{itemize}
+		\item Dans la première variable, le masquage retourne une valeur supérieure à 0 et indique que le bouton testé est enfoncé.
+		\item Dans la seconde variable, le masquage retourne une valeur égale à 0 et indique que le bouton a été relâché. 
+	\end{itemize}
+	Ces tests sont effectués pour les trois boutons d'incrémentation des 7 segments et pour le bouton d'arrêt de l'application. 
+	\item Si un des tests passe :
+	\begin{itemize}
+		\item Si c'est un des boutons d'incrémentation, on appelle la fonction \textit{incr\_7seg} avec en paramètre l'index du 7 segments à incrémenter.
+		\item Si c'est le bouton d'arrêt, on quitte la boucle avec un \textit{break}.\\
+	\end{itemize}
+\end{itemize}
+Nous avons remarqué une chose lors de la compilation. Il s'avère que le compilateur prend comme point d'entrée la première instruction du programme, avec le Makefile fourni. Lors des premiers essais, la fonction \textit{incr\_7seg} était implémentée avant le \textit{main}, ce qui en faisait le point d'entrée du programme. Après correction, c'est à dire, définition du prototype de la fonction avant le \textit{main} et implémentation après, tout fonctionne correctement.\\
+
 
 \textbf{c) Donnée: }Déployez et testez votre application sur la plate-forme réelle\\\\
-\textbf{Travail réalisé: }Une fois l'application compilée, il a fallu copier le \textit{.bin} dans le dossier \textit{tftpboot}. On peut ensuite lancer l'application depuis l'U-boot en accédant la carte Reptar avec \textit{picocom}. La pression sur le switch 3 réussi ici aussi à terminer l'application.
+\textbf{Travail réalisé: }Une fois l'application compilée, il a fallu copier le \textit{.bin} dans le dossier \textit{tftpboot}. On peut ensuite lancer l'application depuis l'U-boot en accédant la carte Reptar avec \textit{picocom}. La pression sur le switch 3 réussit ici aussi à terminer l'application.
 \begin{lstlisting}
 redsuser@vm-reds-2015s2:~/seee_student$ sudo picocom -b 115200 /dev/ttyUSB0
 [sudo] password for redsuser: 
@@ -294,4 +312,11 @@ Stop of the Miniapp U-boot Standalone Application
 Reptar # 
 \end{lstlisting}
 
-
+Et ici, une photo de l'application en train de tourner sur la plateforme:
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=15cm]{img/miniapp_reptar.JPG}
+        \caption{Programme miniapp en fonctionnement sur la plateforme physique}
+        \label{miniapp_reptar}
+    \end{center}
+\end{figure}
