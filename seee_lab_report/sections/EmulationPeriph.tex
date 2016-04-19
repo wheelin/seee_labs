@@ -217,6 +217,44 @@ De plus, l'interruption doit aussi être activée au niveau de la FPGA (cf docum
 	reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
 	Button status : 0x0
 \end{lstlisting}
+Notre code a ensuite été testé avec les registres GPIO du microcontrôleur (\textit{GPIO\_RISINGDETECT, GPIO\_IRQENABLE1, GPIO\_IRQSTATUS1}). Il faut utiliser pour ce faire le banque GPIO1, ce qui donne les adresses de registre correspondantes : 0x48310048, 0x4831001C et 0x48310018. Comme les boutons sont sur la GPIO 10, il faut aller autoriser l'interruption en activant le bit 10 des registres GPIO\_RISINGDETECT et  GPIO\_IRQENABLE1. Il ne faut pas oublier d'aller ensuite autoriser les interruptions sur la FPGA. La capture ci-dessous présente cette configuration. Après chaque interruption, il faut aller quittancer le bit 10 du GPIO\_IRQSTATUS1 et également intervenir au niveau de la FPGA.
+\begin{lstlisting}
+#Enable interrupts in GPIO
+Reptar # mw.l 0x4831001C 0x00000400        
+Reptar # mw.l 0x48310048 0x00000400  
+
+#Enable interrupts in FPGA
+Reptar # mw.w 0x18000018 0x0081
+sp6_write: Button irq status write 0x81
+Enable IRQ
+Clear IRQ
+
+#The IRQ are now available, the status register doesn't have detect interrupt yet
+md.l 0x48310018 1
+48310018: 00000000    ....
+
+#Generate an interrupt
+Reptar # reptar-sp6-emul: sp6_emul_event_handle: read 30 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x40
+IRQ RAISE
+reptar-sp6-emul: sp6_emul_event_handle: read 29 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x0
+
+#Check status register, interrupt has been detected
+md.l 0x48310018 1
+48310018: 00000400    ....
+
+#Need to ack the interrupt
+Reptar # mw.l 0x48310018 0x00000400
+Reptar # mw.w 0x18000018 0x0081
+sp6_write: Button irq status write 0x81
+Enable IRQ
+Clear IRQ
+
+#...Repeat operations
+\end{lstlisting}
 \subsection{Émulation de l'afficheur 7 segments}
 La FPGA est connectée à un afficheur 7 segments, visible sur l’émulateur. Cette étape consiste à mettre
 en place la gestion de cet afficheur 7 segments.\\\\
