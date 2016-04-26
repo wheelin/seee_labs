@@ -16,6 +16,6 @@
 \contentsline {subsection}{\numberline {2.7}Mini-application utilisant les boutons et l'afficheur 7 segments}{24}{subsection.2.7}
 \contentsline {section}{\numberline {3}Drivers}{27}{section.3}
 \contentsline {subsection}{\numberline {3.1}Environnement Qemu et plate-forme Reptar }{27}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Driver de type caract\IeC {\`e}re}{27}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Pilotage des LEDs }{28}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Pilotage des boutons}{29}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.2}Driver de type caract\IeC {\`e}re}{28}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Pilotage des LEDs }{29}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Pilotage des boutons}{30}{subsection.3.4}
