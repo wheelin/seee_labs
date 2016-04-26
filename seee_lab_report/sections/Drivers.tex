@@ -1,0 +1,95 @@
+\newpage
+\section{Drivers}
+\subsection{Environnement Qemu et plate-forme Reptar }
+Lors de cette étape, nous allons déployer l'environnement de la cible à partir d'une image de carte MMC
+(sdcard) et nous nous familiariserons avec l'insertion dynamique de module.
+Le projet concerné est le projet drivers (répertoire du même nom à la racine du workspace). \\\\
+\textbf{a) Donnée: }Lancez make dans le répertoire drivers/\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }A la racine du workspace, lancez les scripts suivants, puis la commande boot dans U-boot :
+\begin{lstlisting}
+$ ./deploy
+$ ./stf
+Reptar # boot 
+\end{lstlisting}
+\textbf{Travail réalisé: }\\\\
+\textbf{c) Donnée: }A la racine du rootfs (cd /), insérez le module avec la commande suivante :
+\begin{lstlisting}
+# insmod sp6.ko 
+\end{lstlisting}
+Vérifiez qu'il n'y ait aucun message d'erreur. La liste des modules chargés dynamiquement est obtenue
+avec la commande lsmod et le retrait du module avec la commande rmmod 
+\begin{lstlisting}
+# lsmod
+# rmmod sp6
+reptar_sp6: bye bye!
+# 
+\end{lstlisting}
+\textbf{Travail réalisé: }\\\\
+\subsection{Driver de type caractère}
+Cette étape consiste à travailler sur un driver de type caractère au niveau FPGA. Le code de cette
+partie se trouve dans les fichiers reptar\_sp6.h et reptar\_sp6.c.
+Sur la base du code existant, on souhaite pouvoir écrire et lire une chaîne de caractères contenant la
+version du bitstream (hypothétique) dans la FPGA, stockée dans la variable globale bitstream\_version.\\\\
+\textbf{a) Donnée: }Complétez les callbacks read() et write() afin qu'une application utilisateur puisse lire et écrire une
+chaîne de (80 max.) caractères. \\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Pour identifier le nom de l'entrée dans /dev/ qui sera créée automatiquement, examinez la fonction
+probe( ) du driver.\\\\
+\textbf{Réponse aux questions: }
+\begin{enumerate}
+	\item Comment l'entrée dans /dev est-elle générée ? 
+	\item  Quel sera le nom de l'entrée dans /dev ? \\
+\end{enumerate}
+\textbf{Travail réalisé: }\\\\
+\textbf{c) Donnée: }Afin de tester votre driver, écrivez une application usertest (fichier usertest.c) qui écrira puis relira
+la chaîne de version en utilisant l’entrée dans /dev évoquée ci-dessus.\\\\
+\textbf{Réponse aux questions: }
+\begin{enumerate}
+	\item Recherchez les valeurs du major et minor attribuées à ce driver. Expliquez votre démarche\\
+\end{enumerate}
+\textbf{Travail réalisé: }\\\\
+\subsection{Pilotage des LEDs }
+Le code de pilotage des LEDs se trouve dans le fichier reptar\_sp6\_leds.c. La réalisation du driver des
+LEDs.
+\begin{enumerate}
+	\item L’application graphique qtemu sera utilisée pour l'environnement émulé.
+	\item Le driver devra être également testé sur la plate-forme réelle.
+\end{enumerate}
+Pour le pilotage des LEDs, on souhaite utiliser le sous-système leds présent dans le noyau Linux.
+Effectuez un mappage du registre des LEDs à l'aide de la fonction ioremap( ), en vous servant de la
+structure fpga\_resource.\\\\
+\textbf{a) Donnée: }Enregistrez le device comme un device de type leds à l'aide de la fonction led\_classdev\_register( ).\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Cherchez et implémentez le(s) callback(s) gérant l'enclenchement/déclenchement des LEDs.\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{Réponse aux questions: }
+\begin{enumerate}
+	\item Combien y a-t-il de devices de type LED gérés par notre driver ?\\
+\end{enumerate}
+\textbf{c) Donnée: }Testez le driver LED dans l'environnement qtemu (application graphique). Lancez le script
+ledstest.sh.\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{d) Donnée: }Testez votre driver sur la plate-forme (réelle) Reptar.\\\\
+\textbf{Travail réalisé: }\\\\
+\subsection{Pilotage des boutons}
+Lors de cette étape, nous travaillerons sur le driver gérant la pression des boutons. L'objectif est de
+contrôler une application dans l'espace utilisateur à l'aide des boutons.\\\\
+\textbf{a) Donnée: }Complétez la fonction probe( ) pour l'enregistrement des deux callbacks d'interruption (traitement
+immédiat + traitement différé) à l'aide de la fonction request\_threaded\_irq().\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Implémentez le traitement immédiat lié à l'interruption. Il devra :
+\begin{enumerate}
+	\item stocker la valeur du registre bouton dans le champ current\_button de la structure privée
+	(l'adresse du registre contenant cette information est également disponible dans la structure
+	privée)
+	\item acquitter l'interruption.\\
+\end{enumerate}
+\textbf{Travail réalisé: }\\\\
+\textbf{c) Donnée: }Testez votre driver boutons à l'aide de l'application buttons\_test. Dans l'environnement émulé,
+l'application devra ouvrir le fichier /dev/input/event1. Il faudra taper la commande suivante:
+\begin{lstlisting}
+# ./buttons_test -e1
+\end{lstlisting}
+Testez les boutons un par un.\\\\
+\textbf{Travail réalisé: }\\\\
