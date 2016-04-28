@@ -82,7 +82,6 @@ version du bitstream (hypothétique) dans la FPGA, stockée dans la variable glo
 chaîne de (80 max.) caractères. \\\\
 \textbf{Travail réalisé: }Les callbacks read et write ont été implémentés très sommairement dans le module avec la fonction 
 \textit{copy\_from/to\_user}. Il faut faire attention à bien retourner le nombre de bytes qui ont été lus ou écrits, pour que l'application puisse être au fait et détecter le cas échéant, si une erreur s'est produite.\\
-Une application a aussi été codée pour tester les callbacks. Celle-ci affiche les stats du fichier créé dans le dossier \textit{/dev}, écrit une version de bitstream totalement fabuliste, relit les stats et enfin lit le bitstream pour confirmer le succès de l'écriture.
 \begin{lstlisting}
 # cd /
 # insmod sp6.ko 
@@ -121,7 +120,8 @@ probe( ) du driver.\\\\
 \end{enumerate}
 \textbf{Travail réalisé: }\\\\
 \textbf{c) Donnée: }Afin de tester votre driver, écrivez une application usertest (fichier usertest.c) qui écrira puis relira
-la chaîne de version en utilisant l’entrée dans /dev évoquée ci-dessus.\\\\
+la chaîne de version en utilisant l’entrée dans /dev évoquée ci-dessus.\\
+Une application a aussi été codée pour tester les callbacks. Celle-ci affiche les stats du fichier créé dans le dossier \textit{/dev}, écrit une version de bitstream totalement fabuliste, relit les stats et enfin lit le bitstream pour confirmer le succès de l'écriture.\\\\
 \textbf{Réponse aux questions: }
 \begin{enumerate}
 	\item Recherchez les valeurs du major et minor attribuées à ce driver. Expliquez votre démarche\\

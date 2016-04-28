@@ -323,7 +323,32 @@ utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.
 \end{itemize}
 Nous avons remarqué une chose lors de la compilation. Il s'avère que le compilateur prend comme point d'entrée la première instruction du programme, avec le Makefile fourni. Lors des premiers essais, la fonction \textit{incr\_7seg} était implémentée avant le \textit{main}, ce qui en faisait le point d'entrée du programme. Après correction, c'est à dire, définition du prototype de la fonction avant le \textit{main} et implémentation après, tout fonctionne correctement.\\\\
 \textbf{b) Donnée: }Testez votre application sur l’émulateur\\\\
-\textbf{\color{red} Travail réalisé: }manque description des tests\color{black}\\\\
+\textbf{Travail réalisé: }\\
+La figure \ref{emul_miniapp_init} montre l'application qui vient de démarrer. Tous les 7-segments sont initialisés à zero.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/emul_test_miniapp_init.png}
+		\caption{Initialisation des 7-segments durant le lancement de l'application sur le frontend d'émulation}
+		\label{emul_miniapp_init}
+	\end{center}
+\end{figure}
+La figure \ref{emul_miniapp_counting} montre l'application avec plusieurs 7-segments incrémentés.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/emul_test_miniapp_counting.png}
+		\caption{Incrémentation des 7-segments du frontend d'émulation}
+		\label{emul_miniapp_counting}
+	\end{center}
+\end{figure}
+La figure \ref{emul_miniapp_end} montre la fin de l'application. Le bouton tout en bas de la croix a été pressé pour l'arrêter. 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=10cm]{img/emul_test_miniapp_end.png}
+		\caption{Frontend graphique de Qemu avec affichage 7 segments}
+		\label{emul_miniapp_end}
+	\end{center}
+\end{figure}
+\\\\
 \textbf{c) Donnée: }Déployez et testez votre application sur la plate-forme réelle\\\\
 \textbf{Travail réalisé: }Une fois l'application compilée, il a fallu copier le \textit{.bin} dans le dossier \textit{tftpboot}. On peut ensuite lancer l'application depuis l'U-boot en accédant la carte Reptar avec \textit{picocom}. La pression sur le switch 3 réussit ici aussi à terminer l'application.
 \begin{lstlisting}
