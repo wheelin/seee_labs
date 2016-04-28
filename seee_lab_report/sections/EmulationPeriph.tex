@@ -8,8 +8,8 @@ frontend graphique de Qemu. L'application est développée en C++ et utilise la 
 \textbf{a) Donnée: }A partir du répertoire seee\_student, lancez le frontend graphique avec le script stq \\\\
 \textbf{Travail réalisé: }
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~$ cd seee_student/
-redsuser@vm-reds-2015s2:~/seee_student$ ./stq
+$ cd ~/seee_student/
+$ ./stq
 ...
 Reptar # 
 \end{lstlisting}
@@ -37,12 +37,12 @@ commande make (utilisez make -j4 ou -j8 pour aller plus vite !). \\\\
 \textbf{Travail réalisé: }Par la suite, seule la commande \textit{make} sera nécessaire pour recompiler l'émulateur.\\
 En lançant \textit{./qtemu} et Eclipse, on pourra debugger l'émulateur Qemu.
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ cd qemu-reds/
-redsuser@vm-reds-2015s2:~/seee_student/qemu-reds$ ./configure --target-list=arm-softmmu --enable-debug --disable-attr --disable-docs 
+$ cd ~/seee_student/qemu-reds/
+$ ./configure --target-list=arm-softmmu --enable-debug --disable-attr --disable-docs 
 ...
-redsuser@vm-reds-2015s2:~/seee_student$ make -j8
+$ make -j8
 ...
-redsuser@vm-reds-2015s2:~/seee_student$
+$
 \end{lstlisting}
 \subsection{Émulation de la FPGA Spartan6}
 Dans cette étape, il s'agit de mettre en place la structure nécessaire à l'émulation de la FPGA intégrée
@@ -52,18 +52,18 @@ Dans cette étape, il s'agit de mettre en place la structure nécessaire à l'é
 dédiée à la FPGA (affichez simplement un message). \\\\
 \textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part2/reptar\_sp6.c}\\ \textit{/emulationSpartan6\_part2/reptar.c}\\\\
 \textbf{Travail réalisé: }Nous avons modifié les fichiers \textit{reptar\_sp6.c} et \textit{reptar.c}\\
-Le point crucial de cette partie du labo a été de trouvé l'adresse de base de la FPGA qui est \textbf{0x18000000}. Nous avons en effet besoin de cette adresse pour instancier le \textit{reptar\_sp6} dans la partie reptar. 
+Le point crucial de cette partie du labo a été de trouvé l'adresse de base de la FPGA qui est \textbf{0x18000000}. Nous avons en effet besoin de cette adresse pour lier/créer le \textit{reptar\_sp6} dans la partie reptar. 
 \begin{lstlisting}
 	sysbus_create_simple("reptar_sp6",0x18000000,NULL);
 \end{lstlisting}
 Pour le reste de l'implémentation, nous nous somme basé sur le diagramme de séquence du support de cours et avons pris le document \textit{versatilepb.c} comme exemple pour le contenu des méthodes callback.\\
 Le bon fonctionnement du code a été "testé" premièrement en réussissant la compilation sans erreurs, puis le lancement sans crash. Nous avons également ajouté des messages affichés dans la console dans les différentes méthodes callback pour suivre l'initialisation. L'exécution a été faite de la manière suivante:
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~$ cd seee_student/qemu-reds/
-redsuser@vm-reds-2015s2:~/seee_student/qemu-reds$ make
+$ cd ~/seee_student/qemu-reds/
+$ make
 ...
-redsuser@vm-reds-2015s2:~/seee_student/qemu-reds$ cd ..
-redsuser@vm-reds-2015s2:~/seee_student$ ./stq
+$ cd ..
+$ ./stq
 ...
 sp6 init
 reptar-sp6-emul: sp6_emul_init
@@ -72,7 +72,7 @@ sp6 initfn
 Reptar # 
 \end{lstlisting}
 \textbf{b) Donnée: }Testez les accès en lecture-écriture avec U-Boot. \\\\
-\textbf{Travail réalisé: } Pour l'instant, les callback de lecture/écriture que nous avons implémentés contiennent uniquement des messages d'indication qui sont affichés dans la console. À l'aide des commandes suivantes, nous avons pu en tester le bon fonctionnement. Les commandes tentent de lire, puis écrire à l'adresse de la FPGA.
+\textbf{Travail réalisé: } Pour l'instant, les callback de lecture/écriture que nous avons implémentés contiennent uniquement des messages d'indication qui sont affichés dans la console. À l'aide des commandes suivantes, nous avons pu tester leur bon fonctionnement. Les commandes suivantes tentent de lire, puis écrire à l'adresse de base de la FPGA.
 \begin{lstlisting}
 Reptar # md.l 0x18000000 1
 18000000:sp6 read
@@ -85,19 +85,20 @@ Reptar #
 \textbf{Donnée: }La FPGA est connectée à des LEDs qui sont visibles sur l'interface graphique. Cette étape consiste à
 implémenter le code d'émulation précédent afin de gérer l'accès aux LEDs reliées à la FPGA.
 Les interactions entre la FPGA et l'interface graphique doivent être gérées proprement. \\\\
-\textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part3/reptar\_sp6.c}\\\\
-\textbf{Travail réalisé: }Pour cette partie, il a fallu rechercher l'offset du registre des LEDs qui est \textit{0x003A}. Il faut donc ajouter cet offset à l'adresse de base de la FPGA. Nous avons défini une variable qui garde la valeur écrite au registre des LEDs pour permettre la relecture de la valeur. La valeur lue est simplement affichée dans la console. Nous avons ensuite implémenté la lecture et l'écriture de ce registre. Pour cela, on teste si l'offset correspond et si l'on lit/écrit des données de la bonne taille, soit 16bits. Des messages ont été implémentés pour indiquer lorsque si la lecture/écriture est faite correctement.
-\\Nous avons ensuite testé le bon fonctionnement du code avec le test 10 de itbok. Le test montre que l'on arrive à lire et écrire correctement sur les leds.
+\textbf{Emplacement du code:}\textit{/emulationSpartan6\_part3/reptar\_sp6.c}\\\\
+\textbf{Travail réalisé: }Pour cette partie, il a fallu rechercher l'offset du registre des LEDs qui est \textit{0x003A}. Il faut donc ajouter cet offset à l'adresse de base de la FPGA.\\ Nous avons défini une variable qui garde la valeur écrite dans le registre des LEDs pour permettre la relecture de la valeur.\\ Pour la lecture et l'écriture, on teste si l'offset correspond et si l'on lit/écrit des données de la bonne taille, soit 16bits. Des messages ont été implémentés pour indiquer si la lecture/écriture est faite correctement.
+\\La valeur lue est simplement affichée dans la console. Pour l'écriture, la valeur écrite est transmise à l'aide d'un message JSON conformément aux directives du \textit{Guide d'utilisation de l'infrastructure}.
+\\Nous avons testé le bon fonctionnement du code avec le test 10 de itbok. Le test montre que l'on arrive à lire et écrire correctement sur les leds.
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=17cm]{img/leds1.png}
+		\includegraphics[width=16cm]{img/leds1.png}
 		\caption{Test d'allumage des LEDs}
 		\label{leds1}
 	\end{center}
 \end{figure}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=17cm]{img/leds2.png}
+		\includegraphics[width=16cm]{img/leds2.png}
 		\caption{Test d'extinction des LEDs}
 		\label{leds2}
 	\end{center}
@@ -109,12 +110,13 @@ La FPGA est connectée à une série de boutons (switches) sur la plate-forme Re
 la pression d'une touche, sans vous préoccuper pour le moment des interruptions. \\\\
 \textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part4/reptar\_sp6.c}\\
 \textit{/emulationSpartan6\_part4/reptar\_sp6\_buttons.c}\\\\
-\textbf{Travail réalisé: }Le code de cette partie est inspiré du \textit{Guide d'utilisation de l'infrastructure}. L'offset pour lire la valeur des boutons est \textit{0x0012}. Lorsqu'un bouton est pressé, le handler du fichier sp6\_button est appelé et la valeur du registre est mémorisée. La valeur des boutons peut également être récupérée lors d'une lecture du registre \textit{0x0012}.\\\\
+\textbf{Travail réalisé: }Le code de cette partie est inspiré du \textit{Guide d'utilisation de l'infrastructure}. L'offset pour lire la valeur des boutons est \textit{0x0012}. Lorsqu'un bouton est pressé, le handler du fichier sp6\_button est appelé et la valeur du registre est mémorisée. La valeur des boutons peut également être récupérée lors d'une lecture du registre correspondant.\\\\
 \textbf{b) Donnée: }Le projet sp6\_buttons\_u-boot contient une application permettant de tester vos boutons (en mode
 polling). Compilez l'application et effectuez quelques tests.\\\\
-\textbf{Travail réalisé: }L'application a été compilée avec make. Il faut ensuite lancer l'émulateur avec la \textit{stq}. Une fois dans l'U-boot, on peut lancer l'application testant les boutons facilement, car elle est enregistrée dans les variables d'environnements sous le nom \textit{tftp3}. Les lignes ci-dessous démontre le bon fonctionnement des boutons. Le bouton exit arrête l'application. 
+\textbf{Travail réalisé: }L'application a été compilée avec make. Il faut ensuite lancer l'émulateur avec la commande \textit{stq}. Une fois dans l'U-boot, on peut lancer l'application testant les boutons. Elle est enregistrée dans les variables d'environnements sous le nom \textit{tftp3}. Les lignes ci-dessous démontrent le bon fonctionnement des boutons. Le bouton exit arrête l'application. 
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ ./stq
+$ cd ~/seee_student
+$ ./stq
 ...
 Reptar # run tftp3
 smc911x: detected LAN9118 controller
@@ -166,8 +168,8 @@ interruption en provenance de la FPGA ; l'interruption sera de type niveau.\\\\
 \textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part5/reptar\_sp6.c}\\
 \textit{/emulationSpartan6\_part5/reptar.c}\\
 \textit{/emulationSpartan6\_part5/reptar\_sp6\_buttons.c}\\\\
-\textbf{Travail réalisé: }La première étape a consisté à assigner le reptar\_sp6 sur la pin GPIO 10 dans le fichier \textit{reptar.c}.\\Il a ensuite fallu faire en sorte de générer une interruption de type niveau lors d'une pression sur un bouton. Cela a été fait dans le fichier \textit{/emulationSpartan6\_part5/reptar\_sp6\_buttons.c}. Notre code génère l'interruption uniquement si les IRQ ont été préalablement autorisées en configurant les registres de contrôle. L'interruption n'est pas générée lors de la relâche du bouton (0x0), cela sert d'anti-rebond.\\
-Finalement, le fichier \textit{/emulationSpartan6\_part5/reptar\_sp6.c} a été adapté pour la lecture et l'écriture du registre d'IRQ des boutons. Lorsque le registre est lu, on va lire le registre (variable) contenant l'état de bouton et l'ajouter dans le registre de status de l'IRQ, puis retourner le tout. Pour l'écriture, un masquage est fait afin de savoir si l'on veut activer et/ou quittancer les interruptions et dans ce cas repasser la GPIO10 à l'état bas.\\\\
+\textbf{Travail réalisé: }La première étape a consisté à assigner le reptar\_sp6 sur la pin GPIO 10 dans le fichier \textit{reptar.c}.\\Il a ensuite fallu faire en sorte de générer une interruption de type niveau lors d'une pression sur un bouton. Cela a été fait dans le fichier \textit{reptar\_sp6\_buttons.c}. Notre code génère l'interruption uniquement si les IRQ ont été préalablement autorisées en configurant les registres de contrôle. Nous avons choisi de ne pas générer d'interruptions lors de la relâche du bouton (0x0).\\
+Finalement, le fichier \textit{reptar\_sp6.c} a été adapté pour permettre la lecture et l'écriture du registre d'IRQ des boutons. Lorsque le registre est lu, on va lire la valeur des bouton et l'ajouter dans le registre de status de l'IRQ, puis retourner le tout. Pour l'écriture, un masquage est fait afin de savoir si l'on veut activer et/ou quittancer les interruptions et dans ce cas repasser la GPIO10 à l'état bas.\\\\
 \textbf{b) Donnée: }Testez que l'interruption fonctionne en configurant le contrôleur GPIO et en interrogeant le registre
 d'état, dans U-Boot. Les registres du microcontrôleur à utiliser sont les suivants :
 GPIO\_RISINGDETECT, GPIO\_IRQENABLE1 et GPIO\_IRQSTATUS1
@@ -261,13 +263,14 @@ en place la gestion de cet afficheur 7 segments.\\\\
 \textbf{a) Donnée: }Adaptez les fichiers nécessaires afin que l'émulation de votre périphérique (FPGA) puisse gérer les
 trois digits de l’afficheur 7 segments. \\\\
 \textbf{Emplacement du code:}\textit{/emulationSpartan6\_part6/reptar\_sp6.c}\\\\
-\textbf{Travail réalisé: }Pour cette partie, nous avons simplement ajouté le code pour écrire et lire dans le registre de chacun des trois digits de l'affichage 7 segments. La valeur de chaque affichage est stocké dans une variable. Pour l'écriture, il faut spécifier dans le gson le nom du périphérique, le numéro du digit ainsi que la valeur à afficher.\\\\
+\textbf{Travail réalisé: }Pour cette partie, nous avons simplement ajouté le code pour écrire et lire dans le registre de chacun des trois digits de l'affichage 7 segments. La valeur de chaque affichage est stocké dans une variable. Pour l'écriture, il faut spécifier dans le message Json le nom du périphérique, le numéro du digit ainsi que la valeur à afficher.\\\\
 \textbf{b) Donnée: }Le dossier 7seg\_u-boot contient une application permettant de tester l’afficheur 7 segments : les
 chiffres de 0 à 9 doivent défiler progressivement : 012, puis 123, 234, 456, 567, …, 901, 012, etc.
 Compilez l'application et effectuez quelques tests.\\\\
 \textbf{Travail réalisé: }Une fois l'application compilée, il a fallu la lancer dans l'U-boot. Comme elle n'est pas définie dans les variables d'environnement, il faut utiliser la commande complète. Une fois lancée, l'application va incrémenter la valeur des digits. L'image ci-dessous démontre le bon fonctionnement.
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ ./stq
+$ cd ~/seee_student
+$ ./stq
 ...
 Reptar # tftp 7seg_u-boot/7seg_u-boot.bin
 smc911x: detected LAN9118 controller
@@ -300,8 +303,7 @@ utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.
 	\item Vous devrez gérer l’anti-rebond : le digit ne devra être incrémenté que si le bouton est
 	pressé puis relâché (comme un appui sur une touche de sonnette par exemple). \\
 \end{enumerate}
-\textbf{Travail réalisé: }\\\\
-\textbf{b) Donnée: }Testez votre application sur l’émulateur\\\\
+\textbf{Emplacement du code: }\textit{/miniapp\_test\_emulation/miniapp\_u-boot.c}\\\\
 \textbf{Travail réalisé: }L'application a été codée avec une boucle \textit{while} exécutant de manière répétitive les étapes suivantes:
 \begin{itemize}
 	\item On lit le registre d'état des boutons et on stocke sa valeur dans une première variable. 
@@ -319,13 +321,14 @@ utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.
 		\item Si c'est le bouton d'arrêt, on quitte la boucle avec un \textit{break}.\\
 	\end{itemize}
 \end{itemize}
-Nous avons remarqué une chose lors de la compilation. Il s'avère que le compilateur prend comme point d'entrée la première instruction du programme, avec le Makefile fourni. Lors des premiers essais, la fonction \textit{incr\_7seg} était implémentée avant le \textit{main}, ce qui en faisait le point d'entrée du programme. Après correction, c'est à dire, définition du prototype de la fonction avant le \textit{main} et implémentation après, tout fonctionne correctement.\\
-
-
+Nous avons remarqué une chose lors de la compilation. Il s'avère que le compilateur prend comme point d'entrée la première instruction du programme, avec le Makefile fourni. Lors des premiers essais, la fonction \textit{incr\_7seg} était implémentée avant le \textit{main}, ce qui en faisait le point d'entrée du programme. Après correction, c'est à dire, définition du prototype de la fonction avant le \textit{main} et implémentation après, tout fonctionne correctement.\\\\
+\textbf{b) Donnée: }Testez votre application sur l’émulateur\\\\
+\textbf{\color{red} Travail réalisé: }manque description des tests\color{black}\\\\
 \textbf{c) Donnée: }Déployez et testez votre application sur la plate-forme réelle\\\\
 \textbf{Travail réalisé: }Une fois l'application compilée, il a fallu copier le \textit{.bin} dans le dossier \textit{tftpboot}. On peut ensuite lancer l'application depuis l'U-boot en accédant la carte Reptar avec \textit{picocom}. La pression sur le switch 3 réussit ici aussi à terminer l'application.
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ sudo picocom -b 115200 /dev/ttyUSB0
+$ cd ~/seee_student
+$ sudo picocom -b 115200 /dev/ttyUSB0
 [sudo] password for redsuser: 
 ...
 Terminal ready

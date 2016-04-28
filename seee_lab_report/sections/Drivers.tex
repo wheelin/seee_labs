@@ -7,11 +7,12 @@ Le projet concerné est le projet drivers (répertoire du même nom à la racine
 \textbf{a) Donnée: }Lancez make dans le répertoire drivers/\\\\
 \textbf{Travail réalisé: }
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~$ cd seee_student/drivers/
-redsuser@vm-reds-2015s2:~/seee_student/drivers$ make
+$ cd ~/seee_student/drivers/
+$ make
 ...
 make[1]: Leaving directory `/home/redsuser/seee_student/linux-3.0-reptar'
 arm-linux-gnueabihf-gcc -marm -I../linux-3.0-reptar -static buttons_test.c -o buttons_test
+$
 \end{lstlisting}
 \textbf{b) Donnée: }A la racine du workspace, lancez les scripts suivants, puis la commande boot dans U-boot :
 \begin{lstlisting}
@@ -21,8 +22,8 @@ Reptar # boot
 \end{lstlisting}
 \textbf{Travail réalisé: }
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student/drivers$ cd ..
-redsuser@vm-reds-2015s2:~/seee_student$ ./deploy 
+$ cd ~/seee_student/drivers
+$ ./deploy 
 Deploying into reptar rootfs ...
 Mounting filesystem/sd-card.img...
 [sudo] password for redsuser: 
@@ -31,7 +32,7 @@ Unmounting SD card image...
 Synchronizing .img file
 Unmounting 'boot_tmp' and 'filesystem_tmp'...
 Done !
-redsuser@vm-reds-2015s2:~/seee_student$ ./stf
+$ ./stf
 ...
 Reptar # boot
 reading uImage
@@ -113,6 +114,11 @@ structure fpga\_resource.\\\\
 \begin{enumerate}
 	\item Combien y a-t-il de devices de type LED gérés par notre driver ?\\
 \end{enumerate}
+Il y a 6 LEDs selon la déclaration dans reptar\_sp6.h et il y a bien 6 LEDs dans la structure reptar\_sp6\_leds\_pdata[] du fichier reptar\_sp6.h
+\begin{lstlisting}
+/* Only LEDS 0 to 5 are under CPU control. 6 and 7 are used by the FPGA itself */
+#define SP6_NUM_LEDS 6
+\end{lstlisting}
 \textbf{c) Donnée: }Testez le driver LED dans l'environnement qtemu (application graphique). Lancez le script
 ledstest.sh.\\\\
 \textbf{Travail réalisé: }\\\\

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  26 APR 2016 19:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  28 APR 2016 11:54
 entering extended mode
 **seee_lab_report.tex
 (seee_lab_report.tex
@@ -761,15 +761,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--32
 File: img/manip2Intro.png Graphic file (type png)
 
 <use img/manip2Intro.png>
-Package pdftex.def Info: img/manip2Intro.png used on input line 46.
+Package pdftex.def Info: img/manip2Intro.png used on input line 47.
 (pdftex.def)             Requested size: 521.68823pt x 199.16928pt.
 
-Overfull \hbox (46.52728pt too wide) in paragraph at lines 46--47
+Overfull \hbox (46.52728pt too wide) in paragraph at lines 47--48
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 40--50
+Underfull \hbox (badness 10000) in paragraph at lines 41--51
 
  []
 
@@ -777,147 +777,153 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--50
 File: img/ubootCommand.png Graphic file (type png)
 
 <use img/ubootCommand.png>
-Package pdftex.def Info: img/ubootCommand.png used on input line 54.
+Package pdftex.def Info: img/ubootCommand.png used on input line 55.
 (pdftex.def)             Requested size: 512.1496pt x 269.18513pt.
 
-Overfull \hbox (36.98865pt too wide) in paragraph at lines 54--55
+Overfull \hbox (36.98865pt too wide) in paragraph at lines 55--56
  [] 
  []
 
 [4 <./img/manip2Intro.png>]
-<img/ubootAsm.png, id=155, 638.385pt x 189.70876pt>
+<img/ubootAsm.png, id=156, 638.385pt x 189.70876pt>
 File: img/ubootAsm.png Graphic file (type png)
  <use img/ubootAsm.png>
-Package pdftex.def Info: img/ubootAsm.png used on input line 63.
+Package pdftex.def Info: img/ubootAsm.png used on input line 64.
 (pdftex.def)             Requested size: 512.1496pt x 152.19562pt.
 
-Overfull \hbox (36.98865pt too wide) in paragraph at lines 63--64
+Overfull \hbox (36.98865pt too wide) in paragraph at lines 64--65
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--67
+Underfull \hbox (badness 10000) in paragraph at lines 60--68
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--72
+Underfull \hbox (badness 10000) in paragraph at lines 69--73
 
  []
 
 [5 <./img/ubootCommand.png> <./img/ubootAsm.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 88--95
+Underfull \hbox (badness 10000) in paragraph at lines 90--97
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 164--169
+Underfull \hbox (badness 10000) in paragraph at lines 165--170
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--169
+Underfull \hbox (badness 10000) in paragraph at lines 165--170
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--169
+Underfull \hbox (badness 10000) in paragraph at lines 165--170
 
  []
 
-[7] <img/ubootCommand2.png, id=253, 957.5775pt x 331.99031pt>
+[7] <img/ubootCommand2.png, id=254, 957.5775pt x 331.99031pt>
 File: img/ubootCommand2.png Graphic file (type png)
 
 <use img/ubootCommand2.png>
-Package pdftex.def Info: img/ubootCommand2.png used on input line 176.
+Package pdftex.def Info: img/ubootCommand2.png used on input line 177.
 (pdftex.def)             Requested size: 512.1496pt x 177.55986pt.
 
-Overfull \hbox (36.98865pt too wide) in paragraph at lines 176--177
+Overfull \hbox (36.98865pt too wide) in paragraph at lines 177--178
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--180
+Underfull \hbox (badness 10000) in paragraph at lines 171--181
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--186
+Underfull \hbox (badness 10000) in paragraph at lines 184--187
 
  []
 
 [8 <./img/ubootCommand2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 201--203
+Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--211
+Underfull \hbox (badness 10000) in paragraph at lines 211--213
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--227
+Underfull \hbox (badness 10000) in paragraph at lines 228--231
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 228--231
 
  []
 
 [9]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 239.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 244.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 239.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 244.
 
-<img/linux.png, id=306, 849.1725pt x 480.29437pt>
+<img/linux.png, id=299, 849.1725pt x 480.29437pt>
 File: img/linux.png Graphic file (type png)
  <use img/linux.png>
-Package pdftex.def Info: img/linux.png used on input line 246.
+Package pdftex.def Info: img/linux.png used on input line 251.
 (pdftex.def)             Requested size: 512.1496pt x 289.68854pt.
 
-Overfull \hbox (36.98865pt too wide) in paragraph at lines 246--247
+Overfull \hbox (36.98865pt too wide) in paragraph at lines 251--252
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--253
+Underfull \hbox (badness 10000) in paragraph at lines 256--258
 
  []
 
-<img/linux2.png, id=307, 606.76688pt x 379.4175pt>
+[10 <./img/linux.png>] <img/linux2.png, id=323, 606.76688pt x 379.4175pt>
 File: img/linux2.png Graphic file (type png)
- <use img/linux2.png>
-Package pdftex.def Info: img/linux2.png used on input line 268.
-(pdftex.def)             Requested size: 284.52756pt x 177.92097pt.
 
-[10 <./img/linux.png>] [11 <./img/linux2.png>]
-<img/ipConfig.png, id=354, 312.41719pt x 351.56343pt>
+<use img/linux2.png>
+Package pdftex.def Info: img/linux2.png used on input line 273.
+(pdftex.def)             Requested size: 284.52756pt x 177.92097pt.
+ [11 <./img/linux2.png>]
+<img/ipConfig.png, id=341, 312.41719pt x 351.56343pt>
 File: img/ipConfig.png Graphic file (type png)
  <use img/ipConfig.png>
-Package pdftex.def Info: img/ipConfig.png used on input line 318.
+Package pdftex.def Info: img/ipConfig.png used on input line 324.
 (pdftex.def)             Requested size: 284.52756pt x 320.18607pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--325
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 329--331
 
  []
 
-[12 <./img/ipConfig.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 366--371
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 366--371
+[13 <./img/ipConfig.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 372--377
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--371
+Underfull \hbox (badness 10000) in paragraph at lines 372--377
 
  []
 
-[13]) (sections/EmulationPeriph.tex [14]
+
+Underfull \hbox (badness 10000) in paragraph at lines 372--377
+
+ []
+
+[14]) (sections/EmulationPeriph.tex [15]
 Underfull \hbox (badness 10000) in paragraph at lines 4--10
 
  []
@@ -927,13 +933,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--10
 
  []
 
-<img/emulation1.png, id=441, 346.896pt x 382.42876pt>
+<img/emulation1.png, id=450, 346.896pt x 382.42876pt>
 File: img/emulation1.png Graphic file (type png)
  <use img/emulation1.png>
 Package pdftex.def Info: img/emulation1.png used on input line 18.
 (pdftex.def)             Requested size: 284.52756pt x 313.68697pt.
 
-[15 <./img/emulation1.png>]
+[16 <./img/emulation1.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 32--39
 
  []
@@ -963,334 +969,323 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--56
 
  []
 
-[16]
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 74--76
 
  []
 
-<img/leds1.png, id=471, 855.195pt x 421.575pt>
+<img/leds1.png, id=480, 855.195pt x 421.575pt>
 File: img/leds1.png Graphic file (type png)
  <use img/leds1.png>
-Package pdftex.def Info: img/leds1.png used on input line 93.
-(pdftex.def)             Requested size: 483.69684pt x 238.44118pt.
+Package pdftex.def Info: img/leds1.png used on input line 94.
+(pdftex.def)             Requested size: 455.24408pt x 224.41145pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 93--94
- [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 85--97
+Underfull \hbox (badness 10000) in paragraph at lines 85--98
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--97
+Underfull \hbox (badness 10000) in paragraph at lines 85--98
 
  []
 
-[17] <img/leds2.png, id=495, 855.195pt x 417.05812pt>
+[18] <img/leds2.png, id=504, 855.195pt x 417.05812pt>
 File: img/leds2.png Graphic file (type png)
  <use img/leds2.png>
-Package pdftex.def Info: img/leds2.png used on input line 100.
-(pdftex.def)             Requested size: 483.69684pt x 235.88646pt.
+Package pdftex.def Info: img/leds2.png used on input line 101.
+(pdftex.def)             Requested size: 455.24408pt x 222.00703pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 100--101
- [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 106--116
+Underfull \hbox (badness 10000) in paragraph at lines 107--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--116
+Underfull \hbox (badness 10000) in paragraph at lines 107--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--116
+Underfull \hbox (badness 10000) in paragraph at lines 107--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--116
+Underfull \hbox (badness 10000) in paragraph at lines 107--117
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--116
+Underfull \hbox (badness 10000) in paragraph at lines 107--117
 
  []
 
-[18 <./img/leds1.png> <./img/leds2.png>] [19]
-Underfull \hbox (badness 10000) in paragraph at lines 161--176
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 161--176
+[19 <./img/leds1.png> <./img/leds2.png>] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 163--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--176
+Underfull \hbox (badness 10000) in paragraph at lines 163--178
 
  []
 
 
-Overfull \hbox (0.87929pt too wide) in paragraph at lines 161--176
-\T1/cmr/m/n/12 sur un bou-ton. Cela a été fait dans le fi-chier \T1/cmr/m/it/12
- /e-mu-la-tionS-par-tan6_part5/reptar_sp6_buttons.c\T1/cmr/m/n/12 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 161--176
+Underfull \hbox (badness 10000) in paragraph at lines 163--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--176
+Underfull \hbox (badness 10000) in paragraph at lines 163--178
 
  []
 
-[20]
-Overfull \hbox (31.20715pt too wide) in paragraph at lines 220--221
+
+Underfull \hbox (badness 10000) in paragraph at lines 163--178
+
+ []
+
+[21]
+Overfull \hbox (31.20715pt too wide) in paragraph at lines 222--223
 \T1/cmr/m/n/12 Notre code a en-suite été testé avec les re-gistres GPIO du mi-c
 ro-con-trô-leur (\T1/cmr/m/it/12 GPIO_RISINGDETECT,
  []
 
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 259--269
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--269
+Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--269
+Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--269
+Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--269
+Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
 
-[22] <img/emulation2.png, id=643, 698.00775pt x 365.56575pt>
+[23] <img/emulation2.png, id=653, 698.00775pt x 365.56575pt>
 File: img/emulation2.png Graphic file (type png)
 
 <use img/emulation2.png>
-Package pdftex.def Info: img/emulation2.png used on input line 287.
+Package pdftex.def Info: img/emulation2.png used on input line 290.
 (pdftex.def)             Requested size: 426.79134pt x 223.51912pt.
- [23]
-Underfull \hbox (badness 10000) in paragraph at lines 300--302
+ [24]
+Underfull \hbox (badness 10000) in paragraph at lines 303--305
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--306
+Underfull \hbox (badness 10000) in paragraph at lines 306--308
+
+ []
+
+[25 <./img/emulation2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 321--322
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--306
-
- []
-
-[24 <./img/emulation2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 319--320
+Underfull \hbox (badness 10000) in paragraph at lines 324--329
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 322--323
+Underfull \hbox (badness 10000) in paragraph at lines 324--329
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--327
+Underfull \hbox (badness 10000) in paragraph at lines 324--329
 
  []
 
-<img/miniapp_reptar.JPG, id=673, 3854.4pt x 2168.1pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 324--329
+
+ []
+
+<img/miniapp_reptar.JPG, id=685, 3854.4pt x 2168.1pt>
 File: img/miniapp_reptar.JPG Graphic file (type jpg)
 
 <use img/miniapp_reptar.JPG>
-Package pdftex.def Info: img/miniapp_reptar.JPG used on input line 356.
+Package pdftex.def Info: img/miniapp_reptar.JPG used on input line 359.
 (pdftex.def)             Requested size: 426.79134pt x 240.04662pt.
-) (sections/Drivers.tex [25] [26 <./img/miniapp_reptar.JPG>]
+) (sections/Drivers.tex [26] [27 <./img/miniapp_reptar.JPG>]
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
-
- []
-
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 76--86
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 76--86
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 76--86
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 76--86
 
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 77--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--94
+Underfull \hbox (badness 10000) in paragraph at lines 77--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--94
+Underfull \hbox (badness 10000) in paragraph at lines 77--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--96
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--121
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--121
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--121
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--121
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 116--121
+Underfull \hbox (badness 10000) in paragraph at lines 77--87
 
  []
 
 [29]
-Underfull \hbox (badness 10000) in paragraph at lines 122--128
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
 
  []
 
 
-Overfull \hbox (19.58913pt too wide) in paragraph at lines 122--128
+Underfull \hbox (badness 10000) in paragraph at lines 91--95
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--95
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
+
+ []
+
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 122--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 128--134
+
+ []
+
+
+Overfull \hbox (19.58913pt too wide) in paragraph at lines 128--134
 \T1/cmr/m/n/12 rup-tion (trai-te-ment im-mé-diat + trai-te-ment dif-féré) à l'a
 ide de la fonc-tion re-quest_threaded_irq(). 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--128
+Underfull \hbox (badness 10000) in paragraph at lines 128--134
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--128
+Underfull \hbox (badness 10000) in paragraph at lines 128--134
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--137
+Underfull \hbox (badness 10000) in paragraph at lines 140--143
 
  []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 97.
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--97
+Underfull \hbox (badness 10000) in paragraph at lines 146--97
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--97
+Underfull \hbox (badness 10000) in paragraph at lines 146--97
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--97
+Underfull \hbox (badness 10000) in paragraph at lines 146--97
 
  []
 
-[30]
+[31]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 97.
  (seee_lab_report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 97.
@@ -1300,13 +1295,13 @@ Package rerunfilecheck Info: File `seee_lab_report.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 97.
  ) 
 Here is how much of TeX's memory you used:
- 11765 strings out of 493673
- 162970 string characters out of 3141526
- 451916 words of memory out of 3000000
- 14371 multiletter control sequences out of 15000+200000
+ 11767 strings out of 493673
+ 163013 string characters out of 3141526
+ 430916 words of memory out of 3000000
+ 14360 multiletter control sequences out of 15000+200000
  20247 words of font info for 49 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 30i,12n,49p,930b,1997s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,12n,49p,930b,1991s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 \ecti1200.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
 n\ec\dpi600\eccc1200.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
@@ -1324,9 +1319,9 @@ TeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2488.pk> <C:\Users\Emilie\AppDat
 a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\Em
 ilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc2488.pk><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on seee_lab_report.pdf (30 pages, 3228164 bytes).
+Output written on seee_lab_report.pdf (31 pages, 3231450 bytes).
 PDF statistics:
- 1423 PDF objects out of 1440 (max. 8388607)
- 569 named destinations out of 1000 (max. 500000)
+ 1447 PDF objects out of 1728 (max. 8388607)
+ 582 named destinations out of 1000 (max. 500000)
  226 words of extra memory for PDF output out of 10000 (max. 10000000)
 

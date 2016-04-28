@@ -28,13 +28,14 @@ suivante à partir de votre répertoire seee\_student :
 $ make qemu
 \end{lstlisting}
 \textbf{Travail réalisé: }
-Vu que nous n'avons pas téléchargé le dossier de projets depuis git, il faut nettoyer le contenu du dossier avec clean ou distclean avant de pourvoir utiliser qemu. Le make qemu prend quelques instants.\\
+Vu que nous n'avons pas téléchargé le dossier de projets depuis git, il faut nettoyer le contenu du dossier avec clean ou distclean avant de compiler qemu. Le make qemu prend quelques instants.\\
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ make clean
-redsuser@vm-reds-2015s2:~/seee_student$ make qemu
+$ cd ~/seee_student
+$ make clean
+$ make qemu
 ...
 make[1]: Leaving directory `/home/redsuser/seee_student/qemu-reds'
-redsuser@vm-reds-2015s2:~/seee_student$
+$
 \end{lstlisting}
 \subsection{Démarrage de Qemu}
 \textbf{a) Donnée: }Depuis Eclipse, lancez le debugger avec la configuration de debug « qemu-reds Debug ». Dans la
@@ -70,7 +71,8 @@ tapant ./stf) dans le répertoire racine. Vous arrivez dans U-boot. \\\\
 \textbf{Travail réalisé: }Cette partie n'a plus rien avoir avec Eclipse, on peut le fermer et lancer un terminal.
 Avec la commande \textit{stf} tapée à la racine du répertoire seee\_student, on arrive au même point qu'en lançant le Debug dans Eclipse. On peut également essayer la commande \textit{help}
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ ./stf
+$ cd ~/seee_student
+$ ./stf
 WARNING: Image format was not specified for 'filesystem/flash' and probing guessed raw.
 ...
 
@@ -93,8 +95,8 @@ Vous pouvez définir/modifier vos propres variables et les sauvegarder dans la f
 commande saveenv (seulement avec le lancement via stf). \\\\
 \textbf{Travail Réalisé: }Après être entré dans l'U-boot avec \textit{stf}, nous avons pu lister les variables d'environnement suivantes:
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~$ cd seee_student/
-redsuser@vm-reds-2015s2:~/seee_student$ ./stf
+$ cd ~/seee_student/
+$ ./stf
 WARNING: Image format was not specified for 'filesystem/flash' and probing guessed raw.
 Reptar # printenv
 ...
@@ -108,15 +110,14 @@ Reptar #
 \end{lstlisting}
 Les variables \textit{tftp1} et \textit{tftp2} sont des alias permettant de lancer des applications, la variable goapp est un alias permettant de lancer l'exécution de l'adresse physique 0x81600000. Elle définit l'adresse de début des applications. Voici un exemple d'utilisation de ces variables:
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~$ cd seee_student/
-redsuser@vm-reds-2015s2:~/seee_student$ cd helloworld_u-boot/
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ make
+$ cd ~/seee_student/helloworld_u-boot/
+$ make
 ...
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ cd ../gpio_u-boot/
-redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ make
+$ cd ../gpio_u-boot/
+$ make
 ...
-redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ cd ..
-redsuser@vm-reds-2015s2:~/seee_student$ ./stf 
+$ cd ..
+$ ./stf 
 WARNING: Image format was not specified for 'filesystem/flash' and probing guessed raw.
 ...
 Reptar # run tftp1
@@ -161,16 +162,16 @@ Stop of the GPIO U-boot Standalone Application
 ## Application terminated, rc = 0x0
 Reptar #
 \end{lstlisting}
-La commande run tftp<x> charge une application à l'adresse 0x81600000, tandis que run goapp va exécuter l'application à cette adresse comme le montre l'exemple ci-dessus.\\\\
+La commande run tftp<x> charge une application à l'adresse 0x81600000, tandis que run goapp va exécuter l'application depuis cette adresse comme le montre l'exemple ci-dessus.\\\\
 \textbf{b) Donnée: }La production de l'exécutable helloworld\_u-boot s'effectue en tapant la commande make dans le
 répertoire contenant les sources du programme. Ensuite, vous pouvez transférer le fichier (extension
 .bin) dans U-boot et exécuter le binaire (aidez-vous des variables d'environnement prédéfinies). \\\\
-\textbf{Travail réalisé: } Ce point a été fait en même temps que le précédent.\\
+\textbf{Travail réalisé: } Ce point a été fait en même temps que le précédent. Il ne faut rien faire de particulier pour que le .bin soit accessible dans l'U-boot. Il suffit d'utiliser les variables d'environnement prédéfinies.\\
 
 \textbf{c) Donnée: } Testez le debugger dans Eclipse avec le projet helloworld\_u-boot. Mettez un breakpoint dans le
 code source au démarrage du programme, et lancez le debugger avec la configuration de debug
 « helloworld\_u-boot Debug ». \\\\
-\textbf{Travail Réalisé: } Il faut que U-boot soit démarré dans un terminal externe avec \textit{stf} pour que la manipulation fonctionne avec Eclipse.
+\textbf{Travail Réalisé: } Il faut que qemu soit lancé dans un terminal externe avec \textit{stf} pour que la manipulation fonctionne avec Eclipse.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=18cm]{img/ubootCommand2.png}
@@ -178,13 +179,14 @@ code source au démarrage du programme, et lancez le debugger avec la configurat
 		\label{ubootComm2}
 	\end{center}
 \end{figure}
-\textbf{Remarque: }\color{red}Qemu se comporte comme un serveur GDB, ce qui permet à Eclipse  de communiquer avec lui et de debugger des applications...à retravailler\color{black}
+\textbf{Remarque: }Qemu se comporte comme un serveur GDB, ce qui permet à Eclipse (avec une certaine configuration) de communiquer avec lui et de debugger/lancer des applications à distance. On peut ainsi debugger des applications de l'environnement émulé depuis la machine hôte. Qemu est une sorte de passerelle entre l'U-boot et Eclipse.
 \subsection{Tests avec Linux}
 \textbf{a) Donnée: }Lancez le script ./deploy qui permettra de déployer le noyau Linux dans la sdcard virtuelle (ignorez
 l'erreur due à l'absence de certains fichiers). \\\\
 \textbf{Travail réalisé: }
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ ./deploy 
+$ cd ~/seee_student
+$ ./deploy 
 Deploying into reptar rootfs ...
 Mounting filesystem/sd-card.img...
 [sudo] password for redsuser: 
@@ -196,36 +198,39 @@ Unmounting SD card image...
 Synchronizing .img file
 Unmounting 'boot_tmp' and 'filesystem_tmp'...
 Done !
-redsuser@vm-reds-2015s2:~/seee_student$ 
+$ 
 \end{lstlisting}
 \textbf{b) Donnée: }Poursuivez ensuite en cross-compilant l'application helloworld pour Linux (via make). \\\\
 \textbf{Travail réalisé: }
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ cd helloworld_linux/
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_linux$ make
+$ cd ~/seee_student/helloworld_linux/
+$ make
 ...
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_linux$ cd ..
+$
 \end{lstlisting}
 \textbf{c) Donnée: }Copiez l'exécutable dans le rootfs\\\\
 \textbf{Travail réalisé: }
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ ./mount-sd.sh 
+$ cd ~/seee_student
+$ ./mount-sd.sh 
 Mounting filesystem/sd-card.img...
 SD card partitions mounted in 'boot_tmp' and 'filesystem_tmp' directories
 
-redsuser@vm-reds-2015s2:~/seee_student$ sudo cp helloworld_linux/helloworld filesystem_tmp/root
+$ sudo cp helloworld_linux/helloworld filesystem_tmp/root
 
-redsuser@vm-reds-2015s2:~/seee_student$ ./umount-sd.sh 
+$ ./umount-sd.sh 
 Unmounting SD card image...
 Synchronizing .img file
 Unmounting 'boot_tmp' and 'filesystem_tmp'...
 Done !
-redsuser@vm-reds-2015s2:~/seee_student$ 
+$ 
 \end{lstlisting}
+\textbf{Remarque: } Pour accéder au rootfs de la sdcard virtuelle, on va d'abord la monter son image sur la machine hôte. On peut ensuite copier l'exécutable de notre application à la racine du système de fichiers de la carte sd. Pour terminer, il faut démonter la carte Sd.\\\\
 \textbf{d) Donnée: }Lancez le script stq suivi de la commande boot dans U-boot pour amorcer le démarrage de Linux\\\\
-\textbf{Travail réalisé: } Avec la commande stq, une représentation de la carte se lance.
+\textbf{Travail réalisé: } Avec la commande stq, une représentation graphique de la carte se lance en plus de la console U-boot.
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ ./stq 
+$ cd ~/seee_student
+$ ./stq 
 libGL error: failed to authenticate magic 1
 libGL error: failed to load driver: vboxvideo
 Running QEMU
@@ -249,7 +254,7 @@ Password:
 	\end{center}
 \end{figure}
 \textbf{e) Donnée: }Lancez votre application\\\\
-\textbf{Travail réalisé: }
+\textbf{Travail réalisé: } Avec la commande ls, on voit que l'application que nous avons chargée dans le rootfs est bien présente.
 \begin{lstlisting}
 # ls
 Settings         fs               helloworld       rootfs_domU.img
@@ -278,12 +283,13 @@ REPTAR :
 \begin{lstlisting}
 # run setmac setip 
 \end{lstlisting}
-\textbf{Travail réalisé: }Avec la commande tftp il faut donner comme paramètre le \textit{.bin} de l'application ainsi que l'adresse physique où charger le programme. Cette adresse est 0x81600000 comme dans les exercices précédents.
+\textbf{Travail réalisé: }Avec la commande tftp il faut donner comme paramètre le \textit{.bin} de l'application ainsi que l'adresse physique où charger le programme. Cette adresse est 0x81600000 comme dans les exercices précédents.\\
+Pour charger notre application, il faut placer le .bin dans le répertoire tftpboot de la machine hôte. On va utiliser la connexion série (USB) pour exécuter la commande tftp et transférer l'exécutable sur la plateforme.
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student$ cd helloworld_u-boot/
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ make
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ cp helloworld.bin /home/redsuser/tftpboot
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_u-boot$ sudo picocom -b 115200 /dev/ttyUSB0 
+$ cd ~/seee_student/helloworld_u-boot
+$ make
+$ cp helloworld.bin /home/redsuser/tftpboot
+$ sudo picocom -b 115200 /dev/ttyUSB0 
 [sudo] password for redsuser: 
 picocom v1.7
 ...
@@ -312,7 +318,7 @@ argv[0] = "0x81600000"
 argv[1] = "<NULL>"
 Hit any key to exit ... 
 \end{lstlisting}
-\textbf{Remarque: }La commande tftp ne fonctionnera pas tant que la configuration réseau n'est pas correcte. Il faut impérativement que l'adresse Ip de la connexion par pont de la VM soit 192.168.1.1.
+\textbf{Remarque: }La commande tftp ne fonctionnera pas tant que la configuration réseau n'est pas correcte. Il faut impérativement que l'adresse IP de la connexion par pont de la VM soit 192.168.1.1.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=10cm]{img/ipConfig.png}
@@ -321,7 +327,7 @@ Hit any key to exit ...
 	\end{center}
 \end{figure}
 \textbf{b) Donnée: }Déployez l'application helloworld dans Linux à l'aide du réseau et de la commande scp.\\\\
-\textbf{Travail réalisé: } Nous avons découvert que l'adresse Ip de la carte n'était pas celle attendue, nous avons donc dû adapter scp pour l'adresse Ip 192.168.1.254.
+\textbf{Travail réalisé: } Nous avons découvert que l'adresse IP de la carte n'était pas celle attendue, nous avons donc dû adapter scp pour l'adresse IP 192.168.1.254.
 \begin{lstlisting}
 Reptar # boot
 reading uImage
@@ -334,9 +340,9 @@ eth0      Link encap:Ethernet  HWaddr E4:AF:A1:40:01:FE
 inet addr:192.168.1.254  Bcast:192.168.1.255  Mask:255.255.255.0
 ...
 \end{lstlisting}
-La commande scp permet de transférer le helloworld\_linux à la carte reptar par l'interface réseau depuis la machine hôte.
+La commande scp permet de transférer le helloworld\_linux sur la carte reptar par l'interface réseau depuis la machine hôte.
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student/helloworld_linux$ scp helloworld root@192.168.1.254:helloworld
+$ scp helloworld root@192.168.1.254:helloworld
 
 The authenticity of host '192.168.1.254 (192.168.1.254)' can't be established.
 RSA key fingerprint is fb:59:a3:73:97:9d:b7:b9:8a:40:e8:bc:19:ab:ab:70.
@@ -345,7 +351,7 @@ Warning: Permanently added '192.168.1.254' (RSA) to the list of known hosts.
 root@192.168.1.254's password: 
 helloworld                                    100% 6877     6.7KB/s   00:00    
 \end{lstlisting}
-L'application helloworld est maintenant chargée sur la cible, il ne reste plus qu'à l'exécuter sur celle-ci.
+L'application helloworld est maintenant chargée sur la cible, il ne reste plus qu'à l'exécuter.
 \begin{lstlisting}
 # ls
 bitstreams  helloworld     tests
@@ -366,13 +372,14 @@ Le but de l’application est d’allumer une LED lorsqu’on appuie sur un swit
 Le switch numéro 4 sert à quitter l’application. Aidez-vous des fichiers d'en-tête (\#include) déjà présents dans
 le chablon fourni.\\
 L’application gpio\_u-boot est à déployer dans U-boot via la commande tftp. \\\\
-\textbf{Emplacement du code réalisé: }/gpio\_u-boot.c\\\\
+\textbf{Emplacement du code: }/gpio\_u-boot.c\\\\
 Ce code est très basique, mais implémente correctement les points exigés par la donnée. Les commandes suivantes ont permis de lancer l'application sur la cible réelle dans l'U-boot. Une pression sur le switch numéro 4 permet de terminer l'application.\\
 \begin{lstlisting}
-redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ make
+$ cd ~/seee_student/gpio_u-boot
+$ make
 ...
-redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ cp gpio_u-boot.bin /home/redsuser/tftpboot
-redsuser@vm-reds-2015s2:~/seee_student/gpio_u-boot$ sudo picocom -b 115200 /dev/ttyUSB0 
+$ cp gpio_u-boot.bin /home/redsuser/tftpboot
+$ sudo picocom -b 115200 /dev/ttyUSB0 
 [sudo] password for redsuser: 
 picocom v1.7
 ...
