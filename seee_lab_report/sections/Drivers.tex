@@ -83,6 +83,34 @@ chaîne de (80 max.) caractères. \\\\
 \textbf{Travail réalisé: }Les callbacks read et write ont été implémentés très sommairement dans le module avec la fonction 
 \textit{copy\_from/to\_user}. Il faut faire attention à bien retourner le nombre de bytes qui ont été lus ou écrits, pour que l'application puisse être au fait et détecter le cas échéant, si une erreur s'est produite.\\
 Une application a aussi été codée pour tester les callbacks. Celle-ci affiche les stats du fichier créé dans le dossier \textit{/dev}, écrit une version de bitstream totalement fabuliste, relit les stats et enfin lit le bitstream pour confirmer le succès de l'écriture.
+\begin{lstlisting}
+# cd /
+# insmod sp6.ko 
+reptar_sp6: module starting...
+Probing FPGA driver (device: fpga)
+input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
+reptar_sp6: done.
+# ./usertest 
+Device ID : 0
+Inode number : 5
+Protection mode : 0
+Num of hard links : 680
+User ID of owner : 8624
+Group ID of owner : 1
+Device ID (spec files only): 0
+Total size [bytes] : 0
+Setting bitstream version to : mais coucou mon petit                                                          
+Device ID : 0
+Inode number : 5
+Protection mode : 0
+Num of hard links : 680
+User ID of owner : 8624
+Group ID of owner : 1
+Device ID (spec files only): 0
+Total size [bytes] : 0
+Normally read buffer
+Bitstream version : mais coucou mon petit
+\end{lstlisting}
 \\\\
 \textbf{b) Donnée: }Pour identifier le nom de l'entrée dans /dev/ qui sera créée automatiquement, examinez la fonction
 probe( ) du driver.\\\\
