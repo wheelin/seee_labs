@@ -39,45 +39,24 @@ int main(int argc, char *argv[])
 	while(1)
 	{
 		if(gpio_get_value(GPIO_SW_0))
-		{
 			gpio_set_value(GPIO_LED_0, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_0, 0);
-		}
-
+		else gpio_set_value(GPIO_LED_0, 0);
+		
 		if(gpio_get_value(GPIO_SW_1))
-		{
 			gpio_set_value(GPIO_LED_1, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_1, 0);
-		}
-
+		else gpio_set_value(GPIO_LED_1, 0);
+	
 		if(gpio_get_value(GPIO_SW_2))
-		{
 			gpio_set_value(GPIO_LED_2, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_2, 0);
-		}
-
+		else gpio_set_value(GPIO_LED_2, 0);
+		
 		if(gpio_get_value(GPIO_SW_3))
-		{
 			gpio_set_value(GPIO_LED_3, 1);
-		}
-		else
-		{
-			gpio_set_value(GPIO_LED_3, 0);
-		}
-
+		else gpio_set_value(GPIO_LED_3, 0);
+		
 		if(gpio_get_value(GPIO_SW_4))
-		{
 			break;
-		}
+		
 	}
 
   printf ("Stop of the GPIO U-boot Standalone Application\n");
