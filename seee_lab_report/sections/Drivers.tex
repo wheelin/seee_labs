@@ -138,9 +138,33 @@ Pour le pilotage des LEDs, on souhaite utiliser le sous-système leds présent d
 Effectuez un mappage du registre des LEDs à l'aide de la fonction ioremap( ), en vous servant de la
 structure fpga\_resource.\\\\
 \textbf{a) Donnée: }Enregistrez le device comme un device de type leds à l'aide de la fonction led\_classdev\_register( ).\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code: }\textit{Drivers/pilotageLeds/reptar\_sp6\_leds.c}\\\\
+\textbf{Travail réalisé: }Nous avons modifié le fichier \textit{reptar\_sp6\_leds.c}. Avant de pouvoir enregistrer le device, il faut mapper le registre des LEDs avec la fonction \textit{ioremap}. Puis, on peut enregistrer le device comme ci-dessous:
+\begin{lstlisting}
+/* Map the LED register */
+led->reg = ioremap(fpga_resource->start+pdata->reg_offset,2);
+
+/* Register our new led device into led class */
+led_classdev_register(&pdev->dev.parent, &led->cdev);
+\end{lstlisting}
 \textbf{b) Donnée: }Cherchez et implémentez le(s) callback(s) gérant l'enclenchement/déclenchement des LEDs.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }En regardant dans la fonction \textit{probe}, on voit que le callback pour enregistrer les LEDs a été lié avec la fonction \textit{reptar\_sp6\_led\_set}.
+\begin{lstlisting}
+led->cdev.brightness_set = reptar_sp6_led_set;
+led->cdev.name = pdata->name;
+\end{lstlisting}
+Pour interagir avec l'état des LEDs, il nous suffit de modifier la valeur du registre que l'on a précédent mapper avec \textit{ioremap}. On accède directement au périphérique. La modification du registre est protégée par un \textit{spin\_lock} pour gérer l'accès concurrent, car le registre est partagé.
+\begin{lstlisting}
+/* Protect access to shared register */
+spin_lock(&reg_lock);
+
+/* to be completed */
+if(value)
+*led->reg |= 0x0001 << (pd->bit);
+else
+*led->reg &= ~ (0x0001 << (pd->bit));
+spin_unlock(&reg_lock);
+\end{lstlisting}
 \textbf{Réponse aux questions: }
 \begin{enumerate}
 	\item Combien y a-t-il de devices de type LED gérés par notre driver ?\\
@@ -152,9 +176,121 @@ Il y a 6 LEDs selon la déclaration dans reptar\_sp6.h et il y a bien 6 LEDs dan
 \end{lstlisting}
 \textbf{c) Donnée: }Testez le driver LED dans l'environnement qtemu (application graphique). Lancez le script
 ledstest.sh.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }Pour tester le driver dans l'émulateur, il ne faut plus travailler dans l'U-boot, mais dans Linux. Pour cela, il faut entrer la commande \textit{boot} au démarrage de l'émulateur. Le script \textit{ledstest.sh} peut être lancé une fois le driver inséré dans le noyau avec la commande \textit{insmod}. On peut ensuite suivre la séquence d'allumage/extinction des LEDs dans la représentation graphique \textit{qtemu}.
+\begin{lstlisting}
+$ cd ~/seee_student/drivers/
+$ make
+...
+make[1]: Leaving directory /home/redsuser/seee_student/linux-3.0-reptar
+$ cd ..
+$ ./deploy
+...
+Done !
+$ ./stq
+...
+
+Reptar # boot
+...
+*** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+Password: 
+
+# cd /
+# insmod sp6.ko 
+reptar_sp6: module starting...
+Probing FPGA driver (device: fpga)
+input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
+reptar_sp6: done.
+
+# ./ledstest.sh 
+SP6 leds present in sysfs !
+Turning on LEDS from right to left...
+sp6_read: Led read 0x0
+sp6_write: Led write 0x1
+reptar-sp6-emul: sp6_emul_cmd_post
+reptar-sp6-emul: sp6_emul_cmd_post Inserting into queue...
+reptar-sp6-emul: sp6_emul_cmd_post ...done
+sp6_read: Led read 0x1
+sp6_write: Led write 0x3
+reptar-sp6-emul: sp6_emul_cmd_post
+reptar-sp6-emul: sp6_emul_cmd_post Inserting into queue...
+reptar-sp6-emul: sp6_emul_cmd_post ...done
+sp6_read: Led read 0x3
+...
+End of test
+\end{lstlisting}
+L'image ci-dessous montre que l'on arrive à piloter les LEDs
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/driverLeds.png}
+		\caption{Test du pilote des LEDs avec qtemu}
+		\label{driverLed3}
+	\end{center}
+\end{figure}
 \textbf{d) Donnée: }Testez votre driver sur la plate-forme (réelle) Reptar.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }Pour le test sur la plateforme réelle, nous avons également besoin de travailler dans Linux, on doit donc insérer la carte SD où se trouve l'image du noyau dans la plateforme, sans quoi on ne pourra pas booter. Nous avons remarqué que l'adresse IP de la carte Reptar avait encore changé. Maintenant c'est l'adresse 192.168.1.10.
+\begin{lstlisting}
+$ sudo picocom -b 115200 /dev/ttyUSB0 
+[sudo] password for redsuser: 
+picocom v1.7
+...
+Terminal ready
+
+Reptar # boot
+...
+*** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+Password: 
+# ifconfig
+eth0      Link encap:Ethernet  HWaddr E4:AF:A1:40:01:0A  
+inet addr:192.168.1.10  Bcast:192.168.1.255  Mask:255.255.255.0
+...
+\end{lstlisting}
+Depuis la machine hôte, on va transférer par la connexion réseau les fichiers ledstest.sh et sp6.ko nécessaire. Nous avons besoin pour cela de la commande scp et de l'adresse IP de la plateforme
+\begin{lstlisting}
+$ cd ~/seee_student/drivers/
+$ scp ledstest.sh root@192.168.1.10:ledstest.sh
+root@192.168.1.10's password: 
+ledstest.sh                                   100%  772     0.8KB/s   00:00  
+  
+$ scp sp6.ko root@192.168.1.10:sp6.ko
+root@192.168.1.10's password: 
+sp6.ko                                        100%  161KB 161.1KB/s   00:00    
+\end{lstlisting}
+Une fois les fichiers copiés, on accède à la plateforme par la connexion série et l'on peut installer notre driver et lancer le script de tests.
+\begin{lstlisting}
+# ls
+bitstreams   helloworld   ledstest.sh  sp6.ko       tests
+# insmod sp6.ko 
+reptar_sp6: module starting...
+Probing FPGA driver (device: fpga)
+input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input2
+reptar_sp6: done.
+# ./ledstest.sh 
+SP6 leds present in sysfs !
+Turning on LEDS from right to left...
+Turning off LEDS from right to left...
+All LEDS ON...
+All LEDS OFF...
+End of test
+# rmmod sp6.ko 
+reptar_sp6: bye bye!
+\end{lstlisting}
+Les images ci-dessous prouvent le bon fonctionnement de notre pilote des LEDs. On voit qu'elles s'allument et s'éteignent.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/driverLeds3.png}
+		\caption{Allumage des LEDs}
+		\label{driverLed2}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/driverLeds2.png}
+		\caption{Extinction des LEDs}
+		\label{driverLed}
+	\end{center}
+\end{figure}
 \subsection{Pilotage des boutons}
 Lors de cette étape, nous travaillerons sur le driver gérant la pression des boutons. L'objectif est de
 contrôler une application dans l'espace utilisateur à l'aide des boutons.\\\\

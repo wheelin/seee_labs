@@ -18,4 +18,4 @@
 \contentsline {subsection}{\numberline {3.1}Environnement Qemu et plate-forme Reptar }{29}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Driver de type caract\IeC {\`e}re}{30}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Pilotage des LEDs }{32}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Pilotage des boutons}{33}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.4}Pilotage des boutons}{37}{subsection.3.4}
