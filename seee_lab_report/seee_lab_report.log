@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  5 MAY 2016 11:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  10 MAY 2016 19:13
 entering extended mode
 **seee_lab_report.tex
 (seee_lab_report.tex
@@ -1082,89 +1082,95 @@ File: img/emulation2.png Graphic file (type png)
 Package pdftex.def Info: img/emulation2.png used on input line 290.
 (pdftex.def)             Requested size: 426.79134pt x 223.51912pt.
  [24]
-Underfull \hbox (badness 10000) in paragraph at lines 303--305
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 306--308
+Underfull \hbox (badness 10000) in paragraph at lines 304--306
 
  []
 
 [25 <./img/emulation2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 321--322
+Underfull \hbox (badness 10000) in paragraph at lines 314--316
 
  []
 
-<img/emul_test_miniapp_init.png, id=689, 1371.1225pt x 674.52pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 317--319
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
+
+ []
+
+<img/emul_test_miniapp_init.png, id=694, 1371.1225pt x 674.52pt>
 File: img/emul_test_miniapp_init.png Graphic file (type png)
 
 <use img/emul_test_miniapp_init.png>
-Package pdftex.def Info: img/emul_test_miniapp_init.png used on input line 330.
+Package pdftex.def Info: img/emul_test_miniapp_init.png used on input line 341.
 
 (pdftex.def)             Requested size: 455.24408pt x 223.95087pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 324--334
+Underfull \hbox (badness 10000) in paragraph at lines 335--345
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 324--334
+Underfull \hbox (badness 10000) in paragraph at lines 335--345
 
  []
 
-<img/emul_test_miniapp_counting.png, id=691, 1371.1225pt x 674.52pt>
+[26] <img/emul_test_miniapp_counting.png, id=703, 1371.1225pt x 674.52pt>
 File: img/emul_test_miniapp_counting.png Graphic file (type png)
 
 <use img/emul_test_miniapp_counting.png>
 Package pdftex.def Info: img/emul_test_miniapp_counting.png used on input line 
-338.
+349.
 (pdftex.def)             Requested size: 455.24408pt x 223.95087pt.
- [26 <./img/emul_test_miniapp_init.png>] <img/emul_test_miniapp_end.png, id=699
-, 1371.1225pt x 674.52pt>
+
+<img/emul_test_miniapp_end.png, id=705, 1371.1225pt x 674.52pt>
 File: img/emul_test_miniapp_end.png Graphic file (type png)
 
 <use img/emul_test_miniapp_end.png>
-Package pdftex.def Info: img/emul_test_miniapp_end.png used on input line 346.
+Package pdftex.def Info: img/emul_test_miniapp_end.png used on input line 357.
 (pdftex.def)             Requested size: 455.24408pt x 223.95087pt.
+ [27 <./img/emul_test_miniapp_init.png> <./img/emul_test_miniapp_counting.png>]
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--365
 
  []
 
-[27 <./img/emul_test_miniapp_counting.png> <./img/emul_test_miniapp_end.png>]
-<img/miniapp_reptar.JPG, id=705, 3854.4pt x 2168.1pt>
+<img/miniapp_reptar.JPG, id=712, 3854.4pt x 2168.1pt>
 File: img/miniapp_reptar.JPG Graphic file (type jpg)
 
 <use img/miniapp_reptar.JPG>
-Package pdftex.def Info: img/miniapp_reptar.JPG used on input line 384.
+Package pdftex.def Info: img/miniapp_reptar.JPG used on input line 395.
 (pdftex.def)             Requested size: 426.79134pt x 240.04662pt.
-) (sections/Drivers.tex [28 <./img/miniapp_reptar.JPG>]
+ [28 <./img/emul_test_miniapp_end.png>])
+(sections/Drivers.tex [29 <./img/miniapp_reptar.JPG>]
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
-
- []
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 77--85
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--85
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--85
 
  []
 
 [30]
+Underfull \hbox (badness 10000) in paragraph at lines 77--85
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--85
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--85
+
+ []
+
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 114--117
 
  []
@@ -1199,7 +1205,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
-[31]
+[32]
 Underfull \hbox (badness 10000) in paragraph at lines 137--143
 
  []
@@ -1219,7 +1225,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 150--152
 
  []
 
-[32]
+[33]
 Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
@@ -1229,7 +1235,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 177--180
 
  []
 
-[33] <img/driverLeds.png, id=893, 700.41675pt x 385.44pt>
+[34] <img/driverLeds.png, id=904, 700.41675pt x 385.44pt>
 File: img/driverLeds.png Graphic file (type png)
 
 <use img/driverLeds.png>
@@ -1245,8 +1251,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 230--232
 
  []
 
-[34 <./img/driverLeds.png>]
-<img/driverLeds3.png, id=917, 4175.6pt x 2344.76pt>
+[35 <./img/driverLeds.png>]
+<img/driverLeds3.png, id=928, 4175.6pt x 2344.76pt>
 File: img/driverLeds3.png Graphic file (type png)
  <use img/driverLeds3.png>
 Package pdftex.def Info: img/driverLeds3.png used on input line 282.
@@ -1256,7 +1262,7 @@ Overfull \hbox (8.53589pt too wide) in paragraph at lines 282--283
  [] 
  []
 
-<img/driverLeds2.png, id=918, 4175.6pt x 2344.76pt>
+<img/driverLeds2.png, id=929, 4175.6pt x 2344.76pt>
 File: img/driverLeds2.png Graphic file (type png)
  <use img/driverLeds2.png>
 Package pdftex.def Info: img/driverLeds2.png used on input line 289.
@@ -1266,7 +1272,7 @@ Overfull \hbox (8.53589pt too wide) in paragraph at lines 289--290
  [] 
  []
 
-[35]
+[36]
 Underfull \hbox (badness 10000) in paragraph at lines 295--301
 
  []
@@ -1287,7 +1293,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 295--301
 
  []
 
-[36 <./img/driverLeds3.png> <./img/driverLeds2.png>]
+[37 <./img/driverLeds3.png> <./img/driverLeds2.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 305--306
 
  []
@@ -1314,7 +1320,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 313--97
 
  []
 
-[37]
+[38]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 97.
  (seee_lab_report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 97.
@@ -1324,10 +1330,10 @@ Package rerunfilecheck Info: File `seee_lab_report.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 97.
  ) 
 Here is how much of TeX's memory you used:
- 12079 strings out of 493673
- 167514 string characters out of 3141526
+ 12097 strings out of 493673
+ 167781 string characters out of 3141526
  430916 words of memory out of 3000000
- 14523 multiletter control sequences out of 15000+200000
+ 14533 multiletter control sequences out of 15000+200000
  21011 words of font info for 50 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  30i,12n,49p,930b,1991s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1350,9 +1356,9 @@ ilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <
 C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecc
 c2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb>
-Output written on seee_lab_report.pdf (37 pages, 9121365 bytes).
+Output written on seee_lab_report.pdf (38 pages, 9124898 bytes).
 PDF statistics:
- 1660 PDF objects out of 1728 (max. 8388607)
- 724 named destinations out of 1000 (max. 500000)
+ 1672 PDF objects out of 1728 (max. 8388607)
+ 732 named destinations out of 1000 (max. 500000)
  256 words of extra memory for PDF output out of 10000 (max. 10000000)
 

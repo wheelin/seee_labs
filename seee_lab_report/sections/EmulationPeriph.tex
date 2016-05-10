@@ -292,6 +292,17 @@ Reptar # run goapp
 		\label{emulation2}
 	\end{center}
 \end{figure}
+\textbf{\color{red}Modifications:\color{black}}\\ Suite à l'examen intermédiaire, nous avons remarqué que nous n'avons pas initialisé correctement la carte Reptar. Nous avons modifié la fonction \textit{sp6\_initfn} du fichier \textit{reptar\_sp6.c} comme ci-dessous. Notre erreur était de passer l'adresse de base du sp6 dans la fonction memory\_region\_init\_io alors que le paramètre demandé était la taille mémoire pour notre périphérique. 
+\begin{lstlisting}
+//memory_region_init_io(&s->iomem, OBJECT(s), &reptar_sp6_ops, s,
+//                  "reptar_sp6", SP6_BASE_ADDRESS);
+
+//Allocate 1MB for reptar
+memory_region_init_io(&s->iomem, OBJECT(s), &reptar_sp6_ops, s,
+"reptar_sp6", 0x100000);
+\end{lstlisting}
+Nous avons donc modifié le code pour allouer la bonne taille, soit 1MB, en accord avec la documentation de la plateforme. L'erreur n'a pas eu de conséquence sur les tests, on a juste alloué beaucoup plus de mémoire que nécessaire.\\\\
+\textbf{\color{red}Emplacement du code modifié:\color{black}}\textit{/emulationSpartan6\_part6/reptar\_sp6\_modifs.c}
 \subsection{Mini-application utilisant les boutons et l'afficheur 7 segments}
 \textbf{a) Donnée: }Le dossier miniapp\_u-boot contient un chablon. Complétez-le afin de créer une application qui
 utilise les boutons SW2, SW5, SW4 et SW3, ainsi que l’afficheur 7 segments.
