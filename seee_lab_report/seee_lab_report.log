@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  10 MAY 2016 19:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  10 MAY 2016 19:21
 entering extended mode
 **seee_lab_report.tex
 (seee_lab_report.tex
@@ -974,7 +974,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--76
 
  []
 
-<img/leds1.png, id=481, 855.195pt x 421.575pt>
+<img/leds1.png, id=479, 855.195pt x 421.575pt>
 File: img/leds1.png Graphic file (type png)
  <use img/leds1.png>
 Package pdftex.def Info: img/leds1.png used on input line 94.
@@ -995,6 +995,7 @@ File: img/leds2.png Graphic file (type png)
 Package pdftex.def Info: img/leds2.png used on input line 101.
 (pdftex.def)             Requested size: 426.79134pt x 208.13399pt.
 
+[19 <./img/leds1.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 107--117
 
  []
@@ -1019,7 +1020,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 107--117
 
  []
 
-[19 <./img/leds1.png> <./img/leds2.png>] [20]
+[20 <./img/leds2.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 163--178
 
  []
@@ -1044,13 +1045,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--178
 
  []
 
-[21]
+[21] [22]
 Overfull \hbox (31.20715pt too wide) in paragraph at lines 222--223
 \T1/cmr/m/n/12 Notre code a en-suite été testé avec les re-gistres GPIO du mi-c
 ro-con-trô-leur (\T1/cmr/m/it/12 GPIO_RISINGDETECT,
  []
 
-[22]
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
@@ -1075,13 +1076,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
 
-[23] <img/emulation2.png, id=656, 698.00775pt x 365.56575pt>
+[24] <img/emulation2.png, id=674, 698.00775pt x 365.56575pt>
 File: img/emulation2.png Graphic file (type png)
 
 <use img/emulation2.png>
 Package pdftex.def Info: img/emulation2.png used on input line 290.
 (pdftex.def)             Requested size: 426.79134pt x 223.51912pt.
- [24]
+
 Underfull \hbox (badness 10000) in paragraph at lines 304--306
 
  []
@@ -1101,7 +1102,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 332--333
 
  []
 
-<img/emul_test_miniapp_init.png, id=694, 1371.1225pt x 674.52pt>
+<img/emul_test_miniapp_init.png, id=692, 1371.1225pt x 674.52pt>
 File: img/emul_test_miniapp_init.png Graphic file (type png)
 
 <use img/emul_test_miniapp_init.png>
@@ -1356,7 +1357,7 @@ ilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <
 C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecc
 c2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb>
-Output written on seee_lab_report.pdf (38 pages, 9124898 bytes).
+Output written on seee_lab_report.pdf (38 pages, 9125229 bytes).
 PDF statistics:
  1672 PDF objects out of 1728 (max. 8388607)
  732 named destinations out of 1000 (max. 500000)

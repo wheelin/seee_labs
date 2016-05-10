@@ -52,7 +52,7 @@ Dans cette étape, il s'agit de mettre en place la structure nécessaire à l'é
 dédiée à la FPGA (affichez simplement un message). \\\\
 \textbf{Emplacement du code:}\\\textit{/emulationSpartan6\_part2/reptar\_sp6.c}\\ \textit{/emulationSpartan6\_part2/reptar.c}\\\\
 \textbf{Travail réalisé: }Nous avons modifié les fichiers \textit{reptar\_sp6.c} et \textit{reptar.c}\\
-Le point crucial de cette partie du labo a été de trouvé l'adresse de base de la FPGA qui est \textbf{0x18000000}. Nous avons en effet besoin de cette adresse pour lier/créer le \textit{reptar\_sp6} dans la partie reptar. 
+Le point crucial de cette partie du labo a été de trouvé l'adresse de base de la FPGA qui est \textbf{0x18000000}. \underline{Cette information a été trouvée dans la documentation, plus précisément le}\\\underline{ fichier Spartan6\_Registers\_SEEE\_2014\_22mar14.xlsx}. Tous les autres offsets et adresses données dans la suite du document proviennent de ce document. Nous avons en effet besoin de cette adresse pour lier/créer le \textit{reptar\_sp6} dans la partie reptar. 
 \begin{lstlisting}
 	sysbus_create_simple("reptar_sp6",0x18000000,NULL);
 \end{lstlisting}
