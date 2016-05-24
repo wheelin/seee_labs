@@ -1,0 +1,47 @@
+# insmod sp6.ko 
+reptar_sp6: module starting...
+Probing FPGA driver (device: fpga)
+btns_reg address : 0xd08dc012
+irq_reg address : 0xd08de018
+sp6_read: Button irq status read 0x0 (button 0 made IRQ)
+sp6_write: Button irq status write 0x90
+Enable IRQ
+input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
+reptar_sp6: done.
+# ./buttons_test -e1
+Input device name: "reptar_sp6_buttons"
+Supported events:
+  Event type 0 (Sync)
+  Event type 1 (Key)
+    Event code 1 (Esc)
+    Event code 14 (Backspace)
+    Event code 28 (Enter)
+    Event code 57 (Space)
+    Event code 103 (Up)
+    Event code 105 (Left)
+    Event code 106 (Right)
+    Event code 108 (Down)
+Testing ... (will exit after 32 input events)
+QObject: Cannot create children for a parent that is in a different thread.
+(Parent is QNativeSocketEngine(0x15e0f70), parent's thread is QThread(0x1400290), current thread is EvtThread(0x15e0db0)
+reptar-sp6-emul: sp6_emul_event_handle: read 29 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x2
+IRQ RAISE
+sp6_read: Button irq status read 0x92 (button 1 made IRQ)
+sp6_read: Button read 0x2
+sp6_read: Button irq status read 0x92 (button 1 made IRQ)
+sp6_write: Button irq status write 0x93
+Enable IRQ
+Clear IRQ
+btns_reg address : 0xd08dc012
+irq_reg address : 0xd08de018
+Dev->current_button = 2
+Leaved the threaded interrupt handler
+Type: (Key), code 105 (Left), DOWN
+Event sync
+Type: (Key), code 105 (Left), UP
+Event sync
+reptar-sp6-emul: sp6_emul_event_handle: read 29 
+reptar-sp6-emul: sp6_emul_event_handle: cJSON_Parse done 
+Button status : 0x0

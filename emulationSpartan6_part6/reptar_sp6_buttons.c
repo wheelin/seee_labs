@@ -1,13 +1,3 @@
-/*
- * REPTAR FPGA buttons emulation
- *
- * Copyright (c) 2013 Reconfigurable Embedded Digital Systems (REDS) Institute at HEIG-VD, Switzerland
- * Written by Romain Bornet <romain.bornet@heig-vd.ch>
- *
- * This module provides a basic emulation for the 8 buttons of REPTAR's FPGA board.
- *
- */
-
 #include "reptar_sp6.h"
 
 sp6_state_t *sp6_state;

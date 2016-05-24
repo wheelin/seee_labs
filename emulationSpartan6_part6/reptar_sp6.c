@@ -1,12 +1,3 @@
-/*
- * REPTAR Spartan6 FPGA emulation (reptar_sp6)
- *
- * Copyright (c) 2013-2014 HEIG-VD / REDS
- * Written by Romain Bornet
- *
- * This code is licensed under the GPL.
- */
-
 #include "qemu-common.h"
 #include "reptar_sp6.h"
 #include "hw/sysbus.h"
@@ -114,6 +105,7 @@ static uint64_t sp6_read(void *opaque, hwaddr offset, unsigned size)
 				}
 				button_irq_register_value = button_irq_register_value | (((temp)<<1)&SP6_IRQ_BTNS_MASK);
 				printf ("sp6_read: Button irq status read 0x%x (button %d made IRQ)\n",button_irq_register_value,temp+1);
+				button_irq_register_value |= (1 << 4);
 				return button_irq_register_value;
 			}
 			printf ("sp6_read: Button irq status read wrong data size %d should be 2\n",size);
