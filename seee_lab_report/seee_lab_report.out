@@ -18,3 +18,7 @@
 \BOOKMARK [2][-]{subsection.3.2}{Driver de type caract\350re}{section.3}% 18
 \BOOKMARK [2][-]{subsection.3.3}{Pilotage des LEDs }{section.3}% 19
 \BOOKMARK [2][-]{subsection.3.4}{Pilotage des boutons}{section.3}% 20
+\BOOKMARK [1][-]{section.4}{Virtualisation embarqu\351e}{}% 21
+\BOOKMARK [2][-]{subsection.4.1}{Test de l'environnement EmbeddedXEN}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.2}{D\351ploiement du driver sp6 dans Dom0}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.3}{Interaction entre Dom0 et DomU sur l'interface input para-virtualis\351}{section.4}% 24

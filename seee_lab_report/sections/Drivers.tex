@@ -312,3 +312,17 @@ l'application devra ouvrir le fichier /dev/input/event1. Il faudra taper la comm
 \end{lstlisting}
 Testez les boutons un par un.\\\\
 \textbf{Travail réalisé: }\\\\
+\textbf{d) Donnée: }Testez votre driver avec une application Qt disponible dans /usr/share/qt/demos. Essayez textedit
+par exemple : 
+\begin{lstlisting}
+# export QWS_KEYBOARD="LinuxInput:/dev/input/event1"
+# cd /usr/share/qt/demos/textedit
+# ./textedit -qws 
+\end{lstlisting}
+\textbf{Travail réalisé: }\\\\
+\textbf{e) Donnée: }Effectuez un déploiement et un test sur la plate-forme réelle Reptar. Sur la plate-forme réelle, vous
+devrez utiliser l'entrée /dev/input/event2
+\textbf{Travail réalisé: }\\\\
+\textbf{Réponse aux questions: }A la fin de cette étape, vous devrez être en mesure de décrire le cheminement d'une interruption
+en provenance d'un bouton jusqu'à l'effet perçu au niveau de l’application utilisateur. \\\\
+\textbf{Travail réalisé: }\\\\
