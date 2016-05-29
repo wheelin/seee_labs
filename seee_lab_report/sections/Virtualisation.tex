@@ -44,7 +44,7 @@ simultanément à l'UART de la console. La commutation de la console entre Dom0 
 entre DomU et la console de l'hyperviseur, puis entre cette dernière et Dom0 de nouveau, s'effectue
 à l'aide de trois combinaisons Ctrl-A successives (3 x Ctrl-A). Connectez-vous dans les deux
 domaines (login et mot de passe : root).\\\\
-\textbf{Travail réalisé: }Pour que l'hyperviseur démarre, il faut commencer par booter. On voit ensuite le démarrage de DOM-U, DOM-0 et l'hyperviseur XEN. À la fin du boot, on arrive dans le DOM-U où il faut entrer un mot de passe. Avec un Ctrl-A, on peut commuter la console et passer dans DOM-0. La capture ci-dessous présente les tests effectués. 
+\textbf{Travail réalisé: }Pour que l'hyperviseur démarre, il faut commencer par booter. On voit ensuite le démarrage de DOM-U, DOM-0 et l'hyperviseur XEN. À la fin du boot, on arrive dans le DOM-U où il faut entrer un mot de passe. Avec trois Ctrl-A, on peut commuter la console et passer dans DOM-0. La capture ci-dessous présente les tests effectués. 
 \begin{lstlisting}
 Reptar # boot
 ...
@@ -156,7 +156,7 @@ cd /usr/share/qt/demos/textedit
 export QWS_KEYBOARD="LinuxInput:/dev/input/event1"
 ./textedit -qws
 \end{lstlisting}
-On peut tester que notre driver contrôlant les boutons fonctionne correctement en regardant la fenêtre QTextEdit. Lorsque l'on presse les boutons, on arrive a faire des espaces dans le texte, déplacer le curseur, mettre en gras...etc. On a donc un driver qui fonctionne dans Dom0 et ayant accès au matériel émulé.
+On peut tester que notre driver contrôlant les boutons fonctionne correctement en regardant la fenêtre QTextEdit. Lorsque l'on presse les boutons, on arrive a faire des espaces dans le texte, déplacer le curseur, mettre en gras...etc. On a donc un driver qui fonctionne dans Dom0 et qui a accès au matériel émulé.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=16cm]{img/dom0.png}
@@ -179,4 +179,102 @@ dans linux-3.4.6-domU/drivers/input/misc/xen-kbdfront.c ).\\\\
 \textbf{Travail réalisé: }\\\\
 \textbf{b) Donnée: }Modifiez votre driver afin que celui-ci s'enregistre auprès du backend input à l'aide de la fonction
 xenvkbd\_inputdev\_register( ) (quelques indications sont fournies ci-après).\\\\
+\textbf{Travail réalisé: }
+\begin{lstlisting}
+/*Register to backend */
+xenvkbd_inputdev_register(&input, GPIOKEY);
+\end{lstlisting}
+\begin{lstlisting}
+if(dev->current_button == 0x80)
+{
+	omapfb_xen_switch_domain(1);
+	xenfb_set_focus(1);
+}
+else if(dev->current_button == 0x20)
+{
+	omapfb_xen_switch_domain(0);
+	xenfb_set_focus(0);
+}
+\end{lstlisting}
+\begin{lstlisting}
+[DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+Password: 
+# *** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
+[DOM-0] <4>*** Serial input -> Xen (type 'CTRL-a' three times to switch input to DOM0).
+[DOM-0] <4>*** Serial input -> DOM0 (type 'CTRL-a' three times to switch input to DOMU).
+
+# cd
+# insmod /sp6.ko 
+[DOM-0] <4>reptar_sp6: module starting...
+[DOM-0] <4>Probing FPGA driver (device: fpga)
+[DOM-0] <7>Registered led device: sp6_led0
+[DOM-0] <7>Registered led device: sp6_led1
+[DOM-0] <7>Registered led device: sp6_led2
+[DOM-0] <7>Registered led device: sp6_led3
+[DOM-0] <7>Registered led device: sp6_led4
+[DOM-0] <7>Registered led device: sp6_led5
+[DOM-0] <4>btns_reg address : 0xc5c4c012
+[DOM-0] <4>irq_reg address : 0xc5c4e018
+sp6_read: Button irq status read 0x0 (button value 0x1)
+sp6_write: Button irq status write 0x80
+Enable IRQ
+[DOM-0] <6>input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
+[DOM-0] <4>reptar_sp6: done.
+
+# ./qtrun
+[DOM-0] <4>*** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
+[DOM-U] 
+[DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+[DOM-U] reptar login: root 
+[DOM-U] Password: 
+# ./qtrun 
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=16cm]{img/dom02.png}
+		\caption{Qtrun dans Dom0}
+		\label{qtrun2}
+	\end{center}
+\end{figure}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=16cm]{img/dom03.png}
+		\caption{Qtrun dans DomU}
+		\label{qtrun3}
+	\end{center}
+\end{figure}
+\textbf{Réponse aux questions: }Expliquer le cheminement de l'événement input depuis l'appui sur un bouton, jusqu'au traitement applicatif.\\\\
+\textbf{Travail réalisé: }\\\\
+\subsection{Para-virtualisation de l'interface LED}
+Nous allons maintenant nous intéresser à l’interface LED. Au terme de cet exercice, nous aurons écrit
+une application, dans DomU, qui interceptera les evénements input des boutons et réagira en allumant
+une LED.\\\\
+\textbf{a) Donnée: }Tout d’abord, il est nécessaire de fournir une interface virtuelle LED dans DomU. Ouvrez le
+fichier linux-3.4.6-domU/drivers/leds/xen-ledfront.c . Complétez le fichier pour créer les entrées
+nécessaires dans /sys/class/leds et pour que les requêtes d’allumage et d’extinction des LEDs
+soient propagées vers Dom0.\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{b) Donnée: }Ouvrez le fichier linux-3.0-reptar-dom0/drivers/leds/xen-ledback.c . Complétez le fichier pour que
+les requêtes d’allumage et d’extinction des LEDs provenant de DomU soient traitées et effectuent
+l’action désirée.\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{Réponse aux questions: }Vous devez maintenant être en mesure d'expliquer le cheminement depuis l’écriture de la valeur
+dans l’entrée sysfs d’une LED dans DomU, jusqu’à la mise à jour du registre FPGA dédié aux LEDs
+par Dom0.\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{c) Donnée: }Ecrivez une application qui doit respecter les critères suivants :
+\begin{enumerate}
+	\item Un appui sur le bouton numéro 2 (gauche) allume la LED 2, un appui sur le bouton numéro 5 (centre)
+	allume la LED 1 et un appui sur le bouton numéro 4 (droite) allume la LED 0. Un appui sur le
+	bouton numéro 3 (bas) éteint les LEDs.
+	\item L’application fait du polling sur /dev/input/event0 pour détecter l’appui sur un bouton. Elle
+	doit décoder la valeur de la touche pour identifier le bouton.
+	\item L’application utilise les entrées sysfs liées au sous-système LED.
+\end{enumerate}
+Testez sur l’émulateur et sur la plate-forme réelle.\\\\
+\textbf{Travail réalisé: }\\\\
+\textbf{d) Donnée: }Nous souhaitons maintenant nous passer des traitements dans l’user space. Proposez une solution
+dans le kernel space qui ne fait intervenir aucune interaction avec l’user space. Implémentez-la.
+Le comportement doit être le même qu’en c). Testez sur l’émulateur et la plate-forme réelle.\\\\
 \textbf{Travail réalisé: }\\\\
