@@ -22,3 +22,4 @@
 \BOOKMARK [2][-]{subsection.4.1}{Test de l'environnement EmbeddedXEN}{section.4}% 22
 \BOOKMARK [2][-]{subsection.4.2}{D\351ploiement du driver sp6 dans Dom0}{section.4}% 23
 \BOOKMARK [2][-]{subsection.4.3}{Interaction entre Dom0 et DomU sur l'interface input para-virtualis\351}{section.4}% 24
+\BOOKMARK [2][-]{subsection.4.4}{Para-virtualisation de l'interface LED}{section.4}% 25
