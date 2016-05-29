@@ -176,7 +176,22 @@ FPGA vers DomU. Etablissez un schéma faisant intervenir différents blocs : le 
 driver FPGA développé par vos soins, le frontend input, les input subsystems de Dom0 et DomU…
 (Vous trouverez le backend dans linux-3.0-reptar-dom0/drivers/input/xen-kbdback et le frontend
 dans linux-3.4.6-domU/drivers/input/misc/xen-kbdfront.c ).\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/virt1.png}
+		\caption{Propagation de l'input event jusqu'à DomU}
+		\label{virt1}
+	\end{center}
+\end{figure}
+Étapes de la propagation:
+\begin{enumerate}
+	\item
+	\item
+	\item
+	\item
+	\item
+\end{enumerate}
 \textbf{b) Donnée: }Modifiez votre driver afin que celui-ci s'enregistre auprès du backend input à l'aide de la fonction
 xenvkbd\_inputdev\_register( ) (quelques indications sont fournies ci-après).\\\\
 \textbf{Travail réalisé: }
@@ -245,7 +260,22 @@ Enable IRQ
 	\end{center}
 \end{figure}
 \textbf{Réponse aux questions: }Expliquer le cheminement de l'événement input depuis l'appui sur un bouton, jusqu'au traitement applicatif.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/virt2.png}
+		\caption{Cheminement de l'événement input}
+		\label{virt2}
+	\end{center}
+\end{figure}
+Étapes de la propagation:
+\begin{enumerate}
+	\item
+	\item
+	\item
+	\item
+	\item
+\end{enumerate}
 \subsection{Para-virtualisation de l'interface LED}
 Nous allons maintenant nous intéresser à l’interface LED. Au terme de cet exercice, nous aurons écrit
 une application, dans DomU, qui interceptera les evénements input des boutons et réagira en allumant
