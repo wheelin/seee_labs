@@ -78,6 +78,7 @@ recompiler pour le noyau correspondant à ce domaine.\\\\
 \textbf{a) Donnée: }Modifiez le Makefile dans le répertoire drivers afin que la compilation du module s'effectue avec
 le noyau linux-3.0-reptar-dom0 présent dans embeddedxen, et non plus avec le noyau linux-3.0-
 reptar\\\\
+\textbf{Emplacement du code: }\textit{/virtualisation\_part2/Makefile}\\\\
 \textbf{Travail réalisé: }La ligne suivante a été changée dans le Makefile pour compiler avec le noyau dom0.
 \begin{lstlisting}
 #KDIR	= ../linux-3.0-reptar
@@ -112,7 +113,7 @@ Done !
 $
 \end{lstlisting}
 \textbf{d) Donnée: }Démarrez QEMU\\\\
-\textbf{Travail réalisé: }
+\textbf{Travail réalisé: }Avec la commande \textit{./stex}, puis boot pour démarrer l'hyperviseur.
 \begin{lstlisting}
 $ cd ~/seee_student/
 $ ./stex
@@ -156,11 +157,11 @@ cd /usr/share/qt/demos/textedit
 export QWS_KEYBOARD="LinuxInput:/dev/input/event1"
 ./textedit -qws
 \end{lstlisting}
-On peut tester que notre driver contrôlant les boutons fonctionne correctement en regardant la fenêtre QTextEdit. Lorsque l'on presse les boutons, on arrive a faire des espaces dans le texte, déplacer le curseur, mettre en gras...etc. On a donc un driver qui fonctionne dans Dom0 et qui a accès au matériel émulé.
+On peut tester que notre driver contrôlant les boutons fonctionne correctement en regardant la fenêtre QTextEdit. Lorsque l'on presse les boutons, on arrive a faire des espaces dans le texte, déplacer le curseur, mettre en gras...etc. On a donc un driver qui fonctionne dans Dom0 avec accès au matériel émulé.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=16cm]{img/dom0.png}
-		\caption{Exécution de Qtrun}
+		\caption{Exécution de Qtrun dans Dom0}
 		\label{qtrun}
 	\end{center}
 \end{figure}
@@ -176,7 +177,7 @@ FPGA vers DomU. Etablissez un schéma faisant intervenir différents blocs : le 
 driver FPGA développé par vos soins, le frontend input, les input subsystems de Dom0 et DomU…
 (Vous trouverez le backend dans linux-3.0-reptar-dom0/drivers/input/xen-kbdback et le frontend
 dans linux-3.4.6-domU/drivers/input/misc/xen-kbdfront.c ).\\\\
-\textbf{Travail réalisé: }
+\textbf{Travail réalisé: }Voici une représentation de la propagation d'un événement input du matériel vers DomU avec les deux espaces, utilisateur et noyau.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/virt1.png}
@@ -186,19 +187,21 @@ dans linux-3.4.6-domU/drivers/input/misc/xen-kbdfront.c ).\\\\
 \end{figure}
 Étapes de la propagation:
 \begin{enumerate}
-	\item
-	\item
-	\item
-	\item
-	\item
+	\item L'interruption matérielle est interceptée par notre driver SP6 qui est présent uniquement dans Dom0
+	\item Si le focus est placé sur DomU, l'événement est propagé au driver backend input. Notre driver SP6 s'est préalablement enregistré auprès du backend.
+	\item L'hyperviseur transmet l'information au travers du XenBus
+	\item Le driver frontend dans DomU reçoit l'input event. Il le transmet ensuite au module input de DomU
+	\item L'événement se retrouve en espace utilisateur dans le fichier \textit{/dev/input/event0}
 \end{enumerate}
 \textbf{b) Donnée: }Modifiez votre driver afin que celui-ci s'enregistre auprès du backend input à l'aide de la fonction
 xenvkbd\_inputdev\_register( ) (quelques indications sont fournies ci-après).\\\\
-\textbf{Travail réalisé: }
+\textbf{Emplacement du code: }\textit{/virtualisation\_part3/reptar\_sp6\_buttons.c}\\\\
+\textbf{Travail réalisé: }\\Le fichier \textit{reptar\_sp6\_buttons.c} pour s'enregistrer auprès du backend input.
 \begin{lstlisting}
 /*Register to backend */
 xenvkbd_inputdev_register(&input, GPIOKEY);
 \end{lstlisting}
+Le focus change entre DomU et Dom0 lors de l'appui sur les deux boutons droite/gauche du haut. Dans la donnée, il manquait la méthode \textit{xenfb\_set\_focus} qui permet de changer le focus. La méthode \textit{omapfb\_xen\_switch\_domain} permet de rediriger le framebuffer.
 \begin{lstlisting}
 if(dev->current_button == 0x80)
 {
@@ -211,6 +214,7 @@ else if(dev->current_button == 0x20)
 	xenfb_set_focus(0);
 }
 \end{lstlisting}
+Voici une capteur du test réalisé. Il faut insérer le driver Sp6 dans Dom0 et uniquement à cet endroit. On peut ensuite lancer l'application \textit{qtrun}. Pour démarrer le programme dans DomU, il suffit de faire trois fois Ctrl-A, \textit{qtrun} est également disponible.
 \begin{lstlisting}
 [DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
 reptar login: root
@@ -236,15 +240,14 @@ sp6_write: Button irq status write 0x80
 Enable IRQ
 [DOM-0] <6>input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
 [DOM-0] <4>reptar_sp6: done.
-
 # ./qtrun
 [DOM-0] <4>*** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
-[DOM-U] 
 [DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
 [DOM-U] reptar login: root 
 [DOM-U] Password: 
 # ./qtrun 
 \end{lstlisting}
+Voici deux captures d'écran prouvant le bon fonctionnement de la transmission de l'input event dans les deux domaines. En appuyant sur les boutons indiqués d'une flèche rouge, on passe d'un dommaine à l'autre, avec les autres boutons, on agit sur le texte de l'application. On voit ci-dessous que les écrans ne sont pas les mêmes entre les deux domaines.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=16cm]{img/dom02.png}
@@ -260,7 +263,7 @@ Enable IRQ
 	\end{center}
 \end{figure}
 \textbf{Réponse aux questions: }Expliquer le cheminement de l'événement input depuis l'appui sur un bouton, jusqu'au traitement applicatif.\\\\
-\textbf{Travail réalisé: }
+\textbf{Travail réalisé: }Dans la première partie de cette tâche, le cheminement de l'input vers DomU est déjà expliqué correctement. Ci-dessous est présenté le cheminement de l'événement dans Dom0
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/virt2.png}
@@ -270,11 +273,9 @@ Enable IRQ
 \end{figure}
 Étapes de la propagation:
 \begin{enumerate}
-	\item
-	\item
-	\item
-	\item
-	\item
+	\item Le driver SP6 intercepte l'interruption matérielle des boutons
+	\item Comme le focus est sur Dom0, l'événement est transmis au module input de Dom0
+	\item L'événement se retrouve finalement en espace utilisateur dans le fichier \textit{/dev/input/event1}
 \end{enumerate}
 \subsection{Para-virtualisation de l'interface LED}
 Nous allons maintenant nous intéresser à l’interface LED. Au terme de cet exercice, nous aurons écrit
@@ -284,16 +285,143 @@ une LED.\\\\
 fichier linux-3.4.6-domU/drivers/leds/xen-ledfront.c . Complétez le fichier pour créer les entrées
 nécessaires dans /sys/class/leds et pour que les requêtes d’allumage et d’extinction des LEDs
 soient propagées vers Dom0.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code: }\textit{/virtualisation\_part4/xen-ledfront.c}\\\\
+\textbf{Travail réalisé: }
+\begin{lstlisting}
+struct backend_led {
+struct led_classdev cdev;
+uint8_t id;
+};
+\end{lstlisting}
+
+\begin{lstlisting}
+static void backend_led_set(struct led_classdev *led_cdev, enum led_brightness value)
+{
+	struct backend_led * led = container_of(led_cdev, struct backend_led, cdev);
+	send_led_request(led->id,value);
+}
+\end{lstlisting}
+\begin{lstlisting}
+/* Register the sysfs entries for the LED subsystem*/
+led_classdev_register(&dev->dev, &back_leds[0].cdev);
+led_classdev_register(&dev->dev, &back_leds[1].cdev);
+led_classdev_register(&dev->dev, &back_leds[2].cdev);
+led_classdev_register(&dev->dev, &back_leds[3].cdev);
+led_classdev_register(&dev->dev, &back_leds[4].cdev);
+led_classdev_register(&dev->dev, &back_leds[5].cdev);
+\end{lstlisting}
+\begin{lstlisting}
+$ cd ~/seee_student/embeddedxen/
+$ make
+...
+-----------------------------------------------------[ BUILDING EmbeddedXEN Hypervisor DONE ]---
+$ cd ..
+$ ./deploy ex
+Deploying into EmbeddedXEN rootfs ...
+...
+Done !
+$ ./stex
+...
+Reptar # boot
+...
+[DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+Password: 
+# *** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
+[DOM-0] <4>*** Serial input -> Xen (type 'CTRL-a' three times to switch input to DOM0).
+[DOM-0] <4>*** Serial input -> DOM0 (type 'CTRL-a' three times to switch input to DOMU).
+
+# cd
+# insmod /sp6.ko
+[DOM-0] <4>reptar_sp6: module starting...
+[DOM-0] <4>Probing FPGA driver (device: fpga)
+[DOM-0] <7>Registered led device: sp6_led0
+[DOM-0] <7>Registered led device: sp6_led1
+[DOM-0] <7>Registered led device: sp6_led2
+[DOM-0] <7>Registered led device: sp6_led3
+[DOM-0] <7>Registered led device: sp6_led4
+[DOM-0] <7>Registered led device: sp6_led5
+[DOM-0] <4>btns_reg address : 0xc5c60012
+[DOM-0] <4>irq_reg address : 0xc5c62018
+[DOM-0] <6>input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
+[DOM-0] <4>reptar_sp6: done.
+#
+\end{lstlisting}
+\begin{lstlisting}
+# [DOM-0] <4>*** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
+[DOM-U] 
+[DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+[DOM-U] Password: 
+[DOM-U] # cd /
+# ls /sys/class/leds/
+[DOM-U] led0  led1  led2  led3  led4  led5
+# ls /sys/class/leds/led0
+[DOM-U] brightness      device          max_brightness  subsystem       uevent
+# echo 1 > /sys/class/leds/led1/brightness 
+[DOM-U] # receive_led_request(1, 1)
+\end{lstlisting}
 \textbf{b) Donnée: }Ouvrez le fichier linux-3.0-reptar-dom0/drivers/leds/xen-ledback.c . Complétez le fichier pour que
 les requêtes d’allumage et d’extinction des LEDs provenant de DomU soient traitées et effectuent
 l’action désirée.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code: }\textit{/virtualisation\_part4/xen-ledback.c}\\\\
+\textbf{Travail réalisé: }
+\begin{lstlisting}
+	// Remap the /sys/class/leds to access it
+	reg = ioremap(0x18000000+0x3a,2);
+\end{lstlisting}
+
+\begin{lstlisting}
+	// Set the led brightness
+	if(brightness)
+	*reg |= 0x0001 << id;
+	else
+	*reg &= ~ (0x0001 << id);
+\end{lstlisting}
+
+\begin{lstlisting}
+# echo 1 > /sys/class/leds/led1/brightness 
+[DOM-U] # receive_led_request(1, 1)
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/dom04.png}
+		\caption{Allumage des Leds depuis DomU}
+		\label{dom04}
+	\end{center}
+\end{figure}
 \textbf{Réponse aux questions: }Vous devez maintenant être en mesure d'expliquer le cheminement depuis l’écriture de la valeur
 dans l’entrée sysfs d’une LED dans DomU, jusqu’à la mise à jour du registre FPGA dédié aux LEDs
 par Dom0.\\\\
-\textbf{Travail réalisé: }\\\\
-\textbf{c) Donnée: }Ecrivez une application qui doit respecter les critères suivants :
+\textbf{Travail réalisé: }
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/virt3.png}
+		\caption{Contrôle des Leds depuis DomU}
+		\label{virt3}
+	\end{center}
+\end{figure}
+Étapes de la propagation:
+\begin{enumerate}
+	\item Une écriture depuis DomU dans le sysfs des Leds est transmise au module Led
+	\item Le frontend led de DomU qui reçoit les callback du module Led intercepte la demande d'interaction avec les Leds.
+	\item L'hyperviseur transmet l'information au travers du XenBus
+	\item Le driver backend led de Dom0 reçoit le requête du frontend de DomU et va appliquer l'action correspondante directement sur les leds.
+\end{enumerate}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/virt4.png}
+		\caption{Contrôle des Leds depuis Dom0}
+		\label{virt4}
+	\end{center}
+\end{figure}
+Étapes de la propagation:
+\begin{enumerate}
+	\item Depuis Dom0, le chemin est plus court. L'écriture dans le sysfs des Leds est intercepté par le module led de Dom0
+	\item L'événement est transmis à notre driver Sp6
+	\item Le driver sp6 va appliquer l'action correspondante directement sur les Leds.\\
+\end{enumerate}
+\textbf{c) Donnée: }Écrivez une application qui doit respecter les critères suivants :
 \begin{enumerate}
 	\item Un appui sur le bouton numéro 2 (gauche) allume la LED 2, un appui sur le bouton numéro 5 (centre)
 	allume la LED 1 et un appui sur le bouton numéro 4 (droite) allume la LED 0. Un appui sur le
@@ -303,8 +431,27 @@ par Dom0.\\\\
 	\item L’application utilise les entrées sysfs liées au sous-système LED.
 \end{enumerate}
 Testez sur l’émulateur et sur la plate-forme réelle.\\\\
+\textbf{Emplacement du code:}\\\textit{/virtualisation\_part4/test\_input.c}\\
+\textit{/virtualisation\_part4/Makefile}\\\\
 \textbf{Travail réalisé: }\\\\
 \textbf{d) Donnée: }Nous souhaitons maintenant nous passer des traitements dans l’user space. Proposez une solution
 dans le kernel space qui ne fait intervenir aucune interaction avec l’user space. Implémentez-la.
 Le comportement doit être le même qu’en c). Testez sur l’émulateur et la plate-forme réelle.\\\\
-\textbf{Travail réalisé: }\\\\
+\textbf{Emplacement du code: }\\\\
+\textbf{Travail réalisé: }
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/virt5.png}
+		\caption{Traitement des événements sans interactions avec le User space}
+		\label{virt5}
+	\end{center}
+\end{figure}
+Étapes de la propagation:
+\begin{enumerate}
+	\item L'interruption matérielle est interceptée par notre driver SP6 qui est présent uniquement dans Dom0
+	\item Si le focus est placé sur DomU, l'événement est propagé au driver backend input. Notre driver SP6 s'est préalablement enregistré auprès du backend.
+	\item L'hyperviseur transmet l'information au travers du XenBus
+	\item Le driver frontend dans DomU reçoit l'input event. Il analyse quel bouton a été pressé et renvoie une requête d'interaction avec les Leds au travers du Xenbus
+	\item Le backend led driver de Dom0 reçoit la requête et applique le traitement correspondant directement sur les leds.
+\end{enumerate}
+Avec ce cheminement, on se passe complètement de l'interaction avec le user space dans DomU et on peut avoir les mêmes résultats que l'application du point c.
