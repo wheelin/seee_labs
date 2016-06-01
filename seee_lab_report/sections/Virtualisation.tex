@@ -191,7 +191,7 @@ dans linux-3.4.6-domU/drivers/input/misc/xen-kbdfront.c ).\\\\
 	\item Si le focus est placé sur DomU, l'événement est propagé au driver backend input. Notre driver SP6 s'est préalablement enregistré auprès du backend.
 	\item L'hyperviseur transmet l'information au travers du XenBus
 	\item Le driver frontend dans DomU reçoit l'input event. Il le transmet ensuite au module input de DomU
-	\item L'événement se retrouve en espace utilisateur dans le fichier \textit{/dev/input/event0}
+	\item L'événement se retrouve en espace utilisateur dans le fichier \textit{/dev/input/event0}\\
 \end{enumerate}
 \textbf{b) Donnée: }Modifiez votre driver afin que celui-ci s'enregistre auprès du backend input à l'aide de la fonction
 xenvkbd\_inputdev\_register( ) (quelques indications sont fournies ci-après).\\\\
@@ -263,7 +263,7 @@ Voici deux captures d'écran prouvant le bon fonctionnement de la transmission d
 	\end{center}
 \end{figure}
 \textbf{Réponse aux questions: }Expliquer le cheminement de l'événement input depuis l'appui sur un bouton, jusqu'au traitement applicatif.\\\\
-\textbf{Travail réalisé: }Dans la première partie de cette tâche, le cheminement de l'input vers DomU est déjà expliqué correctement. Ci-dessous est présenté le cheminement de l'événement dans Dom0
+\textbf{Travail réalisé: }Dans la première partie de cette tâche, le cheminement de l'input vers DomU est déjà expliqué. Ci-dessous est présenté le cheminement de l'événement dans Dom0
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/virt2.png}
@@ -286,14 +286,29 @@ fichier linux-3.4.6-domU/drivers/leds/xen-ledfront.c . Complétez le fichier pou
 nécessaires dans /sys/class/leds et pour que les requêtes d’allumage et d’extinction des LEDs
 soient propagées vers Dom0.\\\\
 \textbf{Emplacement du code: }\textit{/virtualisation\_part4/xen-ledfront.c}\\\\
-\textbf{Travail réalisé: }
+\textbf{Travail réalisé: }Nous nous sommes inspirés de ce qui était fait dans le driver des leds. Nous avons recréé une structure simplifiée appelée \textit{backend\_led}. L'id identifier la Led, le cdev contient le nom sous lequel elle apparaitra dans le sysfs et la callback qui sera appeler pour l'allumer/éteindra.
 \begin{lstlisting}
 struct backend_led {
 struct led_classdev cdev;
 uint8_t id;
 };
 \end{lstlisting}
-
+Nous avons six Leds à piloter, nous avons donc créé une structure de six backend\_led et nous l'avons initialisée. Toutes les leds ont la même méthode de callback
+\begin{lstlisting}
+struct backend_led back_leds[] = {
+{
+.cdev.name		= "led0",
+.cdev.brightness_set 	= backend_led_set,
+.id			= 0
+},
+{
+.cdev.name		= "led1",
+.cdev.brightness_set 	= backend_led_set,
+.id			= 1
+},
+...
+\end{lstlisting}
+Nous avons également implémenté le callback pour activer/désactiver les leds. La macro container\_of a été utilisée pour identifier avec quelle Led interagir. La macro va retourner un pointeur sur l'élément du tableau back\_leds qui est identique au paramètre de la méthode, led\_cdev.
 \begin{lstlisting}
 static void backend_led_set(struct led_classdev *led_cdev, enum led_brightness value)
 {
@@ -301,6 +316,7 @@ static void backend_led_set(struct led_classdev *led_cdev, enum led_brightness v
 	send_led_request(led->id,value);
 }
 \end{lstlisting}
+Dans la fonction probe, il faut enregistrer chacune des six Leds comme ci-dessous pour qu'elles apparaissent dans le sysfs.
 \begin{lstlisting}
 /* Register the sysfs entries for the LED subsystem*/
 led_classdev_register(&dev->dev, &back_leds[0].cdev);
@@ -310,6 +326,7 @@ led_classdev_register(&dev->dev, &back_leds[3].cdev);
 led_classdev_register(&dev->dev, &back_leds[4].cdev);
 led_classdev_register(&dev->dev, &back_leds[5].cdev);
 \end{lstlisting}
+La capture ci-dessous présente les différentes étapes pour compiler les changement du frontend et insérer le driver sp6 dans Dom0
 \begin{lstlisting}
 $ cd ~/seee_student/embeddedxen/
 $ make
@@ -347,6 +364,8 @@ Password:
 [DOM-0] <4>reptar_sp6: done.
 #
 \end{lstlisting}
+Une fois le driver inséré, on peut retourner dans DomU. En regardant dans le \textit{/sys/class/leds}, on peut voir que les six leds sont bien présentent avec le nom qu'on leur a choisi. Chacune des leds possède également le sous-fichier brightness utilisé pour allumer/éteindre la Led.
+En essayant d'écrire dans ce fichier avec la commande \textit{echo}, on ne voit pas de Led s'allumer puisque le backend n'est pas implémenté, mais on constate qu'il reçoit bien l'information correctement. En effet, dans Dom0, le backend affiche un message s'il reçoit quelque chose de la part du frontend, \textit{receive\_led\_request(led id, valeur)}
 \begin{lstlisting}
 # [DOM-0] <4>*** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
 [DOM-U] 
@@ -365,12 +384,13 @@ reptar login: root
 les requêtes d’allumage et d’extinction des LEDs provenant de DomU soient traitées et effectuent
 l’action désirée.\\\\
 \textbf{Emplacement du code: }\textit{/virtualisation\_part4/xen-ledback.c}\\\\
-\textbf{Travail réalisé: }
+\textbf{Travail réalisé: }\\
+Dans la fonction probe du backend, on va faire un ioremap du registre des Leds. Il ne faut faire cette action qu'une seule fois. On a maintenant le même accès aux Leds que le driver sp6, sans avoir à communiquer avec lui pour demander l'allumage des Leds.
 \begin{lstlisting}
 	// Remap the /sys/class/leds to access it
 	reg = ioremap(0x18000000+0x3a,2);
 \end{lstlisting}
-
+Dans la méthode \textit{receive\_led\_request}, on va simplement allumer la led voulue si brightness est plus grand que 0 ou sinon l'éteindre.
 \begin{lstlisting}
 	// Set the led brightness
 	if(brightness)
@@ -378,11 +398,12 @@ l’action désirée.\\\\
 	else
 	*reg &= ~ (0x0001 << id);
 \end{lstlisting}
-
+Si l'on reprend toutes les étapes faite dans la démonstration de la partie a et que l'on retente d'écrire les Leds avec \textit{echo} dans DomU, on voit cette fois la Led choisie qui s'allume.
 \begin{lstlisting}
 # echo 1 > /sys/class/leds/led1/brightness 
 [DOM-U] # receive_led_request(1, 1)
 \end{lstlisting}
+Voici la preuve d'allumage d'une Led. Il y a bien la Led 1 qui est verte, comme désiré.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/dom04.png}
@@ -393,7 +414,7 @@ l’action désirée.\\\\
 \textbf{Réponse aux questions: }Vous devez maintenant être en mesure d'expliquer le cheminement depuis l’écriture de la valeur
 dans l’entrée sysfs d’une LED dans DomU, jusqu’à la mise à jour du registre FPGA dédié aux LEDs
 par Dom0.\\\\
-\textbf{Travail réalisé: }
+\textbf{Travail réalisé: } Les deux images suivantes présentent le cheminement de l'écriture depuis le user space de DomU et dans la deuxième image, depuis Dom0.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/virt3.png}
@@ -432,13 +453,58 @@ par Dom0.\\\\
 \end{enumerate}
 Testez sur l’émulateur et sur la plate-forme réelle.\\\\
 \textbf{Emplacement du code:}\\\textit{/virtualisation\_part4/test\_input.c}\\
-\textit{/virtualisation\_part4/Makefile}\\\\
-\textbf{Travail réalisé: }\\\\
+\textit{/virtualisation\_part4/Makefile}\\
+\textit{/virtualisation\_part4/reptar\_sp6.c}\\\\
+\color{red}\textbf{Travail réalisé: }\color{black}\\\\
+
+\textbf{Remarque: }Pour pouvoir insérer notre application dans le rootfs de DomU, nous avons dû télécharger une nouvelle version du script \textit{deploy ex}. Un répertoire domu est créé dans notre workspace. Il faut absolument placer l'exécutable de l'application dans ce dossier pour qu'il soit ensuite visible dans DomU.\\\\
+Voici les différents tests effectués avec l'application. Une fois le driver sp6 inséré dans Dom0. Il faut aller lancer notre application test\_input dans DomU. Il est ensuite important d'appuyer sur le bouton en haut à droite pour changer le focus sur DomU, sinon les événements des boutons ne seront pas transmis et resteront dans Dom0.
+L'application remplit tous les critères demandés.
+\begin{lstlisting}
+[DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+Password: 
+# *** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
+[DOM-0] <4>*** Serial input -> Xen (type 'CTRL-a' three times to switch input to DOM0).
+[DOM-0] <4>*** Serial input -> DOM0 (type 'CTRL-a' three times to switch input to DOMU).
+
+# cd
+# insmod /sp6.ko 
+[DOM-0] <4>reptar_sp6: module starting...
+[DOM-0] <4>Probing FPGA driver (device: fpga)
+[DOM-0] <7>Registered led device: sp6_led0
+[DOM-0] <7>Registered led device: sp6_led1
+[DOM-0] <7>Registered led device: sp6_led2
+[DOM-0] <7>Registered led device: sp6_led3
+[DOM-0] <7>Registered led device: sp6_led4
+[DOM-0] <7>Registered led device: sp6_led5
+[DOM-0] <4>btns_reg address : 0xc5c20012
+[DOM-0] <4>irq_reg address : 0xc5c22018
+[DOM-0] <6>input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
+[DOM-0] <4>reptar_sp6: done.
+# [DOM-0] <4>*** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
+[DOM-U] 
+[DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
+reptar login: root
+[DOM-U] Password: 
+[DOM-U] # cd /
+# ./test_input 
+\end{lstlisting}
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/dom05.png}
+		\caption{Tests de l'application dans DomU}
+		\label{dom05}
+	\end{center}
+\end{figure}
+\textbf{Remarque: }Nous n'avons malheureusement pas eu le temps de tester notre application sur la plateforme réelle, mais nous l'avons tout de même entièrement validée avec l'émulateur.\\\\
 \textbf{d) Donnée: }Nous souhaitons maintenant nous passer des traitements dans l’user space. Proposez une solution
 dans le kernel space qui ne fait intervenir aucune interaction avec l’user space. Implémentez-la.
 Le comportement doit être le même qu’en c). Testez sur l’émulateur et la plate-forme réelle.\\\\
-\textbf{Emplacement du code: }\\\\
-\textbf{Travail réalisé: }
+\textbf{Emplacement du code: }\\\textit{/virtualisation\_part4/xen-kbdfront.c}\\
+\textit{/virtualisation\_part4/xen-ledfront.c}\\\\
+\newpage
+\textbf{Travail réalisé: }Voici la solution que nous voulons implémenter
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/virt5.png}
@@ -451,7 +517,75 @@ Le comportement doit être le même qu’en c). Testez sur l’émulateur et la 
 	\item L'interruption matérielle est interceptée par notre driver SP6 qui est présent uniquement dans Dom0
 	\item Si le focus est placé sur DomU, l'événement est propagé au driver backend input. Notre driver SP6 s'est préalablement enregistré auprès du backend.
 	\item L'hyperviseur transmet l'information au travers du XenBus
-	\item Le driver frontend dans DomU reçoit l'input event. Il analyse quel bouton a été pressé et renvoie une requête d'interaction avec les Leds au travers du Xenbus
+	\item Le driver frontend input de DomU reçoit l'input event. Il analyse quel bouton a été pressé et quelle Led allumer. Il appelle la méthode send\_led\_request() du frontend led pour envoyer une requête d'allumage de Led vers Dom0
+	\item La demande est ensuite transmise sur le XenBus
 	\item Le backend led driver de Dom0 reçoit la requête et applique le traitement correspondant directement sur les leds.
 \end{enumerate}
-Avec ce cheminement, on se passe complètement de l'interaction avec le user space dans DomU et on peut avoir les mêmes résultats que l'application du point c.
+Avec ce cheminement, on se passe complètement de l'interaction avec le user space dans DomU et on peut avoir les mêmes résultats que l'application du point c.\\\\
+Nous avons modifié le fichier \textit{xen-kbdfront.c} pour appliquer directement le traitement des boutons sur les Leds.\\
+Afin de pouvoir appeler la méthode send\_led\_request du frontend led, nous avons dû la déclarer externe dans ce fichier.
+\begin{lstlisting}
+extern void send_led_request(int id, int brightness);
+\end{lstlisting}
+Il a fallu également changer le type de la méthode en non static dans le fichier \textit{xen-ledfront.c}. Si on ne le fait pas, on ne peut pas l'appeler depuis l'extérieur.\\\\
+L'étape suivante est d'appliquer le même code que dans l'application développée en c lors de la réception d'un input event. Cela est fait dans la méthode \textit{input\_handler}. Comme nous avons enregistrer un driver de type GPIOKEY dans le driver sp6, nous avons appliqué le traitement lorsque l'événement est de type XENKBD\_TYPE\_KEY.
+\begin{lstlisting}
+case XENKBD_TYPE_KEY:
+	dev = NULL;
+	if (test_bit(event->key.keycode, info->kbd->keybit))
+		dev = info->kbd;
+	if (test_bit(event->key.keycode, info->ptr->keybit))
+		dev = info->ptr;
+	if (dev)
+	{
+	//input_report_key(dev, event->key.keycode,event->key.pressed);
+		if(event->key.pressed == 1)
+		{
+			switch (event->key.keycode) 
+			{
+				case RIGHT_BUT:
+					send_led_request(0,1);
+					break;
+				case CENTER_BUT:
+					send_led_request(1,1);
+					break;
+				case LEFT_BUT:
+					send_led_request(2,1);
+					break;
+				case BOTTOM_BUT:
+					for(i = 0; i < LED_NUM; i++)
+						send_led_request(i,0);
+					break;
+				default:
+					break;
+			}
+		}
+	}
+\end{lstlisting}
+Pour tester ces nouvelles fonctionnalité, il suffit de recompiler les fichiers que nous avons modifier et de lancer Qemu. La dernière étape est d'insérer le driver dans Dom0.
+\begin{lstlisting}
+# cd
+# insmod /sp6.ko 
+[DOM-0] <4>reptar_sp6: module starting...
+[DOM-0] <4>Probing FPGA driver (device: fpga)
+[DOM-0] <7>Registered led device: sp6_led0
+[DOM-0] <7>Registered led device: sp6_led1
+[DOM-0] <7>Registered led device: sp6_led2
+[DOM-0] <7>Registered led device: sp6_led3
+[DOM-0] <7>Registered led device: sp6_led4
+[DOM-0] <7>Registered led device: sp6_led5
+[DOM-0] <4>btns_reg address : 0xc5c34012
+[DOM-0] <4>irq_reg address : 0xc5c36018
+[DOM-0] <6>input: reptar_sp6_buttons as /devices/platform/fpga/reptar_sp6_buttons/input/input1
+[DOM-0] <4>reptar_sp6: done.
+# 
+\end{lstlisting}
+Une fois le driver inséré, si le focus est sur Dom0 et que l'on appuie sur les boutons, aucune Led ne s'allume. Si on place le focus sur DomU, l'appui sur les boutons définis allument ou éteignent les Leds.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=17cm]{img/dom06.png}
+		\caption{Allumage des leds sans interaction avec le user space}
+		\label{dom06}
+	\end{center}
+\end{figure}
+\textbf{Remarque: }Nous n'avons malheureusement pas eu le temps de tester cette partie sur la plateforme réelle, mais nous avons pu valider son fonctionnement avec l'émulateur.

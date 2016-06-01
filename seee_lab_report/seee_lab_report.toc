@@ -23,4 +23,4 @@
 \contentsline {subsection}{\numberline {4.1}Test de l'environnement EmbeddedXEN}{39}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}D\IeC {\'e}ploiement du driver sp6 dans Dom0}{40}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Interaction entre Dom0 et DomU sur l'interface input para-virtualis\IeC {\'e}}{43}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Para-virtualisation de l'interface LED}{47}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.4}Para-virtualisation de l'interface LED}{48}{subsection.4.4}

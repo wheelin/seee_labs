@@ -120,7 +120,9 @@ again:
  *            should allow you to identify the LED that you want to drive)
  * \param brightness: Desired brightness
  */
-static void send_led_request(int id, int brightness)
+//EMG Modif
+//static void send_led_request(int id, int brightness)
+void send_led_request(int id, int brightness)
 {
 	struct xenled_request *ring_req;
 
@@ -272,6 +274,7 @@ static int ledfront_probe(struct xenbus_device *dev, const struct xenbus_device_
 		return result;
 
 	/* How to register the sysfs entries for the LED subsystem? */
+
 
 	/* Register the sysfs entries for the LED subsystem*/
 	led_classdev_register(&dev->dev, &back_leds[0].cdev);

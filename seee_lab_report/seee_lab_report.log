@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  1 JUN 2016 08:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  1 JUN 2016 18:43
 entering extended mode
 **seee_lab_report.tex
 (seee_lab_report.tex
@@ -1334,11 +1334,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 322--1
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--1
-
- []
-
 [38]
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
@@ -1427,7 +1422,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 169--187
  []
 
 [43 <./img/dom0.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 196--200
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
 
  []
 
@@ -1436,22 +1431,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 196--200
 
  []
 
-[44 <./img/virt1.png>] <img/dom02.png, id=1168, 804.606pt x 572.1375pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--200
+
+ []
+
+[44 <./img/virt1.png>] [45] <img/dom02.png, id=1212, 804.606pt x 572.1375pt>
 File: img/dom02.png Graphic file (type png)
 
 <use img/dom02.png>
 Package pdftex.def Info: img/dom02.png used on input line 253.
 (pdftex.def)             Requested size: 455.24408pt x 323.71225pt.
- [45] <img/dom03.png, id=1215, 1049.1195pt x 380.622pt>
+ <img/dom03.png, id=1213, 1049.1195pt x 380.622pt>
 File: img/dom03.png Graphic file (type png)
 
 <use img/dom03.png>
 Package pdftex.def Info: img/dom03.png used on input line 260.
 (pdftex.def)             Requested size: 455.24408pt x 165.16267pt.
- <img/virt2.png, id=1216, 728.7225pt x 461.3235pt>
+ [46 <./img/dom02.png>]
+<img/virt2.png, id=1222, 728.7225pt x 461.3235pt>
 File: img/virt2.png Graphic file (type png)
-
-<use img/virt2.png>
+ <use img/virt2.png>
 Package pdftex.def Info: img/virt2.png used on input line 269.
 (pdftex.def)             Requested size: 483.69684pt x 306.2061pt.
 
@@ -1464,7 +1464,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 265--273
 
  []
 
-[46 <./img/dom02.png> <./img/dom03.png>]
+[47 <./img/dom03.png> <./img/virt2.png>]
 Overfull \hbox (11.36482pt too wide) in paragraph at lines 278--279
 []\T1/cmr/m/n/12 L'événement se re-trouve fi-na-le-ment en es-pace uti-li-sa-te
 ur dans le fi-chier \T1/cmr/m/it/12 /dev/in-put/event1 
@@ -1485,95 +1485,146 @@ Underfull \hbox (badness 10000) in paragraph at lines 281--290
 
  []
 
-[47 <./img/virt2.png>] [48]
-Underfull \hbox (badness 10000) in paragraph at lines 364--369
+[48] [49]
+Underfull \hbox (badness 10000) in paragraph at lines 383--389
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--369
+Underfull \hbox (badness 10000) in paragraph at lines 383--389
 
  []
 
-[49] <img/dom04.png, id=1320, 698.61pt x 390.86024pt>
+[50] <img/dom04.png, id=1333, 698.61pt x 390.86024pt>
 File: img/dom04.png Graphic file (type png)
  <use img/dom04.png>
-Package pdftex.def Info: img/dom04.png used on input line 388.
+Package pdftex.def Info: img/dom04.png used on input line 409.
 (pdftex.def)             Requested size: 483.69684pt x 270.62424pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 388--389
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 409--410
  [] 
  []
 
-<img/virt3.png, id=1321, 728.7225pt x 463.13025pt>
+<img/virt3.png, id=1334, 728.7225pt x 463.13025pt>
 File: img/virt3.png Graphic file (type png)
  <use img/virt3.png>
-Package pdftex.def Info: img/virt3.png used on input line 399.
+Package pdftex.def Info: img/virt3.png used on input line 420.
 (pdftex.def)             Requested size: 483.69684pt x 307.40533pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 399--400
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 420--421
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--403
+Underfull \hbox (badness 10000) in paragraph at lines 414--424
 
  []
 
-[50 <./img/dom04.png>] <img/virt4.png, id=1331, 728.7225pt x 463.13025pt>
+[51 <./img/dom04.png>] <img/virt4.png, id=1348, 728.7225pt x 463.13025pt>
 File: img/virt4.png Graphic file (type png)
 
 <use img/virt4.png>
-Package pdftex.def Info: img/virt4.png used on input line 413.
+Package pdftex.def Info: img/virt4.png used on input line 434.
 (pdftex.def)             Requested size: 483.69684pt x 307.40533pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 413--414
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 434--435
  [] 
  []
 
-[51 <./img/virt3.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 422--423
+[52 <./img/virt3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 443--444
 
  []
 
-<img/virt5.png, id=1342, 728.7225pt x 463.13025pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--459
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--459
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--459
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 454--459
+
+ []
+
+[53 <./img/virt4.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 460--463
+
+ []
+
+<img/dom05.png, id=1371, 607.068pt x 369.7815pt>
+File: img/dom05.png Graphic file (type png)
+ <use img/dom05.png>
+Package pdftex.def Info: img/dom05.png used on input line 495.
+(pdftex.def)             Requested size: 483.69684pt x 294.6294pt.
+
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 495--496
+ [] 
+ []
+
+[54]
+Underfull \hbox (badness 10000) in paragraph at lines 500--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 500--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 500--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 500--506
+
+ []
+
+[55 <./img/dom05.png>] <img/virt5.png, id=1412, 728.7225pt x 463.13025pt>
 File: img/virt5.png Graphic file (type png)
- <use img/virt5.png>
-Package pdftex.def Info: img/virt5.png used on input line 444.
+
+<use img/virt5.png>
+Package pdftex.def Info: img/virt5.png used on input line 510.
 (pdftex.def)             Requested size: 483.69684pt x 307.40533pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 444--445
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 510--511
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--448
+Underfull \hbox (badness 10000) in paragraph at lines 524--527
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 433--448
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 433--448
+[56 <./img/virt5.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 530--532
 
  []
 
+[57] <img/dom06.png, id=1468, 1156.32pt x 572.1375pt>
+File: img/dom06.png Graphic file (type png)
+ <use img/dom06.png>
+Package pdftex.def Info: img/dom06.png used on input line 586.
+(pdftex.def)             Requested size: 483.69684pt x 239.32706pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--448
-
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 586--587
+ [] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 433--448
-
- []
-
-[52 <./img/virt4.png>])
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 98.
- [53 <./img/virt5.png>] [54]
+ [58 <./img/dom06.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 98.
  (seee_lab_report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 98.
@@ -1583,10 +1634,10 @@ Package rerunfilecheck Info: File `seee_lab_report.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 98.
  ) 
 Here is how much of TeX's memory you used:
- 12690 strings out of 493673
- 175576 string characters out of 3141526
+ 12839 strings out of 493673
+ 177710 string characters out of 3141526
  461916 words of memory out of 3000000
- 14820 multiletter control sequences out of 15000+200000
+ 14868 multiletter control sequences out of 15000+200000
  21776 words of font info for 51 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  36i,14n,49p,930b,1991s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1610,9 +1661,9 @@ C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecb
 x2488.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec
 \dpi600\eccc2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb>
-Output written on seee_lab_report.pdf (54 pages, 10383471 bytes).
+Output written on seee_lab_report.pdf (58 pages, 10884291 bytes).
 PDF statistics:
- 2133 PDF objects out of 2487 (max. 8388607)
- 1024 named destinations out of 1200 (max. 500000)
- 341 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2273 PDF objects out of 2487 (max. 8388607)
+ 1123 named destinations out of 1200 (max. 500000)
+ 351 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -11,9 +11,9 @@
 	left : 106
 */
 #define BOTTOM_BUT 108
-#define RIGHT_BUT 105
+#define RIGHT_BUT 106
 #define CENTER_BUT 28
-#define LEFT_BUT 106
+#define LEFT_BUT 105
 
 
 const char input_file_name[] = "/dev/input/event0";
