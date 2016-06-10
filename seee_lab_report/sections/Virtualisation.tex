@@ -214,7 +214,7 @@ else if(dev->current_button == 0x20)
 	xenfb_set_focus(0);
 }
 \end{lstlisting}
-Voici une capteur du test réalisé. Il faut insérer le driver Sp6 dans Dom0 et uniquement à cet endroit. On peut ensuite lancer l'application \textit{qtrun}. Pour démarrer le programme dans DomU, il suffit de faire trois fois Ctrl-A, \textit{qtrun} est également disponible.
+Voici une capture du test réalisé. Il faut insérer le driver Sp6 dans Dom0 et uniquement à cet endroit. On peut ensuite lancer l'application \textit{qtrun}. Pour démarrer le programme dans DomU, il suffit de faire trois fois Ctrl-A, \textit{qtrun} est également disponible.
 \begin{lstlisting}
 [DOM-U] *** Welcome on REPTAR (HEIG-VD/REDS): use root/root to log in ***
 reptar login: root
@@ -286,7 +286,7 @@ fichier linux-3.4.6-domU/drivers/leds/xen-ledfront.c . Complétez le fichier pou
 nécessaires dans /sys/class/leds et pour que les requêtes d’allumage et d’extinction des LEDs
 soient propagées vers Dom0.\\\\
 \textbf{Emplacement du code: }\textit{/virtualisation\_part4/xen-ledfront.c}\\\\
-\textbf{Travail réalisé: }Nous nous sommes inspirés de ce qui était fait dans le driver des leds. Nous avons recréé une structure simplifiée appelée \textit{backend\_led}. L'id identifier la Led, le cdev contient le nom sous lequel elle apparaitra dans le sysfs et la callback qui sera appeler pour l'allumer/éteindra.
+\textbf{Travail réalisé: }Nous nous sommes inspirés de ce qui était fait dans le driver des leds. Nous avons recréé une structure simplifiée appelée \textit{backend\_led}. L'id identifie la Led, le cdev contient le nom sous lequel elle apparaitra dans le sysfs et le callback qui sera appelé pour l'allumer/éteindre.
 \begin{lstlisting}
 struct backend_led {
 struct led_classdev cdev;
@@ -364,7 +364,7 @@ Password:
 [DOM-0] <4>reptar_sp6: done.
 #
 \end{lstlisting}
-Une fois le driver inséré, on peut retourner dans DomU. En regardant dans le \textit{/sys/class/leds}, on peut voir que les six leds sont bien présentent avec le nom qu'on leur a choisi. Chacune des leds possède également le sous-fichier brightness utilisé pour allumer/éteindre la Led.
+Une fois le driver inséré, on peut retourner dans DomU. En regardant dans le \textit{/sys/class/leds}, on peut voir que les six leds sont bien présentes avec le nom qu'on leur a choisi. Chacune des leds possède également le sous-fichier brightness utilisé pour allumer/éteindre la Led.
 En essayant d'écrire dans ce fichier avec la commande \textit{echo}, on ne voit pas de Led s'allumer puisque le backend n'est pas implémenté, mais on constate qu'il reçoit bien l'information correctement. En effet, dans Dom0, le backend affiche un message s'il reçoit quelque chose de la part du frontend, \textit{receive\_led\_request(led id, valeur)}
 \begin{lstlisting}
 # [DOM-0] <4>*** Serial input -> DOMU (type 'CTRL-a' three times to switch input to Xen).
@@ -398,12 +398,12 @@ Dans la méthode \textit{receive\_led\_request}, on va simplement allumer la led
 	else
 	*reg &= ~ (0x0001 << id);
 \end{lstlisting}
-Si l'on reprend toutes les étapes faite dans la démonstration de la partie a et que l'on retente d'écrire les Leds avec \textit{echo} dans DomU, on voit cette fois la Led choisie qui s'allume.
+Si l'on reprend toutes les étapes faite dans la démonstration de la partie précédente et que l'on retente d'écrire les Leds avec \textit{echo} dans DomU, on voit cette fois la Led choisie qui s'allume.
 \begin{lstlisting}
 # echo 1 > /sys/class/leds/led1/brightness 
 [DOM-U] # receive_led_request(1, 1)
 \end{lstlisting}
-Voici la preuve d'allumage d'une Led. Il y a bien la Led 1 qui est verte, comme désiré.
+Voici la preuve d'allumage d'une Led. La Led 1 est bien verte, comme désiré.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/dom04.png}
@@ -456,9 +456,10 @@ Testez sur l’émulateur et sur la plate-forme réelle.\\\\
 \textit{/virtualisation\_part4/Makefile}\\
 \textit{/virtualisation\_part4/reptar\_sp6.c}\\\\
 
-\textbf{Travail réalisé: }\color{black}\\\\
-L'application se compose, globalement, d'une boucle infinie qui va poller le fichier \textit{/dev/input/event0}. Celui-ci renvoie, sous la forme d'une structure de type \textit{input\_event} les événements qui se sont produits au niveau des boutons. On obtient ainsi, après avoir contrôlé la valeur (1 si la touche a été enfonçée et 0 si relâchée) et le type (devant correspondre à \textit{EV\_KEY}), le code, qui désigne quelle touche a été frappée.\\
-Trois fichiers sont importants pour le contrôle des leds. Leur nom ressemble à \textit{/sys/class/leds/ledx/brightness}. Avec un \textit{1}, on les allume et, avec un \textit{0}, on les éteint. On fait juste un contrôle sur les valeurs de retour, histoire d'être sûr que le fichier existe, qu'il a pu être écrit correctement, etc. \\
+\textbf{Travail réalisé: }
+L'application se compose, globalement, d'une boucle infinie qui va poller le fichier \textit{/dev/input/event0}. Celui-ci renvoie, sous la forme d'une structure de type \textit{input\_event} les événements qui se sont produits au niveau des boutons. On obtient ainsi, après avoir contrôlé la valeur (1 si la touche a été enfonçée et 0 si relâchée) et le type (devant correspondre à \textit{EV\_KEY}), le code, qui désigne quel bouton a été appuyé.\\
+\color{red}Trois fichiers sont importants pour le contrôle des leds. Leur nom ressemble à \textit{/sys/class/leds/ledx/brightness}. Avec un \textit{1}, on les allume et, avec un \textit{0}, on les éteint. On fait juste un contrôle sur les valeurs de retour, histoire d'être sûr que le fichier existe, qu'il a pu être écrit correctement, etc. \color{black} .......Pas très clair.....\\
+\color{red}Manque petite partie sur la modification du Makefile et sur les modifs faites à l'ancien code. \color{black}\\\\
 
 \textbf{Remarque: }Pour pouvoir insérer notre application dans le rootfs de DomU, nous avons dû télécharger une nouvelle version du script \textit{deploy ex}. Un répertoire domu est créé dans notre workspace. Il faut absolument placer l'exécutable de l'application dans ce dossier pour qu'il soit ensuite visible dans DomU.\\\\
 Voici les différents tests effectués avec l'application. Une fois le driver sp6 inséré dans Dom0. Il faut aller lancer notre application test\_input dans DomU. Il est ensuite important d'appuyer sur le bouton en haut à droite pour changer le focus sur DomU, sinon les événements des boutons ne seront pas transmis et resteront dans Dom0.

@@ -80,6 +80,7 @@ Sur la base du code existant, on souhaite pouvoir écrire et lire une chaîne de
 version du bitstream (hypothétique) dans la FPGA, stockée dans la variable globale bitstream\_version.\\\\
 \textbf{a) Donnée: }Complétez les callbacks read() et write() afin qu'une application utilisateur puisse lire et écrire une
 chaîne de (80 max.) caractères. \\\\
+\color{red} \textbf{Emplacement du code: }\textit{/}\\\\ \color{black}
 \textbf{Travail réalisé: }Les callbacks read et write ont été implémentés très sommairement dans le module avec la fonction 
 \textit{copy\_from/to\_user}. Il faut faire attention à bien retourner le nombre de bytes qui ont été lus ou écrits, pour que l'application puisse être au fait et détecter le cas échéant, si une erreur s'est produite.\\
 \begin{lstlisting}
@@ -111,8 +112,9 @@ Normally read buffer
 Bitstream version : mais coucou mon petit
 \end{lstlisting}
 
-\textbf{b) Donnée: }Pour identifier le nom de l'entrée dans /dev/ qui sera créée automatiquement, examinez la fonction
+\color{red}\textbf{b) Donnée: }Pour identifier le nom de l'entrée dans /dev/ qui sera créée automatiquement, examinez la fonction
 probe( ) du driver.\\\\
+\textbf{Emplacement du code: }\textit{/}\\\\
 \textbf{Réponse aux questions: }
 \begin{enumerate}
 	\item Comment l'entrée dans /dev est-elle générée ? 
@@ -126,7 +128,7 @@ Une application a aussi été codée pour tester les callbacks. Celle-ci affiche
 \begin{enumerate}
 	\item Recherchez les valeurs du major et minor attribuées à ce driver. Expliquez votre démarche\\
 \end{enumerate}
-\textbf{Travail réalisé: }\\\\
+\textbf{Travail réalisé: }\\\\ \color{black}
 \subsection{Pilotage des LEDs }
 Le code de pilotage des LEDs se trouve dans le fichier reptar\_sp6\_leds.c. La réalisation du driver des
 LEDs.
@@ -138,7 +140,7 @@ Pour le pilotage des LEDs, on souhaite utiliser le sous-système leds présent d
 Effectuez un mappage du registre des LEDs à l'aide de la fonction ioremap( ), en vous servant de la
 structure fpga\_resource.\\\\
 \textbf{a) Donnée: }Enregistrez le device comme un device de type leds à l'aide de la fonction led\_classdev\_register( ).\\\\
-\textbf{Emplacement du code: }\textit{Drivers/pilotageLeds/reptar\_sp6\_leds.c}\\\\
+\textbf{Emplacement du code: }\textit{/Drivers/pilotageLeds/reptar\_sp6\_leds.c}\\\\
 \textbf{Travail réalisé: }Nous avons modifié le fichier \textit{reptar\_sp6\_leds.c}. Avant de pouvoir enregistrer le device, il faut mapper le registre des LEDs avec la fonction \textit{ioremap}. Puis, on peut enregistrer le device comme ci-dessous:
 \begin{lstlisting}
 /* Map the LED register */
@@ -296,7 +298,8 @@ Lors de cette étape, nous travaillerons sur le driver gérant la pression des b
 contrôler une application dans l'espace utilisateur à l'aide des boutons.\\\\
 \textbf{a) Donnée: }Complétez la fonction probe( ) pour l'enregistrement des deux callbacks d'interruption (traitement
 immédiat + traitement différé) à l'aide de la fonction request\_threaded\_irq().\\\\
-\textbf{Travail réalisé: }\\\\
+\color{red}\textbf{Emplacement du code: }\textit{/}\\\\ \color{black}
+\textbf{Travail réalisé: }
 On utilise la fonction \textit{request\_threaded\_irq}, qui prend en paramètre :
 \begin{itemize}
 	\item Le numéro d'interruption
@@ -324,8 +327,8 @@ Puis on active les interruptions provenant de la FPGA.
 	privée)
 	\item acquitter l'interruption.\\
 \end{enumerate}
-\textbf{Travail réalisé: }\\\\
-La première chose qui est faite, c'est récupérer l'état du registre des buttons de la FPGA. Depuis le registre, on récupère ensuite la source de l'interruption et le statut de l'interruption. Si il y a bien eu interruption et que la source est bien la pression sur un bouton, alors on copie la valeur du registre des boutons dans le champ \textit{current\_button} de la structure \textit{reptar\_sp6\_buttons}. 
+\textbf{Travail réalisé: }
+La première chose qui est faite, est de récupérer l'état du registre des buttons de la FPGA. Depuis le registre, on récupère ensuite la source de l'interruption et le statut de l'interruption. Si il y a bien eu interruption et que la source est bien la pression sur un bouton, alors on copie la valeur du registre des boutons dans le champ \textit{current\_button} de la structure \textit{reptar\_sp6\_buttons}. 
 
 \begin{lstlisting}
 	/* Hard/immediate interrupt handler */
@@ -354,8 +357,8 @@ l'application devra ouvrir le fichier /dev/input/event1. Il faudra taper la comm
 # ./buttons_test -e1
 \end{lstlisting}
 Testez les boutons un par un.\\\\
-\textbf{Travail réalisé: }\\\\
-On lance la commande et on voit des lignes apparaitre avec le type, le code et le front du bouton pressé. 
+\textbf{Travail réalisé: }
+On lance la commande ci-dessus et l'on voit des lignes apparaitre avec le type, le code et le front du bouton pressé. 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=10cm]{img/app_event_input_emul.png}
@@ -372,8 +375,8 @@ par exemple :
 # cd /usr/share/qt/demos/textedit
 # ./textedit -qws 
 \end{lstlisting}
-\textbf{Travail réalisé: }\\\\
-Le texte est modifié et montre un grand espace entre le titre et le premier paragraphe.
+\textbf{Travail réalisé: }
+La pression sur les boutons produit des interactions avec le texte de l'application. Dans l'image ci-dessous, le texte est modifié et montre un grand espace entre le titre et le premier paragraphe.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/qtextedit_test_emulator.png}
@@ -383,9 +386,10 @@ Le texte est modifié et montre un grand espace entre le titre et le premier par
 \end{figure}
 
 \textbf{e) Donnée: }Effectuez un déploiement et un test sur la plate-forme réelle Reptar. Sur la plate-forme réelle, vous
-devrez utiliser l'entrée /dev/input/event2
+devrez utiliser l'entrée /dev/input/event2\\\\
 \textbf{Travail réalisé: }\\\\
 Là aussi, le texte est modifié grâce aux boutons, auxquels il a été donné des fonctionnalités telles que \textit{space}, \textit{esc}, \textit{enter} et \textit{back}.
+\color{red}\\\\ Comment l'application est déployée? \color{black}
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/qtextedit_on_target.jpg}
