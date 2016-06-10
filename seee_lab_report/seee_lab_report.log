@@ -1,12 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.31)  1 JUN 2016 18:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.5.1)  10 JUN 2016 19:46
 entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
 **seee_lab_report.tex
-(seee_lab_report.tex
-LaTeX2e <2015/01/01> patch level 2
-Babel <3.9m> and hyphenation patterns for 69 languages loaded.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\article.cls"
+(./seee_lab_report.tex
+LaTeX2e <2015/10/01> patch level 2
+Babel <3.9m> and hyphenation patterns for 79 languages loaded.
+(/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size12.clo"
+(/usr/share/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -21,19 +23,13 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.sty"
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2015/08/03 3.9m The Babel package
 
-*************************************
-* Local config file bblopts.cfg used
-*
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg"
-File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
-)
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\babel-french\frenchb.ldf"
+(/usr/share/texmf-dist/tex/generic/babel-french/frenchb.ldf
 Language: frenchb 2015/10/04 v3.1i French support from the babel system
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def"
+(/usr/share/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2015/08/03 3.9m Babel common definitions
 \babel@savecnt=\count87
 \U@D=\dimen103
@@ -57,35 +53,37 @@ Package babel Info: Making ? an active character on input line 359.
 \leftmarginFB=\skip48
 \parindentFFN=\dimen105
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\carlisle\scalefnt.sty")
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+(/usr/share/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.def"
+(/usr/share/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\utf8.def"
-File: utf8.def 2015/06/27 v1.1n UTF-8 support for inputenc
+(/usr/share/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2015/09/07 v1.1p UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
-File: t1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
+(/usr/share/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00AD (decimal 173)
    defining Unicode char U+00BB (decimal 187)
    defining Unicode char U+00BF (decimal 191)
    defining Unicode char U+00C0 (decimal 192)
@@ -206,6 +204,10 @@ File: t1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
    defining Unicode char U+016F (decimal 367)
    defining Unicode char U+0170 (decimal 368)
    defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
    defining Unicode char U+0178 (decimal 376)
    defining Unicode char U+0179 (decimal 377)
    defining Unicode char U+017A (decimal 378)
@@ -213,6 +215,10 @@ File: t1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
    defining Unicode char U+017C (decimal 380)
    defining Unicode char U+017D (decimal 381)
    defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
    defining Unicode char U+200C (decimal 8204)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
@@ -231,10 +237,12 @@ File: t1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
-File: ot1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
+(/usr/share/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AD (decimal 173)
    defining Unicode char U+00B8 (decimal 184)
    defining Unicode char U+00BF (decimal 191)
    defining Unicode char U+00C5 (decimal 197)
@@ -252,6 +260,14 @@ File: ot1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
    defining Unicode char U+0142 (decimal 322)
    defining Unicode char U+0152 (decimal 338)
    defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
    defining Unicode char U+2018 (decimal 8216)
@@ -262,8 +278,8 @@ File: ot1enc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
-File: omsenc.dfu 2015/06/27 v1.1n UTF-8 support for inputenc
+(/usr/share/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2015/09/07 v1.1p UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -286,18 +302,18 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+(/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count92
@@ -312,29 +328,28 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen112
 \Gm@layoutvoffset=\dimen113
 \Gm@dimlist=\toks17
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+(/usr/share/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 94.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+(/usr/share/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count95
@@ -342,15 +357,15 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen114
 \Gin@req@width=\dimen115
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2014/10/28 v1.1a Standard LaTeX Color (DPC)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+(/usr/share/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty"
+(/usr/share/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count96
 \lst@gtempboxa=\box26
 \lst@token=\toks18
@@ -364,18 +379,18 @@ Package color Info: Driver file: pdftex.def on input line 142.
 \lst@lineno=\count101
 \lst@maxwidth=\dimen119
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count102
 \lst@skipnumbers=\count103
 \lst@framebox=\box27
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+(/usr/share/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ulem\ulem.sty"
+(/usr/share/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box28
 \UL@hyphenbox=\box29
 \UL@skip=\skip49
@@ -387,13 +402,13 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 Package: ulem 2012/05/18
 \ULdepth=\dimen122
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+(/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks20
 \verbatim@line=\toks21
 \verbatim@in@stream=\read1
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
+(/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count105
 \float@exts=\toks22
@@ -401,7 +416,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks23
 \@floatcapt=\box32
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen123
 \extrarowheight=\dimen124
@@ -409,24 +424,24 @@ Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \extratabsurround=\skip50
 \backup@length=\skip51
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip52
 
 For additional information on amsmath, use the `?' option.
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks25
 \ex@=\dimen125
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen126
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count106
@@ -467,16 +482,16 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
-Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
+(/usr/share/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
-Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+(/usr/share/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
 Package hobsub Info: Skipping package `ltxcmds' (already loaded).
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
@@ -505,7 +520,7 @@ Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
 Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
 Package: xcolor-patch 2011/01/30 xcolor patch
 Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
@@ -513,24 +528,24 @@ Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+(/usr/share/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen134
 \Hy@linkcounter=\count118
 \Hy@pagecounter=\count119
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
 \Hy@SavedSpaceFactor=\count120
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+(/usr/share/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
 Package hyperref Info: Hyper figures OFF on input line 4443.
@@ -542,7 +557,7 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count121
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\url\url.sty"
+(/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -567,12 +582,12 @@ LaTeX Info: Redefining \pageref on input line 6369.
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+(/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 \Fld@listcount=\count126
 \c@bookmark@seq@number=\count127
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+(/usr/share/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
@@ -581,10 +596,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 27.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\csquotes\csquotes.sty"
+(/usr/share/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2015/07/18 v5.1f context-sensitive quotations (JAW)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count128
 )
@@ -596,22 +611,22 @@ Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
 \csq@tshold=\count134
 \csq@ltx@everypar=\toks30
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\csquotes\csquotes.def"
+(/usr/share/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2015/07/18 v5.1f csquotes generic definitions (JAW)
 )
 Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\csquotes\csquotes.cfg"
+(/usr/share/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
 ))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip56
 \f@ncyO@elh=\skip57
 \f@ncyO@erh=\skip58
@@ -626,8 +641,9 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'french'.
+ (./seee_lab_report.aux)
+\openout1 = `seee_lab_report.aux'.
 
-(seee_lab_report.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
 LaTeX Font Info:    ... okay on input line 89.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
@@ -645,7 +661,6 @@ LaTeX Font Info:    ... okay on input line 89.
 LaTeX Info: Redefining \degres on input line 89.
 LaTeX Info: Redefining \dots on input line 89.
 LaTeX Info: Redefining \up on input line 89.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -680,7 +695,7 @@ LaTeX Info: Redefining \up on input line 89.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count135
 \scratchdimen=\dimen138
@@ -693,14 +708,29 @@ LaTeX Info: Redefining \up on input line 89.
 \MPnumerator=\count139
 \makeMPintoPDFobject=\count140
 \everyMPtoPDFconversion=\toks32
+) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 )
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 \c@lstlisting=\count141
 \AtBeginShipoutBox=\box36
 Package hyperref Info: Link coloring ON on input line 89.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
-("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+(/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count142
@@ -709,15 +739,17 @@ LaTeX Info: Redefining \ref on input line 89.
 LaTeX Info: Redefining \pageref on input line 89.
 LaTeX Info: Redefining \nameref on input line 89.
 
-(seee_lab_report.out) (seee_lab_report.out)
+(./seee_lab_report.out) (./seee_lab_report.out)
 \@outlinefile=\write3
+\openout3 = `seee_lab_report.out'.
+
  [1
 
-{C:/Users/Emilie/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (seee_lab_
-report.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./seee_lab_report.toc)
 \tf@toc=\write4
+\openout4 = `seee_lab_report.toc'.
 
-(sections/IntroReptar.tex
+ (./sections/IntroReptar.tex
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -726,7 +758,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 11.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+ (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 Overfull \hbox (15.37724pt too wide) in paragraph at lines 9--13
@@ -740,7 +772,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--13
 
  []
 
-<img/eclipseProjet.png, id=149, 184.43906pt x 252.945pt>
+<img/eclipseProjet.png, id=148, 184.43906pt x 252.945pt>
 File: img/eclipseProjet.png Graphic file (type png)
 
 <use img/eclipseProjet.png>
@@ -757,7 +789,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--32
  []
 
 [3 <./img/eclipseProjet.png>]
-<img/manip2Intro.png, id=167, 554.07pt x 211.54031pt>
+<img/manip2Intro.png, id=166, 554.07pt x 211.54031pt>
 File: img/manip2Intro.png Graphic file (type png)
 
 <use img/manip2Intro.png>
@@ -773,7 +805,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--51
 
  []
 
-<img/ubootCommand.png, id=168, 1264.725pt x 664.73344pt>
+<img/ubootCommand.png, id=167, 1264.725pt x 664.73344pt>
 File: img/ubootCommand.png Graphic file (type png)
 
 <use img/ubootCommand.png>
@@ -869,13 +901,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 228--231
 [9]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 244.
 
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+ (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 244.
 
-<img/linux.png, id=326, 849.1725pt x 480.29437pt>
+<img/linux.png, id=327, 849.1725pt x 480.29437pt>
 File: img/linux.png Graphic file (type png)
  <use img/linux.png>
 Package pdftex.def Info: img/linux.png used on input line 251.
@@ -890,14 +922,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 256--258
 
  []
 
-[10 <./img/linux.png>] <img/linux2.png, id=353, 606.76688pt x 379.4175pt>
+[10 <./img/linux.png>] <img/linux2.png, id=354, 606.76688pt x 379.4175pt>
 File: img/linux2.png Graphic file (type png)
 
 <use img/linux2.png>
 Package pdftex.def Info: img/linux2.png used on input line 273.
 (pdftex.def)             Requested size: 284.52756pt x 177.92097pt.
  [11 <./img/linux2.png>]
-<img/ipConfig.png, id=371, 312.41719pt x 351.56343pt>
+<img/ipConfig.png, id=372, 312.41719pt x 351.56343pt>
 File: img/ipConfig.png Graphic file (type png)
  <use img/ipConfig.png>
 Package pdftex.def Info: img/ipConfig.png used on input line 324.
@@ -923,7 +955,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--377
 
  []
 
-[14]) (sections/EmulationPeriph.tex [15]
+[14]) (./sections/EmulationPeriph.tex [15]
 Underfull \hbox (badness 10000) in paragraph at lines 4--10
 
  []
@@ -933,7 +965,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--10
 
  []
 
-<img/emulation1.png, id=477, 346.896pt x 382.42876pt>
+<img/emulation1.png, id=479, 346.896pt x 382.42876pt>
 File: img/emulation1.png Graphic file (type png)
  <use img/emulation1.png>
 Package pdftex.def Info: img/emulation1.png used on input line 18.
@@ -974,7 +1006,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--76
 
  []
 
-<img/leds1.png, id=506, 855.195pt x 421.575pt>
+<img/leds1.png, id=509, 855.195pt x 421.575pt>
 File: img/leds1.png Graphic file (type png)
  <use img/leds1.png>
 Package pdftex.def Info: img/leds1.png used on input line 94.
@@ -989,7 +1021,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--98
 
  []
 
-[18] <img/leds2.png, id=532, 855.195pt x 417.05812pt>
+[18] <img/leds2.png, id=535, 855.195pt x 417.05812pt>
 File: img/leds2.png Graphic file (type png)
  <use img/leds2.png>
 Package pdftex.def Info: img/leds2.png used on input line 101.
@@ -1076,7 +1108,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 261--271
 
  []
 
-[24] <img/emulation2.png, id=700, 698.00775pt x 365.56575pt>
+[24] <img/emulation2.png, id=705, 698.00775pt x 365.56575pt>
 File: img/emulation2.png Graphic file (type png)
 
 <use img/emulation2.png>
@@ -1102,7 +1134,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 332--333
 
  []
 
-<img/emul_test_miniapp_init.png, id=718, 1371.1225pt x 674.52pt>
+<img/emul_test_miniapp_init.png, id=724, 1371.1225pt x 674.52pt>
 File: img/emul_test_miniapp_init.png Graphic file (type png)
 
 <use img/emul_test_miniapp_init.png>
@@ -1119,7 +1151,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 335--345
 
  []
 
-[26] <img/emul_test_miniapp_counting.png, id=729, 1371.1225pt x 674.52pt>
+[26] <img/emul_test_miniapp_counting.png, id=735, 1371.1225pt x 674.52pt>
 File: img/emul_test_miniapp_counting.png Graphic file (type png)
 
 <use img/emul_test_miniapp_counting.png>
@@ -1127,7 +1159,7 @@ Package pdftex.def Info: img/emul_test_miniapp_counting.png used on input line
 349.
 (pdftex.def)             Requested size: 455.24408pt x 223.95087pt.
 
-<img/emul_test_miniapp_end.png, id=731, 1371.1225pt x 674.52pt>
+<img/emul_test_miniapp_end.png, id=737, 1371.1225pt x 674.52pt>
 File: img/emul_test_miniapp_end.png Graphic file (type png)
 
 <use img/emul_test_miniapp_end.png>
@@ -1139,14 +1171,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 363--365
 
  []
 
-<img/miniapp_reptar.JPG, id=738, 3854.4pt x 2168.1pt>
+<img/miniapp_reptar.JPG, id=744, 3854.4pt x 2168.1pt>
 File: img/miniapp_reptar.JPG Graphic file (type jpg)
 
 <use img/miniapp_reptar.JPG>
 Package pdftex.def Info: img/miniapp_reptar.JPG used on input line 395.
 (pdftex.def)             Requested size: 426.79134pt x 240.04662pt.
  [28 <./img/emul_test_miniapp_end.png>])
-(sections/Drivers.tex [29 <./img/miniapp_reptar.JPG>]
+(./sections/Drivers.tex [29 <./img/miniapp_reptar.JPG>]
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
@@ -1236,7 +1268,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 177--180
 
  []
 
-[34] <img/driverLeds.png, id=930, 700.41675pt x 385.44pt>
+[34] <img/driverLeds.png, id=938, 700.41675pt x 385.44pt>
 File: img/driverLeds.png Graphic file (type png)
 
 <use img/driverLeds.png>
@@ -1253,7 +1285,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 230--232
  []
 
 [35 <./img/driverLeds.png>]
-<img/driverLeds3.png, id=954, 4175.6pt x 2344.76pt>
+<img/driverLeds3.png, id=962, 4175.6pt x 2344.76pt>
 File: img/driverLeds3.png Graphic file (type png)
  <use img/driverLeds3.png>
 Package pdftex.def Info: img/driverLeds3.png used on input line 282.
@@ -1263,7 +1295,7 @@ Overfull \hbox (8.53589pt too wide) in paragraph at lines 282--283
  [] 
  []
 
-<img/driverLeds2.png, id=955, 4175.6pt x 2344.76pt>
+<img/driverLeds2.png, id=963, 4175.6pt x 2344.76pt>
 File: img/driverLeds2.png Graphic file (type png)
  <use img/driverLeds2.png>
 Package pdftex.def Info: img/driverLeds2.png used on input line 289.
@@ -1295,46 +1327,76 @@ Underfull \hbox (badness 10000) in paragraph at lines 295--301
  []
 
 [37 <./img/driverLeds3.png> <./img/driverLeds2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 325--326
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--310
+Underfull \hbox (badness 10000) in paragraph at lines 327--329
+
+ []
+
+[38] <img/app_event_input_emul.png, id=1040, 424.58624pt x 358.33875pt>
+File: img/app_event_input_emul.png Graphic file (type png)
+
+<use img/app_event_input_emul.png>
+Package pdftex.def Info: img/app_event_input_emul.png used on input line 361.
+(pdftex.def)             Requested size: 284.52756pt x 240.14586pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 356--365
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--317
+Underfull \hbox (badness 10000) in paragraph at lines 356--365
+
+ []
+
+[39 <./img/app_event_input_emul.png>]
+<img/qtextedit_test_emulator.png, id=1059, 1371.1225pt x 674.52pt>
+File: img/qtextedit_test_emulator.png Graphic file (type png)
+
+<use img/qtextedit_test_emulator.png>
+Package pdftex.def Info: img/qtextedit_test_emulator.png used on input line 379
+.
+(pdftex.def)             Requested size: 483.69684pt x 237.94844pt.
+
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 379--380
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 375--383
+
+ []
+
+<img/qtextedit_on_target.jpg, id=1060, 3854.4pt x 2168.1pt>
+File: img/qtextedit_on_target.jpg Graphic file (type jpg)
+
+<use img/qtextedit_on_target.jpg>
+Package pdftex.def Info: img/qtextedit_on_target.jpg used on input line 391.
+(pdftex.def)             Requested size: 483.69684pt x 272.07048pt.
+
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 391--392
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 385--395
+
+ []
+
+[40 <./img/qtextedit_test_emulator.png>]) (./sections/Virtualisation.tex
+Underfull \hbox (badness 10000) in paragraph at lines 397--1
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--317
+Underfull \hbox (badness 10000) in paragraph at lines 397--1
 
  []
 
-) (sections/Virtualisation.tex
-Underfull \hbox (badness 10000) in paragraph at lines 322--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--1
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--1
-
- []
-
-[38]
+[41 <./img/qtextedit_on_target.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
@@ -1354,7 +1416,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--48
 
  []
 
-[39]
+[42]
 Underfull \hbox (badness 10000) in paragraph at lines 76--83
 
  []
@@ -1369,7 +1431,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 76--83
 
  []
 
-[40]
+[43]
 Underfull \hbox (badness 10000) in paragraph at lines 87--89
 
  []
@@ -1384,13 +1446,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 115--117
 
  []
 
-[41] <img/dom0.png, id=1111, 775.698pt x 538.4115pt>
+[44] <img/dom0.png, id=1169, 775.698pt x 538.4115pt>
 File: img/dom0.png Graphic file (type png)
  <use img/dom0.png>
 Package pdftex.def Info: img/dom0.png used on input line 163.
 (pdftex.def)             Requested size: 455.24408pt x 315.98407pt.
 
-[42] <img/virt1.png, id=1146, 728.7225pt x 461.3235pt>
+[45] <img/virt1.png, id=1204, 728.7225pt x 461.3235pt>
 File: img/virt1.png Graphic file (type png)
  <use img/virt1.png>
 Package pdftex.def Info: img/virt1.png used on input line 183.
@@ -1421,7 +1483,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 169--187
 
  []
 
-[43 <./img/dom0.png>]
+[46 <./img/dom0.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 194--195
 
  []
@@ -1436,20 +1498,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 196--200
 
  []
 
-[44 <./img/virt1.png>] [45] <img/dom02.png, id=1212, 804.606pt x 572.1375pt>
+[47 <./img/virt1.png>] [48] <img/dom02.png, id=1270, 804.606pt x 572.1375pt>
 File: img/dom02.png Graphic file (type png)
 
 <use img/dom02.png>
 Package pdftex.def Info: img/dom02.png used on input line 253.
 (pdftex.def)             Requested size: 455.24408pt x 323.71225pt.
- <img/dom03.png, id=1213, 1049.1195pt x 380.622pt>
+ <img/dom03.png, id=1271, 1049.1195pt x 380.622pt>
 File: img/dom03.png Graphic file (type png)
 
 <use img/dom03.png>
 Package pdftex.def Info: img/dom03.png used on input line 260.
 (pdftex.def)             Requested size: 455.24408pt x 165.16267pt.
- [46 <./img/dom02.png>]
-<img/virt2.png, id=1222, 728.7225pt x 461.3235pt>
+ [49 <./img/dom02.png>]
+<img/virt2.png, id=1281, 728.7225pt x 461.3235pt>
 File: img/virt2.png Graphic file (type png)
  <use img/virt2.png>
 Package pdftex.def Info: img/virt2.png used on input line 269.
@@ -1464,7 +1526,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 265--273
 
  []
 
-[47 <./img/dom03.png> <./img/virt2.png>]
+[50 <./img/dom03.png> <./img/virt2.png>]
 Overfull \hbox (11.36482pt too wide) in paragraph at lines 278--279
 []\T1/cmr/m/n/12 L'événement se re-trouve fi-na-le-ment en es-pace uti-li-sa-te
 ur dans le fi-chier \T1/cmr/m/it/12 /dev/in-put/event1 
@@ -1485,7 +1547,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 281--290
 
  []
 
-[48] [49]
+[51] [52]
 Underfull \hbox (badness 10000) in paragraph at lines 383--389
 
  []
@@ -1495,7 +1557,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 383--389
 
  []
 
-[50] <img/dom04.png, id=1333, 698.61pt x 390.86024pt>
+[53] <img/dom04.png, id=1392, 698.61pt x 390.86024pt>
 File: img/dom04.png Graphic file (type png)
  <use img/dom04.png>
 Package pdftex.def Info: img/dom04.png used on input line 409.
@@ -1505,7 +1567,7 @@ Overfull \hbox (8.53589pt too wide) in paragraph at lines 409--410
  [] 
  []
 
-<img/virt3.png, id=1334, 728.7225pt x 463.13025pt>
+<img/virt3.png, id=1393, 728.7225pt x 463.13025pt>
 File: img/virt3.png Graphic file (type png)
  <use img/virt3.png>
 Package pdftex.def Info: img/virt3.png used on input line 420.
@@ -1520,7 +1582,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 414--424
 
  []
 
-[51 <./img/dom04.png>] <img/virt4.png, id=1348, 728.7225pt x 463.13025pt>
+[54 <./img/dom04.png>] <img/virt4.png, id=1407, 728.7225pt x 463.13025pt>
 File: img/virt4.png Graphic file (type png)
 
 <use img/virt4.png>
@@ -1531,139 +1593,139 @@ Overfull \hbox (8.53589pt too wide) in paragraph at lines 434--435
  [] 
  []
 
-[52 <./img/virt3.png>]
+[55 <./img/virt3.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 443--444
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--459
+Underfull \hbox (badness 10000) in paragraph at lines 454--458
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--459
+Underfull \hbox (badness 10000) in paragraph at lines 454--458
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--459
+Underfull \hbox (badness 10000) in paragraph at lines 454--458
+
+ []
+
+[56 <./img/virt4.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 459--462
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--459
+Underfull \hbox (badness 10000) in paragraph at lines 459--462
 
  []
 
-[53 <./img/virt4.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 460--463
+
+Underfull \hbox (badness 10000) in paragraph at lines 463--466
 
  []
 
-<img/dom05.png, id=1371, 607.068pt x 369.7815pt>
+[57] <img/dom05.png, id=1459, 607.068pt x 369.7815pt>
 File: img/dom05.png Graphic file (type png)
  <use img/dom05.png>
-Package pdftex.def Info: img/dom05.png used on input line 495.
+Package pdftex.def Info: img/dom05.png used on input line 498.
 (pdftex.def)             Requested size: 483.69684pt x 294.6294pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 495--496
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 498--499
  [] 
  []
 
-[54]
-Underfull \hbox (badness 10000) in paragraph at lines 500--506
+
+Underfull \hbox (badness 10000) in paragraph at lines 503--509
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 500--506
+Underfull \hbox (badness 10000) in paragraph at lines 503--509
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 500--506
+Underfull \hbox (badness 10000) in paragraph at lines 503--509
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 500--506
+Underfull \hbox (badness 10000) in paragraph at lines 503--509
 
  []
 
-[55 <./img/dom05.png>] <img/virt5.png, id=1412, 728.7225pt x 463.13025pt>
+[58 <./img/dom05.png>] <img/virt5.png, id=1471, 728.7225pt x 463.13025pt>
 File: img/virt5.png Graphic file (type png)
 
 <use img/virt5.png>
-Package pdftex.def Info: img/virt5.png used on input line 510.
+Package pdftex.def Info: img/virt5.png used on input line 513.
 (pdftex.def)             Requested size: 483.69684pt x 307.40533pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 510--511
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 513--514
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 524--527
+Underfull \hbox (badness 10000) in paragraph at lines 527--530
 
  []
 
-[56 <./img/virt5.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 530--532
+[59 <./img/virt5.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 533--535
 
  []
 
-[57] <img/dom06.png, id=1468, 1156.32pt x 572.1375pt>
+[60] <img/dom06.png, id=1528, 1156.32pt x 572.1375pt>
 File: img/dom06.png Graphic file (type png)
  <use img/dom06.png>
-Package pdftex.def Info: img/dom06.png used on input line 586.
+Package pdftex.def Info: img/dom06.png used on input line 589.
 (pdftex.def)             Requested size: 483.69684pt x 239.32706pt.
 
-Overfull \hbox (8.53589pt too wide) in paragraph at lines 586--587
+Overfull \hbox (8.53589pt too wide) in paragraph at lines 589--590
  [] 
  []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 98.
- [58 <./img/dom06.png>]
+ [61 <./img/dom06.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 98.
- (seee_lab_report.aux)
+ (./seee_lab_report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 98.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 98.
 Package rerunfilecheck Info: File `seee_lab_report.out' has not changed.
-(rerunfilecheck)             Checksum: FA1ACFA8CA6EFB5E6A636BD4F7B792B0;2069.
+(rerunfilecheck)             Checksum: 95751D32AEF97A9F904F99E489D0D0D4;2044.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 98.
  ) 
 Here is how much of TeX's memory you used:
- 12839 strings out of 493673
- 177710 string characters out of 3141526
- 461916 words of memory out of 3000000
- 14868 multiletter control sequences out of 15000+200000
- 21776 words of font info for 51 fonts, out of 3000000 for 9000
- 1025 hyphenation exceptions out of 8191
- 36i,14n,49p,930b,1991s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
-\ecti1200.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
-n\ec\dpi600\eccc1200.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
-our\jknappen\ec\dpi600\ectt1200.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\f
-onts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\Emilie\AppData\Local\M
-iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk> <C:\Users\Emilie\AppD
-ata\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\
-Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>
- <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
-cbx1728.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecrm0800.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk> <C:\Users\Emilie\AppData\Local\MiK
-TeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1440.pk> <C:\Users\Emilie\AppDat
-a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users\Em
-ilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2488.pk> <
-C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecb
-x2488.pk> <C:\Users\Emilie\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec
-\dpi600\eccc2488.pk><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb>
-Output written on seee_lab_report.pdf (58 pages, 10884291 bytes).
+ 13041 strings out of 493054
+ 179492 string characters out of 6140587
+ 462957 words of memory out of 5000000
+ 15203 multiletter control sequences out of 15000+600000
+ 21011 words of font info for 50 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 30i,12n,49p,930b,1991s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/font
+s/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/
+cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx17
+28.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf-dist/
+fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/cm-super/sfcc2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
+rm0600.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></us
+r/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf-d
+ist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1
+/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
+r/sfrm2488.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on seee_lab_report.pdf (61 pages, 16604483 bytes).
 PDF statistics:
- 2273 PDF objects out of 2487 (max. 8388607)
- 1123 named destinations out of 1200 (max. 500000)
- 351 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1838 PDF objects out of 2073 (max. 8388607)
+ 1685 compressed objects within 17 object streams
+ 1157 named destinations out of 1200 (max. 500000)
+ 366 words of extra memory for PDF output out of 10000 (max. 10000000)
 

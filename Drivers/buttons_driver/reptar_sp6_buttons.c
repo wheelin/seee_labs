@@ -136,12 +136,14 @@ static int reptar_sp6_buttons_probe(struct platform_device *pdev)
 	/* Register 2 interrupt handlers (top, bottom) */
 	/* ... */
 	
-	// enable fpga irq
-	*(btns->irq_reg) |= 0x0080;
-	if((ret = request_threaded_irq(btns->irq, reptar_sp6_buttons_irq, reptar_sp6_buttons_irq_thread, IRQF_TRIGGER_RISING, "THR_IRQ", btns))) {
+	if((ret = request_threaded_irq(btns->irq, reptar_sp6_buttons_irq, 
+									reptar_sp6_buttons_irq_thread, 
+									IRQF_TRIGGER_RISING, "THR_IRQ", btns))) {
 		printk("Cannot request threaded irq for gpio : ret = %d\n", ret);
 		return -EIO;
 	}
+	// enable fpga irq
+	*(btns->irq_reg) |= 0x0080;
 
 	platform_set_drvdata(pdev, btns);
 

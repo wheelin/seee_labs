@@ -455,7 +455,10 @@ Testez sur l’émulateur et sur la plate-forme réelle.\\\\
 \textbf{Emplacement du code:}\\\textit{/virtualisation\_part4/test\_input.c}\\
 \textit{/virtualisation\_part4/Makefile}\\
 \textit{/virtualisation\_part4/reptar\_sp6.c}\\\\
-\color{red}\textbf{Travail réalisé: }\color{black}\\\\
+
+\textbf{Travail réalisé: }\color{black}\\\\
+L'application se compose, globalement, d'une boucle infinie qui va poller le fichier \textit{/dev/input/event0}. Celui-ci renvoie, sous la forme d'une structure de type \textit{input\_event} les événements qui se sont produits au niveau des boutons. On obtient ainsi, après avoir contrôlé la valeur (1 si la touche a été enfonçée et 0 si relâchée) et le type (devant correspondre à \textit{EV\_KEY}), le code, qui désigne quelle touche a été frappée.\\
+Trois fichiers sont importants pour le contrôle des leds. Leur nom ressemble à \textit{/sys/class/leds/ledx/brightness}. Avec un \textit{1}, on les allume et, avec un \textit{0}, on les éteint. On fait juste un contrôle sur les valeurs de retour, histoire d'être sûr que le fichier existe, qu'il a pu être écrit correctement, etc. \\
 
 \textbf{Remarque: }Pour pouvoir insérer notre application dans le rootfs de DomU, nous avons dû télécharger une nouvelle version du script \textit{deploy ex}. Un répertoire domu est créé dans notre workspace. Il faut absolument placer l'exécutable de l'application dans ce dossier pour qu'il soit ensuite visible dans DomU.\\\\
 Voici les différents tests effectués avec l'application. Une fois le driver sp6 inséré dans Dom0. Il faut aller lancer notre application test\_input dans DomU. Il est ensuite important d'appuyer sur le bouton en haut à droite pour changer le focus sur DomU, sinon les événements des boutons ne seront pas transmis et resteront dans Dom0.
