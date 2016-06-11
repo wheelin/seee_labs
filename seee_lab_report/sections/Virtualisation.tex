@@ -458,8 +458,34 @@ Testez sur l’émulateur et sur la plate-forme réelle.\\\\
 
 \textbf{Travail réalisé: }
 L'application se compose, globalement, d'une boucle infinie qui va poller le fichier \textit{/dev/input/event0}. Celui-ci renvoie, sous la forme d'une structure de type \textit{input\_event} les événements qui se sont produits au niveau des boutons. On obtient ainsi, après avoir contrôlé la valeur (1 si la touche a été enfonçée et 0 si relâchée) et le type (devant correspondre à \textit{EV\_KEY}), le code, qui désigne quel bouton a été appuyé.\\
-\color{red}Trois fichiers sont importants pour le contrôle des leds. Leur nom ressemble à \textit{/sys/class/leds/ledx/brightness}. Avec un \textit{1}, on les allume et, avec un \textit{0}, on les éteint. On fait juste un contrôle sur les valeurs de retour, histoire d'être sûr que le fichier existe, qu'il a pu être écrit correctement, etc. \color{black} .......Pas très clair.....\\
-\color{red}Manque petite partie sur la modification du Makefile et sur les modifs faites à l'ancien code. \color{black}\\\\
+Trois fichiers sont importants pour le contrôle des leds. Leur nom ressemble à \textit{/sys/class/leds/ledx/brightness}. Ceci veut dire qu'elles ont été enregistrées dans le système de fichier \textit{/sysfs} par un driver auparavant. Lorsqu'on écrit un \textit{1} dans ces fichiers, les leds correspondantes s'allument. Et pour un \textit{0} elles s'éteignent. Dans cette application, une fonction est utilisée pour manipuler les leds, avec en paramètre le numéro de la led et son état, \textit{0} ou \textit{1}. Le fichier est ouvert, on y écrit la valeur, et ensuite, on le referme. \\
+Le makefile présent dans le dossier des drivers a été modifié pour compiler cette petite application. Les deux lignes suivantes ont été modifiées:
+\begin{lstlisting}
+	all: kernel buttons_test usertest test_input
+	...
+	test_input: test_input.c
+		$(CC) -marm -I$(KDIR) -static test_input.c -o test_input
+\end{lstlisting}
+Une modification a aussi été apportée à \textit{Qemu} et en particulier à notre fichier \textit{reptar\_sp6.c}. En effet, l'application crashait dès que nous pressions sur un bouton. Cela était du à la construction et au remplissage des paquets JSON en dehors des zones où nous en avions effectivement besoin.
+
+\begin{lstlisting}
+	cJSON *root;
+
+	switch(offset)
+	{
+	case SP6_LED:
+		if(size == 2)
+		{
+			root = cJSON_CreateObject();
+			cJSON_AddStringToObject(root,"perif","led");
+			//printf ("sp6_write: Led write 0x%x\n",value);
+			led_register_value = (uint16_t) value;
+			//Create JSON response
+			cJSON_AddNumberToObject(root,"value",led_register_value);
+			sp6_emul_cmd_post(root);
+		}
+\end{lstlisting}
+On instançiait le paquet JSON sans savoir si nous allions effectivement l'utiliser. Le code d'allocation se trouvait au dehors du \textit{switch case}. Le fait d'instancier l'objet uniquement lors de son utilisation, c-à-d dans le \textit{case} et dans le \textit{if} a résolu le problème. La fonction \textit{sp6\_emul\_cmd\_post(root);} poste le paquet JSON et s'occupe de désallouer l'espace grâce au pointeur passé en argument. L'ancien code permettait d'allouer de l'espace sans pour autant le désallouer automatiquement. 
 
 \textbf{Remarque: }Pour pouvoir insérer notre application dans le rootfs de DomU, nous avons dû télécharger une nouvelle version du script \textit{deploy ex}. Un répertoire domu est créé dans notre workspace. Il faut absolument placer l'exécutable de l'application dans ce dossier pour qu'il soit ensuite visible dans DomU.\\\\
 Voici les différents tests effectués avec l'application. Une fois le driver sp6 inséré dans Dom0. Il faut aller lancer notre application test\_input dans DomU. Il est ensuite important d'appuyer sur le bouton en haut à droite pour changer le focus sur DomU, sinon les événements des boutons ne seront pas transmis et resteront dans Dom0.

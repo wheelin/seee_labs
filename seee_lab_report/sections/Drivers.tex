@@ -80,9 +80,37 @@ Sur la base du code existant, on souhaite pouvoir écrire et lire une chaîne de
 version du bitstream (hypothétique) dans la FPGA, stockée dans la variable globale bitstream\_version.\\\\
 \textbf{a) Donnée: }Complétez les callbacks read() et write() afin qu'une application utilisateur puisse lire et écrire une
 chaîne de (80 max.) caractères. \\\\
-\color{red} \textbf{Emplacement du code: }\textit{/}\\\\ \color{black}
+\textbf{Emplacement du code: /Drivers/char\_driver\_ex1/reptar\_sp6.c}\\\\
 \textbf{Travail réalisé: }Les callbacks read et write ont été implémentés très sommairement dans le module avec la fonction 
 \textit{copy\_from/to\_user}. Il faut faire attention à bien retourner le nombre de bytes qui ont été lus ou écrits, pour que l'application puisse être au fait et détecter le cas échéant, si une erreur s'est produite.\\
+
+\begin{lstlisting}
+	ssize_t fpga_read(struct file *filp, char *buffer, size_t length, loff_t *offset) {
+		
+		/* If offset is not zero, it means that a previous read already occured.
+		* So, we tell the user space that we are at the end
+		*/
+		
+		if (*offset != 0)
+			return 0;
+		if(copy_to_user(buffer, bitstream_version, sizeof(bitstream_version)) != 0)
+		{
+			return -EFAULT;
+		}
+		return sizeof(bitstream_version);			
+	}
+	
+	ssize_t fpga_write(struct file *filp, const char *buff, 
+		size_t len, loff_t *off) {
+		if(len > 80)
+			return -EFAULT;
+		
+		if(copy_from_user(bitstream_version, buff, len) != 0)
+			return -EFAULT;
+		return len;
+	}
+\end{lstlisting}
+
 \begin{lstlisting}
 # cd /
 # insmod sp6.ko 
@@ -112,23 +140,71 @@ Normally read buffer
 Bitstream version : mais coucou mon petit
 \end{lstlisting}
 
-\color{red}\textbf{b) Donnée: }Pour identifier le nom de l'entrée dans /dev/ qui sera créée automatiquement, examinez la fonction
+\textbf{b) Donnée: }Pour identifier le nom de l'entrée dans /dev/ qui sera créée automatiquement, examinez la fonction
 probe( ) du driver.\\\\
-\textbf{Emplacement du code: }\textit{/}\\\\
+\textbf{Emplacement du code: /Drivers/char\_driver\_ex1/reptar\_sp6.c}\textit{/}\\\\
 \textbf{Réponse aux questions: }
 \begin{enumerate}
 	\item Comment l'entrée dans /dev est-elle générée ? 
+	\begin{lstlisting}
+		fpga_cdev = cdev_alloc();
+		
+		/* We store the newly allocated cdev as a private driver data to this device */
+		dev_set_drvdata(&pdev->dev, fpga_cdev);
+		
+		/* Initializing character device to enable user space ops */
+		cdev_init(fpga_cdev, &fpga_fops);
+		cdev_add(fpga_cdev, pdev->dev.devt, 1);
+		device_create(pdata->fpga_class, NULL, pdev->dev.devt, NULL, "sp6");
+	\end{lstlisting}
 	\item  Quel sera le nom de l'entrée dans /dev ? \\
+	\textit{sp6}, string passé en argument à la fonction \textit{device\_create}.
+	\begin{lstlisting}
+		ls /dev | grep sp 
+	\end{lstlisting}
+	La commande ci-dessus donne en réponse \textit{sp6}.
 \end{enumerate}
 \textbf{Travail réalisé: }\\\\
 \textbf{c) Donnée: }Afin de tester votre driver, écrivez une application usertest (fichier usertest.c) qui écrira puis relira
 la chaîne de version en utilisant l’entrée dans /dev évoquée ci-dessus.\\
-Une application a aussi été codée pour tester les callbacks. Celle-ci affiche les stats du fichier créé dans le dossier \textit{/dev}, écrit une version de bitstream totalement fabuliste, relit les stats et enfin lit le bitstream pour confirmer le succès de l'écriture.\\\\
+
+\textbf{Travail réalisé: }\\\\ 
+\textbf{Emplacement du code : }\textit{/Drivers/char\_driver\_ex1/usertest.c}\\
+Une application a aussi été codée pour tester les callbacks. Celle-ci affiche les stats du fichier créé dans le dossier \textit{/dev}, écrit une version de bitstream totalement fabuliste, relit les stats et enfin lit le bitstream pour confirmer le succès de l'écriture.\\
+Output du code \textit{usertest}
+\begin{lstlisting}
+	# ./usertest 
+	Device ID : 0
+	Inode number : 5
+	Protection mode : 0
+	Num of hard links : 680
+	User ID of owner : 8624
+	Group ID of owner : 1
+	Device ID (spec files only): 0
+	Total size [bytes] : 0
+	Setting bitstream version to : mais coucou mon petit                                                          
+	Device ID : 0
+	Inode number : 5
+	Protection mode : 0
+	Num of hard links : 680
+	User ID of owner : 8624
+	Group ID of owner : 1
+	Device ID (spec files only): 0
+	Total size [bytes] : 0
+	Bitstream version : mais coucou mon petit  
+\end{lstlisting}
 \textbf{Réponse aux questions: }
 \begin{enumerate}
 	\item Recherchez les valeurs du major et minor attribuées à ce driver. Expliquez votre démarche\\
 \end{enumerate}
-\textbf{Travail réalisé: }\\\\ \color{black}
+La démarche est la suivante:
+\begin{lstlisting}
+	# ls -l /dev/ | grep sp6
+	crw-rw----    1 root     root      252,   0 Jun 11 11:31 sp6
+\end{lstlisting}
+Le \textit{major} est \textit{252} et le \textit{minor} est \textit{0}. Le \textit{0} indique que c'est la seule instance du driver en fonctionnement.
+
+
 \subsection{Pilotage des LEDs }
 Le code de pilotage des LEDs se trouve dans le fichier reptar\_sp6\_leds.c. La réalisation du driver des
 LEDs.

@@ -17,10 +17,10 @@
 \contentsline {section}{\numberline {3}Drivers}{30}{section.3}
 \contentsline {subsection}{\numberline {3.1}Environnement Qemu et plate-forme Reptar }{30}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Driver de type caract\IeC {\`e}re}{31}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Pilotage des LEDs }{33}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Pilotage des boutons}{38}{subsection.3.4}
-\contentsline {section}{\numberline {4}Virtualisation embarqu\IeC {\'e}e}{43}{section.4}
-\contentsline {subsection}{\numberline {4.1}Test de l'environnement EmbeddedXEN}{43}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}D\IeC {\'e}ploiement du driver sp6 dans Dom0}{44}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Interaction entre Dom0 et DomU sur l'interface input para-virtualis\IeC {\'e}}{47}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Para-virtualisation de l'interface LED}{52}{subsection.4.4}
+\contentsline {subsection}{\numberline {3.3}Pilotage des LEDs }{34}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Pilotage des boutons}{40}{subsection.3.4}
+\contentsline {section}{\numberline {4}Virtualisation embarqu\IeC {\'e}e}{44}{section.4}
+\contentsline {subsection}{\numberline {4.1}Test de l'environnement EmbeddedXEN}{44}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}D\IeC {\'e}ploiement du driver sp6 dans Dom0}{45}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Interaction entre Dom0 et DomU sur l'interface input para-virtualis\IeC {\'e}}{48}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Para-virtualisation de l'interface LED}{53}{subsection.4.4}
