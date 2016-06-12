@@ -142,7 +142,7 @@ Bitstream version : mais coucou mon petit
 
 \textbf{b) Donnée: }Pour identifier le nom de l'entrée dans /dev/ qui sera créée automatiquement, examinez la fonction
 probe( ) du driver.\\\\
-\textbf{Emplacement du code: /Drivers/char\_driver\_ex1/reptar\_sp6.c}\textit{/}\\\\
+\textbf{Emplacement du code: }\textit{/Drivers/char\_driver\_ex1/reptar\_sp6.c}\\\\
 \textbf{Réponse aux questions: }
 \begin{enumerate}
 	\item Comment l'entrée dans /dev est-elle générée ? 
@@ -158,18 +158,18 @@ probe( ) du driver.\\\\
 		device_create(pdata->fpga_class, NULL, pdev->dev.devt, NULL, "sp6");
 	\end{lstlisting}
 	\item  Quel sera le nom de l'entrée dans /dev ? \\
-	\textit{sp6}, string passé en argument à la fonction \textit{device\_create}.
+	Le nom sera \textit{sp6}, le string passé en argument à la fonction \textit{device\_create}.
 	\begin{lstlisting}
 		ls /dev | grep sp 
 	\end{lstlisting}
 	La commande ci-dessus donne en réponse \textit{sp6}.
 \end{enumerate}
-\textbf{Travail réalisé: }\\\\
 \textbf{c) Donnée: }Afin de tester votre driver, écrivez une application usertest (fichier usertest.c) qui écrira puis relira
 la chaîne de version en utilisant l’entrée dans /dev évoquée ci-dessus.\\
 
 \textbf{Emplacement du code : }\textit{/Drivers/char\_driver\_ex1/usertest.c}\\
-Une application a aussi été codée pour tester les callbacks. Celle-ci affiche les stats du fichier créé dans le dossier \textit{/dev}, écrit une version de bitstream totalement fabuliste, relit les stats et enfin lit le bitstream pour confirmer le succès de l'écriture.\\
+
+\textbf{Travail réalisé: }Une application a aussi été codée pour tester les callbacks. Celle-ci affiche les stats du fichier créé dans le dossier \textit{/dev}, écrit une version de bitstream totalement fabuliste, relit les stats et enfin lit le bitstream pour confirmer le succès de l'écriture.\\
 
 Output du code \textit{usertest}:
 \begin{lstlisting}
@@ -463,8 +463,7 @@ La pression sur les boutons produit des interactions avec le texte de l'applicat
 
 \textbf{e) Donnée: }Effectuez un déploiement et un test sur la plate-forme réelle Reptar. Sur la plate-forme réelle, vous
 devrez utiliser l'entrée /dev/input/event2\\\\
-\textbf{Travail réalisé: }\\\\
-Là aussi, le texte est modifié grâce aux boutons, auxquels il a été donné des fonctionnalités telles que \textit{space}, \textit{esc}, \textit{enter} et \textit{back}.
+\textbf{Travail réalisé: }Là aussi, le texte est modifié grâce aux boutons, auxquels il a été donné des fonctionnalités telles que \textit{space}, \textit{esc}, \textit{enter} et \textit{back}.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=17cm]{img/qtextedit_on_target.jpg}
