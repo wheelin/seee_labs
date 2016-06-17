@@ -123,17 +123,17 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 {
 	sp6_state_t *s = (sp6_state_t *)opaque;
 
-	cJSON *root = cJSON_CreateObject();
+	cJSON *root;
 	switch(offset)
 	{
 		case SP6_LED:
-			cJSON_AddStringToObject(root,"perif","led");
 			if(size == 2)
 			{
 				printf ("sp6_write: Led write 0x%x\n",value);
 				led_register_value = (uint16_t) value;
-				
 				//Create JSON response
+				root = cJSON_CreateObject();
+				cJSON_AddStringToObject(root,"perif","led");
 				cJSON_AddNumberToObject(root,"value",led_register_value);
 				sp6_emul_cmd_post(root);
 			}
@@ -141,13 +141,13 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 				printf ("sp6_write: Led write wrong data size %d should be 2\n",size);
 		break;
 		case SP6_7SEG1:
-			cJSON_AddStringToObject(root,"perif","7seg");
 			if(size == 2)
 			{
 				printf ("sp6_write: Display 7 segments D1 write 0x%x\n",value);
 				disp_7seg_d1_register_value = (uint16_t) value;
-				
 				//Create JSON response
+				root = cJSON_CreateObject();
+				cJSON_AddStringToObject(root,"perif","7seg");
 				cJSON_AddNumberToObject(root,"digit",1);
 				cJSON_AddNumberToObject(root,"value",disp_7seg_d1_register_value);
 				sp6_emul_cmd_post(root);
@@ -156,13 +156,13 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 				printf ("sp6_write: Display 7 segments D1 write wrong data size %d should be 2\n",size);
 		break;
 		case SP6_7SEG2:
-			cJSON_AddStringToObject(root,"perif","7seg");
 			if(size == 2)
 			{
 				printf ("sp6_write: Display 7 segments D2 write 0x%x\n",value);
 				disp_7seg_d2_register_value = (uint16_t) value;
-				
 				//Create JSON response
+				root = cJSON_CreateObject();
+				cJSON_AddStringToObject(root,"perif","7seg");
 				cJSON_AddNumberToObject(root,"digit",2);
 				cJSON_AddNumberToObject(root,"value",disp_7seg_d2_register_value);
 				sp6_emul_cmd_post(root);
@@ -171,12 +171,14 @@ static void sp6_write(void *opaque, hwaddr offset, uint64_t value, unsigned size
 				printf ("sp6_write: Display 7 segments D2 write wrong data size %d should be 2\n",size);
 		break;
 		case SP6_7SEG3:
-			cJSON_AddStringToObject(root,"perif","7seg");
+			
 			if(size == 2)
 			{
 				printf ("sp6_write: Display 7 segments D3 write 0x%x\n",value);
 				disp_7seg_d3_register_value = (uint16_t) value;
 				//Create JSON response
+				root = cJSON_CreateObject();
+				cJSON_AddStringToObject(root,"perif","7seg");
 				cJSON_AddNumberToObject(root,"digit",3);
 				cJSON_AddNumberToObject(root,"value",disp_7seg_d3_register_value);
 				sp6_emul_cmd_post(root);
@@ -224,7 +226,7 @@ static int sp6_initfn(SysBusDevice *dev)
 	DeviceState *sbd = DEVICE(dev);
 	sp6_state_t *s = OBJECT_CHECK(sp6_state_t, dev, "reptar_sp6");
 	memory_region_init_io(&s->iomem, OBJECT(s), &reptar_sp6_ops, s,
-                          "reptar_sp6", SP6_BASE_ADDRESS);
+                          "reptar_sp6", 0x100000);
     	sysbus_init_mmio(sbd, &s->iomem);
 
 	sysbus_init_irq(sbd, &s->irq);

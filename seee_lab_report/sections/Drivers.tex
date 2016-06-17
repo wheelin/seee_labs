@@ -472,10 +472,26 @@ devrez utiliser l'entrée /dev/input/event2\\\\
 	\end{center}
 \end{figure}
 
-\color{red}
 \textbf{Réponse aux questions: }A la fin de cette étape, vous devrez être en mesure de décrire le cheminement d'une interruption
 en provenance d'un bouton jusqu'à l'effet perçu au niveau de l’application utilisateur. \\\\
-\textbf{Travail réalisé: }\\\\\color{black}
+\textbf{Travail réalisé: }\\\\
+La figure \ref{interrupt_path} montre le cheminement d'une interruption depuis le port GPIO jusqu'à la fonction de callback enregistrée par nos soins dans le driver.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=15cm]{img/interrupt_hw_path.png}
+		\caption{Diagramme montrant le cheminement d'une interruption}
+		\label{interrupt_path}
+	\end{center}
+\end{figure}
+Pour rappel: Le CPU, en lui-même, n'a que deux types d'interruptions qui peuvent provenir de l'extérieur, IRQ et FIQ. Ces deux interruptions sont câblées sur une entrée de la table des vecteurs du CPU. La figure \ref{vector_table} montre cette table.
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=6cm]{img/vector_table.png}
+		\caption{Table des vecteurs d'un CPU ARM}
+		\label{vector_table}
+	\end{center}
+\end{figure} 
+Cette table contient un pointeur vers la première fonction qui gérera les interruptions. Celle-ci va aller décoder les registres du PIC pour déterminer d'où provient l'interruption et lui associer un nombre unique. Ensuite, on gère l'interruption selon le flanc, le niveau, la pulse, on nettoie le flag, on masque les interruptions, etc. \\
 
 \textbf{Travail supplémentaire accompli :}\\
 Les interruptions provenant des boutons, dans Qemu, avaient un problème. La lecture du statut de l'interruption retournait toujours un \textit{0}, alors que l'interruption elle-même avait bien eu lieu. Il se trouve que dans le code d'émulation de la FPGA, le bit de status n'était pas mis à jour.
